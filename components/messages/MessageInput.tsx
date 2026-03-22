@@ -53,24 +53,24 @@ export default function MessageInput({ matchId, onMessageSent }: MessageInputPro
   };
 
   return (
-    <div className="bg-white border-t border-slate-200 px-4 py-3">
-      <div className="flex items-end gap-3">
-        <div className="flex-1 bg-slate-50 rounded-2xl border border-slate-200 focus-within:border-indigo-400 focus-within:ring-2 focus-within:ring-indigo-100 transition-all">
+    <div className="bg-[#242424] border-t border-[#333333] px-3 py-3">
+      <div className="flex items-end gap-2">
+        <div className="flex-1 bg-[#2e2e2e] rounded-xl border border-[#444444] focus-within:border-indigo-500/60 transition-all">
           <textarea
             ref={textareaRef}
             value={content}
             onChange={handleTextareaChange}
             onKeyDown={handleKeyDown}
-            placeholder="Type a message... (Enter to send, Shift+Enter for new line)"
+            placeholder="Type a message… (Enter to send)"
             rows={1}
-            className="w-full px-4 py-3 bg-transparent text-sm placeholder:text-slate-400 focus:outline-none resize-none"
-            style={{ minHeight: "44px", maxHeight: "120px" }}
+            className="w-full px-3 py-2.5 bg-transparent text-sm text-white placeholder:text-gray-600 focus:outline-none resize-none"
+            style={{ minHeight: "40px", maxHeight: "120px" }}
           />
         </div>
         <button
           onClick={handleSend}
           disabled={!content.trim() || isSending}
-          className="flex-shrink-0 w-10 h-10 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-200 disabled:text-slate-400 text-white rounded-xl flex items-center justify-center transition-colors"
+          className="flex-shrink-0 w-9 h-9 bg-indigo-600 hover:bg-indigo-700 disabled:bg-[#333333] disabled:text-gray-600 text-white rounded-lg flex items-center justify-center transition-colors"
         >
           {isSending ? (
             <Loader2 className="w-4 h-4 animate-spin" />

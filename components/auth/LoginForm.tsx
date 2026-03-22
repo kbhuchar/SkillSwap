@@ -4,11 +4,13 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Eye, EyeOff, Mail, Lock, Loader2 } from "lucide-react";
 import { loginSchema, type LoginInput } from "@/lib/validations/auth";
 
 export default function LoginForm() {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
@@ -23,15 +25,19 @@ export default function LoginForm() {
 
   const onSubmit = async (data: LoginInput) => {
     setError(null);
-    try {
-      await signIn("credentials", {
-        email: data.email,
-        password: data.password,
-        redirectTo: "/dashboard",
-      });
-    } catch {
-      setError("Invalid email or password. Please try again.");
+    const result = await signIn("credentials", {
+      email: data.email,
+      password: data.password,
+      redirect: false,
+    });
+
+    if (!result?.ok) {
+      setError("No account found or incorrect password. Don't have one? Register below.");
+      return;
     }
+
+    router.push("/dashboard");
+    router.refresh();
   };
 
   const handleGoogleSignIn = async () => {
