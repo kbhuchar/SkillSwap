@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { pusherServer } from "@/lib/pusher";
+import { getPusherServer } from "@/lib/pusher";
 
 export async function GET(
   req: Request,
@@ -74,11 +74,9 @@ export async function POST(
   });
 
   // Trigger Pusher event (fire-and-forget)
-  if (process.env.PUSHER_APP_ID) {
-    pusherServer
-      .trigger(`private-match-${matchId}`, "new-message", message)
-      .catch(console.error);
-  }
+  getPusherServer()
+    ?.trigger(`private-match-${matchId}`, "new-message", message)
+    .catch(console.error);
 
   return NextResponse.json(message, { status: 201 });
 }

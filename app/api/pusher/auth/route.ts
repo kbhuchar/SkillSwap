@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { pusherServer } from "@/lib/pusher";
+import { getPusherServer } from "@/lib/pusher";
 
 export async function POST(req: Request) {
   const session = await auth();
@@ -15,7 +15,10 @@ export async function POST(req: Request) {
   const matchId = channelName.replace("private-match-", "");
   const userId = session.user.id;
 
-  const authResponse = pusherServer.authorizeChannel(socketId, channelName, {
+  const pusher = getPusherServer();
+  if (!pusher) return NextResponse.json({ error: "Pusher not configured" }, { status: 503 });
+
+  const authResponse = pusher.authorizeChannel(socketId, channelName, {
     user_id: userId,
     user_info: { name: session.user.name },
   });
