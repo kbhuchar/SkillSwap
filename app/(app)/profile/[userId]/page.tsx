@@ -77,29 +77,29 @@ export default async function PublicProfilePage({ params }: ProfilePageProps) {
   const initials = getInitials(user.name);
 
   return (
-    <div className="max-w-3xl mx-auto space-y-6">
+    <div className="max-w-3xl mx-auto space-y-4">
       <Link
         href="/browse"
-        className="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-gray-200 transition-colors"
+        className="inline-flex items-center gap-1.5 text-xs text-gray-500 hover:text-gray-200 transition-colors"
       >
-        <ArrowLeft className="w-4 h-4" />
+        <ArrowLeft className="w-3.5 h-3.5" />
         Back to browse
       </Link>
 
-      <div className="bg-[#242424] rounded-2xl border border-[#333333] shadow-sm overflow-hidden">
+      <div className="bg-[#242424] rounded-xl border border-[#333333] shadow-sm overflow-hidden">
         {/* Header banner */}
-        <div className="h-32 bg-gradient-to-r from-indigo-500 to-purple-600" />
+        <div className="h-16 bg-gradient-to-r from-indigo-500 to-purple-600" />
 
-        <div className="px-6 pb-6">
-          <div className="flex items-end justify-between -mt-12 mb-4 flex-wrap gap-3">
+        <div className="px-4 pb-4">
+          <div className="flex items-end justify-between -mt-8 mb-3 flex-wrap gap-2">
             {user.image ? (
               <img
                 src={user.image}
                 alt={user.name ?? "Profile"}
-                className="w-24 h-24 rounded-2xl object-cover ring-4 ring-[#242424] shadow-md"
+                className="w-16 h-16 rounded-xl object-cover ring-2 ring-[#242424] shadow-md"
               />
             ) : (
-              <div className="w-24 h-24 rounded-2xl bg-indigo-900/20 text-indigo-400 flex items-center justify-center text-3xl font-bold ring-4 ring-[#242424] shadow-md">
+              <div className="w-16 h-16 rounded-xl bg-indigo-900/20 text-indigo-400 flex items-center justify-center text-xl font-bold ring-2 ring-[#242424] shadow-md">
                 {initials}
               </div>
             )}
@@ -114,61 +114,61 @@ export default async function PublicProfilePage({ params }: ProfilePageProps) {
             {isOwnProfile && (
               <Link
                 href="/profile"
-                className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2.5 rounded-xl transition-colors"
+                className="inline-flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
               >
                 Edit Profile
               </Link>
             )}
           </div>
 
-          <h1 className="text-2xl font-bold text-white">
+          <h1 className="text-base font-bold text-white">
             {user.name ?? "Anonymous"}
           </h1>
 
-          <div className="flex flex-wrap items-center gap-4 mt-2 text-sm text-gray-400">
+          <div className="flex flex-wrap items-center gap-3 mt-1.5 text-xs text-gray-400">
             {user.location && (
               <div className="flex items-center gap-1.5">
-                <MapPin className="w-4 h-4 text-gray-500" />
+                <MapPin className="w-3.5 h-3.5 text-gray-500" />
                 {user.location}
               </div>
             )}
             <div className="flex items-center gap-1.5">
-              <Calendar className="w-4 h-4 text-gray-500" />
+              <Calendar className="w-3.5 h-3.5 text-gray-500" />
               Member since {formatDate(user.createdAt)}
             </div>
           </div>
 
           {user.bio && (
-            <p className="mt-4 text-gray-400 leading-relaxed">{user.bio}</p>
+            <p className="mt-3 text-xs text-gray-400 leading-relaxed">{user.bio}</p>
           )}
         </div>
       </div>
 
       {/* Skills */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <div className="bg-[#242424] rounded-2xl border border-[#333333] shadow-sm p-6">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-8 h-8 rounded-lg bg-emerald-900/20 flex items-center justify-center">
-              <Briefcase className="w-4 h-4 text-emerald-400" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="bg-[#242424] rounded-xl border border-[#333333] shadow-sm p-4">
+          <div className="flex items-center gap-1.5 mb-3">
+            <div className="w-7 h-7 rounded-lg bg-emerald-900/20 flex items-center justify-center">
+              <Briefcase className="w-3.5 h-3.5 text-emerald-400" />
             </div>
-            <h2 className="font-semibold text-white">Skills They Teach</h2>
+            <h2 className="text-sm font-semibold text-white">Skills They Teach</h2>
           </div>
           <SkillTags skills={offeredSkills} type="OFFERED" size="md" />
           {offeredSkills.length === 0 && (
-            <p className="text-sm text-gray-500 italic">No skills listed yet</p>
+            <p className="text-xs text-gray-500 italic">No skills listed yet</p>
           )}
         </div>
 
-        <div className="bg-[#242424] rounded-2xl border border-[#333333] shadow-sm p-6">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-8 h-8 rounded-lg bg-indigo-900/20 flex items-center justify-center">
-              <BookOpen className="w-4 h-4 text-indigo-400" />
+        <div className="bg-[#242424] rounded-xl border border-[#333333] shadow-sm p-4">
+          <div className="flex items-center gap-1.5 mb-3">
+            <div className="w-7 h-7 rounded-lg bg-indigo-900/20 flex items-center justify-center">
+              <BookOpen className="w-3.5 h-3.5 text-indigo-400" />
             </div>
-            <h2 className="font-semibold text-white">Skills They Want to Learn</h2>
+            <h2 className="text-sm font-semibold text-white">Skills They Want to Learn</h2>
           </div>
           <SkillTags skills={wantedSkills} type="WANTED" size="md" />
           {wantedSkills.length === 0 && (
-            <p className="text-sm text-gray-500 italic">No skills listed yet</p>
+            <p className="text-xs text-gray-500 italic">No skills listed yet</p>
           )}
         </div>
       </div>

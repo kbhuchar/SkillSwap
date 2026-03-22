@@ -63,32 +63,32 @@ export default async function SessionsPage({ searchParams }: SessionsPageProps) 
       id: "upcoming",
       label: "Upcoming",
       count: upcoming.length,
-      icon: <Calendar className="w-4 h-4" />,
+      icon: <Calendar className="w-3.5 h-3.5" />,
     },
     {
       id: "past",
       label: "Past",
       count: past.length,
-      icon: <Clock className="w-4 h-4" />,
+      icon: <Clock className="w-3.5 h-3.5" />,
     },
   ];
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="max-w-4xl mx-auto space-y-4">
       <div>
-        <h1 className="text-2xl font-bold text-white">Sessions</h1>
-        <p className="text-gray-400 mt-1">
+        <h1 className="text-lg font-bold text-white">Sessions</h1>
+        <p className="text-xs text-gray-400 mt-0.5">
           Your scheduled and past skill swap sessions
         </p>
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center gap-1 bg-[#2a2a2a] rounded-xl p-1 w-fit border border-[#333333]">
+      <div className="flex items-center gap-1 bg-[#2a2a2a] rounded-lg p-1 w-fit border border-[#333333]">
         {tabs.map((tab) => (
           <Link
             key={tab.id}
             href={`/sessions?tab=${tab.id}`}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
               activeTab === tab.id
                 ? "bg-[#1a1a1a] text-white shadow-sm"
                 : "text-gray-500 hover:text-gray-200"
@@ -115,25 +115,25 @@ export default async function SessionsPage({ searchParams }: SessionsPageProps) 
       {activeTab === "upcoming" && (
         <div>
           {upcoming.length === 0 ? (
-            <div className="bg-[#242424] rounded-2xl border border-[#333333] p-12 text-center">
-              <div className="w-16 h-16 rounded-full bg-emerald-900/20 flex items-center justify-center mx-auto mb-4">
-                <Calendar className="w-7 h-7 text-emerald-400" />
+            <div className="bg-[#242424] rounded-xl border border-[#333333] p-8 text-center">
+              <div className="w-10 h-10 rounded-lg bg-emerald-900/20 flex items-center justify-center mx-auto mb-2">
+                <Calendar className="w-5 h-5 text-emerald-400" />
               </div>
-              <h3 className="font-semibold text-white mb-2">
+              <h3 className="text-sm font-semibold text-white mb-1">
                 No upcoming sessions
               </h3>
-              <p className="text-gray-500 text-sm mb-4">
+              <p className="text-xs text-gray-500 mb-3">
                 Connect with someone and propose a session to start learning
               </p>
               <Link
                 href="/matches?tab=connected"
-                className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2.5 rounded-xl transition-colors"
+                className="inline-flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
               >
                 View my connections
               </Link>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {upcoming.map((s) => (
                 <SessionCard
                   key={s.id}
@@ -150,19 +150,19 @@ export default async function SessionsPage({ searchParams }: SessionsPageProps) 
       {activeTab === "past" && (
         <div>
           {past.length === 0 ? (
-            <div className="bg-[#242424] rounded-2xl border border-[#333333] p-12 text-center">
-              <div className="w-16 h-16 rounded-full bg-[#2a2a2a] flex items-center justify-center mx-auto mb-4">
-                <Clock className="w-7 h-7 text-gray-500" />
+            <div className="bg-[#242424] rounded-xl border border-[#333333] p-8 text-center">
+              <div className="w-10 h-10 rounded-lg bg-[#2a2a2a] flex items-center justify-center mx-auto mb-2">
+                <Clock className="w-5 h-5 text-gray-500" />
               </div>
-              <h3 className="font-semibold text-white mb-2">
+              <h3 className="text-sm font-semibold text-white mb-1">
                 No past sessions
               </h3>
-              <p className="text-gray-500 text-sm">
+              <p className="text-xs text-gray-500">
                 Your completed and cancelled sessions will appear here
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {past.map((s) => (
                 <SessionCard
                   key={s.id}
