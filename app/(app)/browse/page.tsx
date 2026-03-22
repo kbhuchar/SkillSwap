@@ -83,7 +83,7 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
     }
   }
 
-  const publicUsers: PublicUser[] = users.map((u) => ({
+  const publicUsers: PublicUser[] = users.map((u: typeof users[number]) => ({
     id: u.id,
     name: u.name,
     email: u.email,
