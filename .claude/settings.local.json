@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app@latest . --typescript --tailwind --app --no-src-dir --import-alias \"@/*\" --yes)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --app --no-src-dir --import-alias \"@/*\" --yes --name skillswap)",
+      "Read(//c/Users/Kartikay/OneDrive/Desktop/**)",
+      "Bash(npx create-next-app@latest skillswap-temp --typescript --tailwind --app --no-src-dir --import-alias \"@/*\" --yes)",
+      "Bash(cp -r skillswap-temp/. SkillSwap/)",
+      "Bash(rm -rf skillswap-temp)",
+      "Bash(cp \"C:/Users/Kartikay/OneDrive/Desktop/skillswap-temp/package.json\" \"C:/Users/Kartikay/OneDrive/Desktop/SkillSwap/package.json\")",
+      "Bash(cp \"C:/Users/Kartikay/OneDrive/Desktop/skillswap-temp/package-lock.json\" \"C:/Users/Kartikay/OneDrive/Desktop/SkillSwap/package-lock.json\")",
+      "Bash(cp \"C:/Users/Kartikay/OneDrive/Desktop/skillswap-temp/tsconfig.json\" \"C:/Users/Kartikay/OneDrive/Desktop/SkillSwap/tsconfig.json\")",
+      "Bash(cp \"C:/Users/Kartikay/OneDrive/Desktop/skillswap-temp/next.config.ts\" \"C:/Users/Kartikay/OneDrive/Desktop/SkillSwap/next.config.ts\")",
+      "Bash(cp \"C:/Users/Kartikay/OneDrive/Desktop/skillswap-temp/postcss.config.mjs\" \"C:/Users/Kartikay/OneDrive/Desktop/SkillSwap/postcss.config.mjs\")",
+      "Read(//c/Users/Kartikay/Desktop/**)",
+      "Read(//c//**)",
+      "Read(//c/Users/Kartikay/OneDrive/Desktop/SkillSwap/$USERPROFILE/OneDrive/Desktop/**)",
+      "Bash(npm install:*)",
+      "Bash(npx prisma:*)",
+      "Bash(ls \"C:/Users/Kartikay/OneDrive/Desktop/SkillSwap/app/\\(app\\)\")",
+      "Bash(ls \"C:/Users/Kartikay/OneDrive/Desktop/SkillSwap/app/\\(auth\\)\")",
+      "Bash(ls \"C:/Users/Kartikay/OneDrive/Desktop/SkillSwap/app/\\(app\\)/profile\")",
+      "Bash(ls \"C:/Users/Kartikay/OneDrive/Desktop/SkillSwap/app/\\(app\\)/messages\")",
+      "Bash(ls \"C:/Users/Kartikay/OneDrive/Desktop/SkillSwap/app/\\(app\\)/sessions\")",
+      "Bash(ls \"C:/Users/Kartikay/OneDrive/Desktop/SkillSwap/app/\\(auth\\)/login\")",
+      "Bash(ls \"C:/Users/Kartikay/OneDrive/Desktop/SkillSwap/app/\\(auth\\)/register\")",
+      "Bash(find \"C:/Users/Kartikay/OneDrive/Desktop/SkillSwap/app/\\(auth\\)\" -type f)",
+      "Bash(npx tsc:*)",
+      "Bash(grep -v \"^$\")",
+      "Bash(npm run:*)"
+    ]
+  }
+}

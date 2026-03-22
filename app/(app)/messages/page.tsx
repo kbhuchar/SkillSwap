@@ -60,7 +60,7 @@ export default async function MessagesPage() {
         </div>
       ) : (
         <div className="bg-[#242424] rounded-2xl border border-[#333333] shadow-sm divide-y divide-[#2e2e2e]">
-          {matches.map((match) => {
+          {matches.map((match: typeof matches[number]) => {
             const partner =
               match.senderId === userId ? match.receiver : match.sender;
             const lastMessage = match.messages[0];

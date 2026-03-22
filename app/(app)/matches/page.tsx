@@ -122,7 +122,7 @@ export default async function MatchesPage({ searchParams }: MatchesPageProps) {
             </div>
           ) : (
             <div className="space-y-3">
-              {pendingIncoming.map((match) => {
+              {pendingIncoming.map((match: typeof pendingIncoming[number]) => {
                 const initials = getInitials(match.sender.name);
                 return (
                   <div
@@ -190,7 +190,7 @@ export default async function MatchesPage({ searchParams }: MatchesPageProps) {
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {accepted.map((match) => (
+              {accepted.map((match: typeof accepted[number]) => (
                 <MatchCard
                   key={match.id}
                   match={match}

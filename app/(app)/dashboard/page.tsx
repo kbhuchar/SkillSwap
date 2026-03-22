@@ -104,7 +104,7 @@ export default async function DashboardPage() {
 
       {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        {stats.map((stat) => (
+        {stats.map((stat: typeof stats[number]) => (
           <Link
             key={stat.label}
             href={stat.href}
@@ -227,7 +227,7 @@ export default async function DashboardPage() {
             </div>
           ) : (
             <div className="space-y-4">
-              {upcomingSessionsList.map((session) => {
+              {upcomingSessionsList.map((session: typeof upcomingSessionsList[number]) => {
                 const partner =
                   session.proposerId === userId
                     ? session.receiver
