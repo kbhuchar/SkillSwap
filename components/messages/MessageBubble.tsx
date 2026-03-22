@@ -12,21 +12,21 @@ export default function MessageBubble({ message, isOwn }: MessageBubbleProps) {
   return (
     <div
       className={cn(
-        "flex items-end gap-2",
+        "flex items-end gap-1.5",
         isOwn ? "flex-row-reverse" : "flex-row"
       )}
     >
       {/* Avatar (only for others) */}
       {!isOwn && (
-        <div className="flex-shrink-0 mb-1">
+        <div className="flex-shrink-0 mb-0.5">
           {message.sender.image ? (
             <img
               src={message.sender.image}
               alt={message.sender.name ?? ""}
-              className="w-7 h-7 rounded-full object-cover"
+              className="w-6 h-6 rounded-full object-cover"
             />
           ) : (
-            <div className="w-7 h-7 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center text-xs font-bold">
+            <div className="w-6 h-6 rounded-full bg-indigo-900/20 text-indigo-400 flex items-center justify-center text-[10px] font-bold">
               {initials}
             </div>
           )}
@@ -40,26 +40,21 @@ export default function MessageBubble({ message, isOwn }: MessageBubbleProps) {
         )}
       >
         {!isOwn && (
-          <span className="text-xs text-slate-500 mb-1 ml-1">
+          <span className="text-[11px] text-gray-500 mb-0.5 ml-1">
             {message.sender.name ?? "Unknown"}
           </span>
         )}
         <div
           className={cn(
-            "px-4 py-2.5 rounded-2xl text-sm leading-relaxed",
+            "px-3 py-2 rounded-xl text-sm leading-snug",
             isOwn
               ? "bg-indigo-600 text-white rounded-br-sm"
-              : "bg-white border border-slate-200 text-slate-800 rounded-bl-sm shadow-sm"
+              : "bg-[#2e2e2e] border border-[#3a3a3a] text-gray-100 rounded-bl-sm"
           )}
         >
           {message.content}
         </div>
-        <span
-          className={cn(
-            "text-[11px] mt-1 px-1",
-            isOwn ? "text-slate-400" : "text-slate-400"
-          )}
-        >
+        <span className="text-[10px] mt-0.5 px-1 text-gray-500">
           {formatRelativeTime(message.createdAt)}
         </span>
       </div>

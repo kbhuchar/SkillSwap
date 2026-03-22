@@ -48,32 +48,32 @@ export default async function MatchesPage({ searchParams }: MatchesPageProps) {
       id: "pending",
       label: "Pending",
       count: pendingIncoming.length,
-      icon: <Clock className="w-4 h-4" />,
+      icon: <Clock className="w-3.5 h-3.5" />,
     },
     {
       id: "connected",
       label: "Connected",
       count: accepted.length,
-      icon: <UserCheck className="w-4 h-4" />,
+      icon: <UserCheck className="w-3.5 h-3.5" />,
     },
   ];
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="max-w-4xl mx-auto space-y-4">
       <div>
-        <h1 className="text-2xl font-bold text-white">Matches</h1>
-        <p className="text-gray-400 mt-1">
+        <h1 className="text-lg font-bold text-white">Matches</h1>
+        <p className="text-xs text-gray-400 mt-0.5">
           Manage your connection requests and connected members
         </p>
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center gap-1 bg-[#2a2a2a] rounded-xl p-1 w-fit border border-[#333333]">
+      <div className="flex items-center gap-1 bg-[#2a2a2a] rounded-lg p-1 w-fit border border-[#333333]">
         {tabs.map((tab) => (
           <Link
             key={tab.id}
             href={`/matches?tab=${tab.id}`}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
               activeTab === tab.id
                 ? "bg-[#1a1a1a] text-white shadow-sm"
                 : "text-gray-500 hover:text-gray-200"
@@ -102,44 +102,42 @@ export default async function MatchesPage({ searchParams }: MatchesPageProps) {
       {activeTab === "pending" && (
         <div>
           {pendingIncoming.length === 0 ? (
-            <div className="bg-[#242424] rounded-2xl border border-[#333333] p-12 text-center">
-              <div className="w-16 h-16 rounded-full bg-amber-900/20 flex items-center justify-center mx-auto mb-4">
-                <Clock className="w-7 h-7 text-amber-400" />
-              </div>
-              <h3 className="font-semibold text-white mb-2">
+            <div className="bg-[#242424] rounded-xl border border-[#333333] p-8 text-center">
+              <Clock className="w-8 h-8 text-amber-400 mx-auto mb-2" />
+              <h3 className="text-sm font-semibold text-white mb-1">
                 No pending requests
               </h3>
-              <p className="text-gray-500 text-sm mb-4">
+              <p className="text-xs text-gray-500 mb-3">
                 When someone sends you a connection request, it will appear here.
               </p>
               <Link
                 href="/browse"
-                className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2.5 rounded-xl transition-colors"
+                className="inline-flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
               >
-                <Users className="w-4 h-4" />
+                <Users className="w-3.5 h-3.5" />
                 Browse Skills
               </Link>
             </div>
           ) : (
-            <div className="space-y-3">
+            <div className="space-y-2">
               {pendingIncoming.map((match: typeof pendingIncoming[number]) => {
                 const initials = getInitials(match.sender.name);
                 return (
                   <div
                     key={match.id}
-                    className="bg-[#242424] rounded-2xl border border-[#333333] shadow-sm p-5"
+                    className="bg-[#242424] rounded-xl border border-[#333333] p-4"
                   >
-                    <div className="flex items-center justify-between gap-4">
-                      <div className="flex items-center gap-3">
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-2.5">
                         <Link href={`/profile/${match.sender.id}`}>
                           {match.sender.image ? (
                             <img
                               src={match.sender.image}
                               alt={match.sender.name ?? ""}
-                              className="w-12 h-12 rounded-full object-cover"
+                              className="w-9 h-9 rounded-full object-cover"
                             />
                           ) : (
-                            <div className="w-12 h-12 rounded-full bg-indigo-900/20 text-indigo-400 flex items-center justify-center text-sm font-bold">
+                            <div className="w-9 h-9 rounded-full bg-indigo-900/20 text-indigo-400 flex items-center justify-center text-xs font-bold">
                               {initials}
                             </div>
                           )}
@@ -147,7 +145,7 @@ export default async function MatchesPage({ searchParams }: MatchesPageProps) {
                         <div>
                           <Link
                             href={`/profile/${match.sender.id}`}
-                            className="font-semibold text-white hover:text-indigo-400 transition-colors"
+                            className="text-sm font-semibold text-white hover:text-indigo-400 transition-colors"
                           >
                             {match.sender.name ?? "Anonymous"}
                           </Link>
@@ -170,26 +168,24 @@ export default async function MatchesPage({ searchParams }: MatchesPageProps) {
       {activeTab === "connected" && (
         <div>
           {accepted.length === 0 ? (
-            <div className="bg-[#242424] rounded-2xl border border-[#333333] p-12 text-center">
-              <div className="w-16 h-16 rounded-full bg-emerald-900/20 flex items-center justify-center mx-auto mb-4">
-                <UserCheck className="w-7 h-7 text-emerald-400" />
-              </div>
-              <h3 className="font-semibold text-white mb-2">
+            <div className="bg-[#242424] rounded-xl border border-[#333333] p-8 text-center">
+              <UserCheck className="w-8 h-8 text-emerald-400 mx-auto mb-2" />
+              <h3 className="text-sm font-semibold text-white mb-1">
                 No connections yet
               </h3>
-              <p className="text-gray-500 text-sm mb-4">
+              <p className="text-xs text-gray-500 mb-3">
                 Accept pending requests or send new ones to start connecting.
               </p>
               <Link
                 href="/browse"
-                className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2.5 rounded-xl transition-colors"
+                className="inline-flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
               >
-                <Users className="w-4 h-4" />
+                <Users className="w-3.5 h-3.5" />
                 Find People to Connect With
               </Link>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {accepted.map((match: typeof accepted[number]) => (
                 <MatchCard
                   key={match.id}

@@ -23,8 +23,8 @@ export default async function AppLayout({
       <Topbar />
 
       {/* Main content area */}
-      <main className="lg:ml-64 pt-16 min-h-screen">
-        <div className="p-4 sm:p-6 lg:p-8">{children}</div>
+      <main className="lg:ml-52 pt-12 min-h-screen">
+        <div className="p-4 sm:p-5">{children}</div>
       </main>
     </div>
   );

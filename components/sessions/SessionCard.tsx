@@ -13,23 +13,23 @@ interface SessionCardProps {
 const statusConfig: Record<string, { label: string; className: string }> = {
   PROPOSED: {
     label: "Proposed",
-    className: "bg-amber-100 text-amber-700",
+    className: "bg-amber-900/20 text-amber-400",
   },
   ACCEPTED: {
     label: "Confirmed",
-    className: "bg-emerald-100 text-emerald-700",
+    className: "bg-emerald-900/20 text-emerald-400",
   },
   DECLINED: {
     label: "Declined",
-    className: "bg-red-100 text-red-700",
+    className: "bg-red-900/20 text-red-400",
   },
   CANCELLED: {
     label: "Cancelled",
-    className: "bg-slate-100 text-slate-500",
+    className: "bg-[#333333] text-gray-500",
   },
   COMPLETED: {
     label: "Completed",
-    className: "bg-blue-100 text-blue-700",
+    className: "bg-indigo-900/20 text-indigo-400",
   },
 };
 
@@ -41,63 +41,63 @@ export default function SessionCard({ session, currentUserId }: SessionCardProps
   const isProposer = session.proposerId === currentUserId;
   const status = statusConfig[session.status] ?? {
     label: session.status,
-    className: "bg-slate-100 text-slate-600",
+    className: "bg-[#333333] text-gray-400",
   };
   const partnerInitials = getInitials(partner.name);
 
   return (
     <div className={cn(
-      "bg-white rounded-2xl border shadow-sm p-5 transition-all",
+      "bg-[#242424] rounded-xl border p-4 transition-all",
       session.status === "ACCEPTED"
-        ? "border-emerald-100 hover:shadow-md"
-        : "border-slate-100"
+        ? "border-emerald-800/40 hover:shadow-md hover:shadow-emerald-900/10"
+        : "border-[#333333]"
     )}>
-      <div className="flex items-start justify-between gap-3 mb-3">
-        <div>
+      <div className="flex items-start justify-between gap-2 mb-2.5">
+        <div className="min-w-0">
           <Link
             href={`/sessions/${session.id}`}
-            className="font-semibold text-slate-900 hover:text-indigo-700 transition-colors"
+            className="text-sm font-semibold text-white hover:text-indigo-400 transition-colors block truncate"
           >
             {session.title}
           </Link>
           {session.description && (
-            <p className="text-sm text-slate-500 mt-1 line-clamp-2">
+            <p className="text-xs text-gray-500 mt-0.5 line-clamp-1">
               {session.description}
             </p>
           )}
         </div>
-        <span className={`text-xs font-medium px-2.5 py-1 rounded-full flex-shrink-0 ${status.className}`}>
+        <span className={`text-xs font-medium px-2 py-0.5 rounded-full flex-shrink-0 ${status.className}`}>
           {status.label}
         </span>
       </div>
 
       {/* Details */}
-      <div className="space-y-2 mb-4">
-        <div className="flex items-center gap-2 text-sm text-slate-600">
-          <Calendar className="w-4 h-4 text-slate-400" />
+      <div className="space-y-1.5 mb-3">
+        <div className="flex items-center gap-1.5 text-xs text-gray-400">
+          <Calendar className="w-3.5 h-3.5 text-gray-500" />
           {formatDateTime(session.scheduledAt)}
         </div>
-        <div className="flex items-center gap-2 text-sm text-slate-600">
-          <Clock className="w-4 h-4 text-slate-400" />
+        <div className="flex items-center gap-1.5 text-xs text-gray-400">
+          <Clock className="w-3.5 h-3.5 text-gray-500" />
           {session.durationMin} minutes
         </div>
-        <div className="flex items-center gap-2 text-sm text-slate-600">
-          <User className="w-4 h-4 text-slate-400" />
-          <span className="text-slate-400 text-xs">
-            {isProposer ? "You proposed • With" : "From"}:
+        <div className="flex items-center gap-1.5 text-xs text-gray-400">
+          <User className="w-3.5 h-3.5 text-gray-500" />
+          <span className="text-gray-600">
+            {isProposer ? "You proposed · With" : "From"}:
           </span>
           <Link
             href={`/profile/${partner.id}`}
-            className="flex items-center gap-1.5 hover:text-indigo-600 transition-colors"
+            className="flex items-center gap-1 hover:text-indigo-400 transition-colors"
           >
             {partner.image ? (
               <img
                 src={partner.image}
                 alt={partner.name ?? ""}
-                className="w-5 h-5 rounded-full object-cover"
+                className="w-4 h-4 rounded-full object-cover"
               />
             ) : (
-              <div className="w-5 h-5 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center text-[10px] font-bold">
+              <div className="w-4 h-4 rounded-full bg-indigo-900/20 text-indigo-400 flex items-center justify-center text-[9px] font-bold">
                 {partnerInitials}
               </div>
             )}
@@ -109,16 +109,16 @@ export default function SessionCard({ session, currentUserId }: SessionCardProps
             href={session.meetingLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-sm text-indigo-600 hover:text-indigo-700"
+            className="flex items-center gap-1.5 text-xs text-indigo-400 hover:text-indigo-300"
           >
-            <ExternalLink className="w-4 h-4" />
+            <ExternalLink className="w-3.5 h-3.5" />
             Join meeting
           </a>
         )}
       </div>
 
       {/* Actions */}
-      <div className="pt-3 border-t border-slate-100">
+      <div className="pt-2.5 border-t border-[#333333]">
         <SessionActions session={session} currentUserId={currentUserId} />
       </div>
     </div>

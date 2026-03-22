@@ -33,33 +33,31 @@ export default async function MessagesPage() {
   });
 
   return (
-    <div className="max-w-3xl mx-auto space-y-6">
+    <div className="max-w-2xl mx-auto space-y-4">
       <div>
-        <h1 className="text-2xl font-bold text-white">Messages</h1>
-        <p className="text-gray-400 mt-1">
+        <h1 className="text-lg font-bold text-white">Messages</h1>
+        <p className="text-xs text-gray-400 mt-0.5">
           Conversations with your skill swap connections
         </p>
       </div>
 
       {matches.length === 0 ? (
-        <div className="bg-[#242424] rounded-2xl border border-[#333333] p-12 text-center">
-          <div className="w-16 h-16 rounded-full bg-indigo-900/20 flex items-center justify-center mx-auto mb-4">
-            <MessageSquare className="w-7 h-7 text-indigo-400" />
-          </div>
-          <h3 className="font-semibold text-white mb-2">No conversations yet</h3>
-          <p className="text-gray-500 text-sm mb-4">
+        <div className="bg-[#242424] rounded-xl border border-[#333333] p-8 text-center">
+          <MessageSquare className="w-8 h-8 text-indigo-400 mx-auto mb-2" />
+          <h3 className="text-sm font-semibold text-white mb-1">No conversations yet</h3>
+          <p className="text-xs text-gray-500 mb-3">
             Connect with someone to start messaging
           </p>
           <Link
             href="/browse"
-            className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2.5 rounded-xl transition-colors"
+            className="inline-flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
           >
             Browse Skills
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
       ) : (
-        <div className="bg-[#242424] rounded-2xl border border-[#333333] shadow-sm divide-y divide-[#2e2e2e]">
+        <div className="bg-[#242424] rounded-xl border border-[#333333] shadow-sm divide-y divide-[#2e2e2e]">
           {matches.map((match: typeof matches[number]) => {
             const partner =
               match.senderId === userId ? match.receiver : match.sender;
@@ -71,7 +69,7 @@ export default async function MessagesPage() {
               <Link
                 key={match.id}
                 href={`/messages/${match.id}`}
-                className="flex items-center gap-4 px-5 py-4 hover:bg-[#2e2e2e] transition-colors first:rounded-t-2xl last:rounded-b-2xl"
+                className="flex items-center gap-3 px-4 py-3 hover:bg-[#2e2e2e] transition-colors first:rounded-t-xl last:rounded-b-xl"
               >
                 {/* Avatar */}
                 <div className="relative flex-shrink-0">
@@ -79,20 +77,20 @@ export default async function MessagesPage() {
                     <img
                       src={partner.image}
                       alt={partner.name ?? ""}
-                      className="w-12 h-12 rounded-full object-cover"
+                      className="w-9 h-9 rounded-full object-cover"
                     />
                   ) : (
-                    <div className="w-12 h-12 rounded-full bg-indigo-900/20 text-indigo-400 flex items-center justify-center text-sm font-bold">
+                    <div className="w-9 h-9 rounded-full bg-indigo-900/20 text-indigo-400 flex items-center justify-center text-xs font-bold">
                       {initials}
                     </div>
                   )}
-                  <div className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-400 rounded-full ring-2 ring-[#242424]" />
+                  <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-400 rounded-full ring-2 ring-[#242424]" />
                 </div>
 
                 {/* Content */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between mb-0.5">
-                    <p className="font-semibold text-white truncate">
+                    <p className="text-sm font-semibold text-white truncate">
                       {partner.name ?? "Anonymous"}
                     </p>
                     {lastMessage && (
@@ -101,7 +99,7 @@ export default async function MessagesPage() {
                       </span>
                     )}
                   </div>
-                  <p className="text-sm text-gray-500 truncate">
+                  <p className="text-xs text-gray-500 truncate">
                     {lastMessage ? (
                       <>
                         {isOwnLastMessage && (
@@ -117,7 +115,7 @@ export default async function MessagesPage() {
                   </p>
                 </div>
 
-                <ArrowRight className="w-4 h-4 text-gray-600 flex-shrink-0" />
+                <ArrowRight className="w-3.5 h-3.5 text-gray-600 flex-shrink-0" />
               </Link>
             );
           })}

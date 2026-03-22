@@ -19,7 +19,6 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
   const params = await searchParams;
   const { skill, type } = params;
 
-  // Build filter conditions
   const whereClause: Record<string, unknown> = {
     id: { not: userId },
   };
@@ -53,7 +52,6 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
     take: 50,
   });
 
-  // Get match statuses for all found users
   const matches = await prisma.match.findMany({
     where: {
       OR: [{ senderId: userId }, { receiverId: userId }],
@@ -95,12 +93,14 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
   }));
 
   return (
-    <div className="max-w-6xl mx-auto space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-white">Browse Skills</h1>
-        <p className="text-gray-400 mt-1">
-          Find people to swap skills with in your community
-        </p>
+    <div className="max-w-6xl mx-auto space-y-4">
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-lg font-bold text-white">Browse Skills</h1>
+          <p className="text-xs text-gray-400 mt-0.5">
+            Find people to swap skills with
+          </p>
+        </div>
       </div>
 
       <BrowseFilters />
