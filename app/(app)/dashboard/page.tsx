@@ -158,7 +158,7 @@ export default async function DashboardPage() {
             </div>
           ) : (
             <div className="space-y-4">
-              {recentPending.map((match) => {
+              {recentPending.map((match: typeof recentPending[number]) => {
                 const initials = getInitials(match.sender.name);
                 return (
                   <div
