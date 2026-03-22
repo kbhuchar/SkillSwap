@@ -9,6 +9,7 @@ import {
 } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import {
   Zap,
   ChevronLeft,
@@ -18,6 +19,10 @@ import {
   ChevronDown,
   Camera,
   Plus,
+  Search,
+  Users,
+  LayoutDashboard,
+  ArrowRight,
 } from "lucide-react";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -439,45 +444,74 @@ export default function OnboardingPage() {
     );
   }
 
-  // ── Step 8: Done ──────────────────────────────────────────────────────────
+  // ── Step 8: Done / Hub ────────────────────────────────────────────────────
   if (step === 8) {
+    const firstName = name.split(" ")[0];
     return (
-      <div className="min-h-screen bg-[#1a1a1a] flex flex-col items-center justify-center px-6">
-        <div className="animate-fade-up w-full max-w-sm text-center">
-          <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-indigo-600 mb-8 shadow-lg shadow-indigo-600/30">
-            <Check size={44} className="text-white" strokeWidth={3} />
+      <div className="min-h-screen bg-[#1a1a1a] flex flex-col items-center justify-center px-6 py-12">
+        {/* Glow backdrop */}
+        <div className="pointer-events-none fixed inset-0 overflow-hidden">
+          <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-indigo-900/20 blur-3xl" />
+        </div>
+
+        <div className="animate-fade-up w-full max-w-sm relative">
+          {/* Check + greeting */}
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-indigo-600 mb-6 shadow-2xl shadow-indigo-600/40 ring-4 ring-indigo-500/20">
+              <Check size={38} className="text-white" strokeWidth={2.5} />
+            </div>
+            <h1 className="text-3xl font-bold text-white mb-2">
+              You&apos;re in, {firstName}! 🎉
+            </h1>
+            <p className="text-gray-400 text-sm leading-relaxed">
+              Where do you want to start?
+            </p>
           </div>
-          <h1 className="text-3xl font-bold text-white mb-3">
-            You&apos;re all set, {name.split(" ")[0]}! 🎉
-          </h1>
-          <p className="text-gray-400 text-base mb-8 leading-relaxed">
-            Your profile is ready. Start browsing skills and connecting with people.
-          </p>
-          {skillsOffered.length > 0 && (
-            <div className="flex flex-wrap gap-2 justify-center mb-3">
-              {skillsOffered.map((s) => (
-                <span key={s.name} className="px-3 py-1.5 rounded-full text-sm font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
-                  {s.name}
-                </span>
-              ))}
-            </div>
-          )}
-          {skillsWanted.length > 0 && (
-            <div className="flex flex-wrap gap-2 justify-center mb-10">
-              {skillsWanted.map((s) => (
-                <span key={s.name} className="px-3 py-1.5 rounded-full text-sm font-medium bg-indigo-500/20 text-indigo-300 border border-indigo-500/40">
-                  {s.name}
-                </span>
-              ))}
-            </div>
-          )}
-          <button
-            type="button"
-            onClick={() => router.push("/dashboard")}
-            className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-base py-4 rounded-2xl transition-colors"
-          >
-            Go to Dashboard
-          </button>
+
+          {/* 3 action cards */}
+          <div className="flex flex-col gap-3">
+            {/* Browse Skills */}
+            <Link href="/browse" className="group relative overflow-hidden rounded-2xl border border-indigo-500/20 bg-gradient-to-br from-indigo-600/10 to-purple-600/5 p-5 hover:border-indigo-500/50 hover:from-indigo-600/20 hover:to-purple-600/10 transition-all duration-200 active:scale-[0.98]">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center flex-shrink-0 group-hover:bg-indigo-600/30 transition-colors">
+                  <Search size={22} className="text-indigo-400" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-base font-semibold text-white">Browse Skills</p>
+                  <p className="text-xs text-gray-500 mt-0.5">Find people who match what you want to learn</p>
+                </div>
+                <ArrowRight size={18} className="text-gray-600 group-hover:text-indigo-400 group-hover:translate-x-0.5 transition-all flex-shrink-0" />
+              </div>
+            </Link>
+
+            {/* Connections */}
+            <Link href="/matches" className="group relative overflow-hidden rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-600/10 to-teal-600/5 p-5 hover:border-emerald-500/50 hover:from-emerald-600/20 hover:to-teal-600/10 transition-all duration-200 active:scale-[0.98]">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-emerald-600/20 border border-emerald-500/30 flex items-center justify-center flex-shrink-0 group-hover:bg-emerald-600/30 transition-colors">
+                  <Users size={22} className="text-emerald-400" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-base font-semibold text-white">Connections</p>
+                  <p className="text-xs text-gray-500 mt-0.5">See your matches and pending requests</p>
+                </div>
+                <ArrowRight size={18} className="text-gray-600 group-hover:text-emerald-400 group-hover:translate-x-0.5 transition-all flex-shrink-0" />
+              </div>
+            </Link>
+
+            {/* Dashboard */}
+            <Link href="/dashboard" className="group relative overflow-hidden rounded-2xl border border-purple-500/20 bg-gradient-to-br from-purple-600/10 to-pink-600/5 p-5 hover:border-purple-500/50 hover:from-purple-600/20 hover:to-pink-600/10 transition-all duration-200 active:scale-[0.98]">
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center flex-shrink-0 group-hover:bg-purple-600/30 transition-colors">
+                  <LayoutDashboard size={22} className="text-purple-400" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-base font-semibold text-white">Dashboard</p>
+                  <p className="text-xs text-gray-500 mt-0.5">Your overview — sessions, stats and activity</p>
+                </div>
+                <ArrowRight size={18} className="text-gray-600 group-hover:text-purple-400 group-hover:translate-x-0.5 transition-all flex-shrink-0" />
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
     );
