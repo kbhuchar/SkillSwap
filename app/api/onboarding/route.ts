@@ -6,7 +6,7 @@ export async function POST(req: Request) {
   const session = await auth();
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const { name, location, bio, skillsOffered = [], skillsWanted = [] } = await req.json();
+  const { name, dateOfBirth, image, location, bio, skillsOffered = [], skillsWanted = [] } = await req.json();
   const userId = session.user.id;
 
   await prisma.$transaction(async (tx) => {
@@ -14,6 +14,8 @@ export async function POST(req: Request) {
       where: { id: userId },
       data: {
         ...(name?.trim() && { name: name.trim() }),
+        ...(dateOfBirth && { dateOfBirth: new Date(dateOfBirth) }),
+        ...(image?.trim() && { image: image.trim() }),
         ...(location?.trim() && { location: location.trim() }),
         ...(bio?.trim() && { bio: bio.trim() }),
         onboarded: true,
@@ -21,11 +23,7 @@ export async function POST(req: Request) {
     });
 
     for (const s of skillsOffered) {
-      const skill = await tx.skill.upsert({
-        where: { name: s.name },
-        update: {},
-        create: { name: s.name },
-      });
+      const skill = await tx.skill.upsert({ where: { name: s.name }, update: {}, create: { name: s.name } });
       await tx.userSkill.upsert({
         where: { userId_skillId_type: { userId, skillId: skill.id, type: "OFFERED" } },
         update: {},
@@ -34,11 +32,7 @@ export async function POST(req: Request) {
     }
 
     for (const s of skillsWanted) {
-      const skill = await tx.skill.upsert({
-        where: { name: s.name },
-        update: {},
-        create: { name: s.name },
-      });
+      const skill = await tx.skill.upsert({ where: { name: s.name }, update: {}, create: { name: s.name } });
       await tx.userSkill.upsert({
         where: { userId_skillId_type: { userId, skillId: skill.id, type: "WANTED" } },
         update: {},
