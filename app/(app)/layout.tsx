@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
 import Sidebar from "@/components/layout/Sidebar";
 import Topbar from "@/components/layout/Topbar";
+import MobileNav from "@/components/layout/MobileNav";
 
 export default async function AppLayout({
   children,
@@ -22,10 +23,13 @@ export default async function AppLayout({
       {/* Topbar */}
       <Topbar />
 
-      {/* Main content area */}
-      <main className="lg:ml-52 pt-12 min-h-screen">
+      {/* Main content area — no left margin on mobile/tablet, sidebar margin on lg+ */}
+      <main className="lg:ml-52 pt-12 pb-14 lg:pb-0 min-h-screen">
         <div className="p-4 sm:p-5">{children}</div>
       </main>
+
+      {/* Mobile bottom navigation */}
+      <MobileNav />
     </div>
   );
 }

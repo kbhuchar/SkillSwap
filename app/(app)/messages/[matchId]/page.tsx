@@ -86,7 +86,7 @@ export default async function ConversationPage({
   }));
 
   return (
-    <div className="max-w-3xl mx-auto h-[calc(100vh-8rem)] flex flex-col">
+    <div className="max-w-3xl mx-auto h-[calc(100vh-7rem)] lg:h-[calc(100vh-8rem)] flex flex-col">
       {/* Header */}
       <div className="bg-[#242424] rounded-t-2xl border border-b-0 border-[#333333] shadow-sm px-5 py-4">
         <div className="flex items-center gap-4">

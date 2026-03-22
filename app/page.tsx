@@ -52,7 +52,7 @@ export default function LandingPage() {
         </header>
 
         {/* Hero */}
-        <section className="flex-1 flex flex-col justify-center pt-12 px-4 sm:px-6 relative overflow-hidden">
+        <section className="flex-1 flex flex-col justify-center pt-12 px-5 sm:px-6 relative overflow-hidden">
           {/* Background glows */}
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute -top-32 -right-32 w-80 h-80 rounded-full bg-indigo-900/30 blur-3xl" />
@@ -70,14 +70,14 @@ export default function LandingPage() {
             </div>
 
             {/* Headline */}
-            <h1 className="text-center text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white mb-3 leading-tight tracking-tight">
+            <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-3 leading-tight tracking-tight">
               Share Skills,{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
                 Grow Together
               </span>
             </h1>
 
-            <p className="text-center text-base text-gray-400 max-w-lg mx-auto mb-6 leading-relaxed">
+            <p className="text-center text-sm sm:text-base text-gray-400 max-w-lg mx-auto mb-6 leading-relaxed">
               Connect with people who have the skills you want to learn, and
               share what you know. No money needed — just mutual growth.
             </p>
@@ -86,14 +86,14 @@ export default function LandingPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12">
               <Link
                 href="/register"
-                className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-6 py-2.5 rounded-xl shadow-lg shadow-indigo-900/40 group transition-all"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-6 py-2.5 rounded-xl shadow-lg shadow-indigo-900/40 group transition-all"
               >
                 Get Started Free
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </Link>
               <Link
                 href="/browse"
-                className="inline-flex items-center gap-2 bg-[#242424] hover:bg-[#2e2e2e] text-gray-200 font-semibold px-6 py-2.5 rounded-xl border border-[#333333] hover:border-indigo-800/60 transition-all"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#242424] hover:bg-[#2e2e2e] text-gray-200 font-semibold px-6 py-2.5 rounded-xl border border-[#333333] hover:border-indigo-800/60 transition-all"
               >
                 Browse Skills
               </Link>

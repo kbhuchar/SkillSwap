@@ -91,7 +91,7 @@ export default async function DashboardPage() {
   return (
     <div className="max-w-5xl mx-auto space-y-4">
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
           <h1 className="text-lg font-bold text-white">
             Welcome back, {session!.user.name?.split(" ")[0] ?? "there"}
@@ -131,7 +131,7 @@ export default async function DashboardPage() {
               </div>
               <ArrowRight className="w-3.5 h-3.5 text-gray-600 group-hover:text-indigo-400 transition-colors" />
             </div>
-            <p className="text-2xl font-bold text-white">{stat.value}</p>
+            <p className="text-xl sm:text-2xl font-bold text-white">{stat.value}</p>
             <p className="text-xs text-gray-400 mt-0.5">{stat.label}</p>
           </Link>
         ))}
