@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { MapPin } from "lucide-react";
 import { getInitials } from "@/lib/utils";
-import SkillTags from "./SkillTags";
 import ConnectButton from "@/components/matches/ConnectButton";
 import type { PublicUser } from "@/types";
 
@@ -20,85 +19,79 @@ export default function ProfileCard({
 }: ProfileCardProps) {
   const offeredSkills = user.skills
     .filter((s) => s.type === "OFFERED")
-    .map((s) => ({ id: s.skillId, name: s.skill.name, level: s.level }));
+    .map((s) => s.skill.name);
 
   const wantedSkills = user.skills
     .filter((s) => s.type === "WANTED")
-    .map((s) => ({ id: s.skillId, name: s.skill.name, level: s.level }));
+    .map((s) => s.skill.name);
+
+  const topSkills = [
+    ...offeredSkills.slice(0, 2).map((name) => ({ name, type: "OFFERED" as const })),
+    ...wantedSkills.slice(0, 1).map((name) => ({ name, type: "WANTED" as const })),
+  ];
 
   const initials = getInitials(user.name);
 
   return (
-    <div className="bg-[#242424] rounded-xl border border-[#333333] shadow-sm hover:shadow-md hover:border-indigo-800/60 transition-all flex flex-col">
-      <div className="p-4 flex-1">
-        {/* Avatar and name */}
-        <div className="flex items-start gap-2.5 mb-3">
-          <Link href={`/profile/${user.id}`} className="flex-shrink-0">
-            {user.image ? (
-              <img
-                src={user.image}
-                alt={user.name ?? "User"}
-                className="w-10 h-10 rounded-full object-cover ring-2 ring-indigo-800/30"
-              />
-            ) : (
-              <div className="w-10 h-10 rounded-full bg-indigo-900/20 text-indigo-400 flex items-center justify-center text-xs font-bold ring-2 ring-indigo-800/20">
-                {initials}
-              </div>
-            )}
-          </Link>
-          <div className="flex-1 min-w-0">
-            <Link href={`/profile/${user.id}`}>
-              <h3 className="text-sm font-semibold text-white hover:text-indigo-400 transition-colors truncate">
-                {user.name ?? "Anonymous"}
-              </h3>
-            </Link>
-            {user.location && (
-              <div className="flex items-center gap-1 mt-0.5">
-                <MapPin className="w-3 h-3 text-gray-500 flex-shrink-0" />
-                <span className="text-xs text-gray-500 truncate">{user.location}</span>
-              </div>
-            )}
+    <div className="group relative rounded-2xl overflow-hidden bg-[#1e1e1e] border border-[#2a2a2a] hover:border-indigo-500/40 transition-all flex flex-col shadow-sm hover:shadow-lg hover:shadow-indigo-900/10">
+      {/* Photo */}
+      <Link href={`/profile/${user.id}`} className="relative aspect-square block flex-shrink-0">
+        {user.image ? (
+          <img
+            src={user.image}
+            alt={user.name ?? "User"}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-indigo-950 via-[#1a1a2e] to-[#1a1a1a] flex items-center justify-center">
+            <span className="text-5xl font-black text-indigo-400/40 select-none">
+              {initials}
+            </span>
           </div>
-        </div>
-
-        {/* Bio */}
-        {user.bio && (
-          <p className="text-xs text-gray-500 mb-3 line-clamp-2 leading-relaxed">
-            {user.bio}
-          </p>
         )}
 
-        {/* Skills */}
-        <div className="space-y-2">
-          {offeredSkills.length > 0 && (
-            <div>
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">
-                Teaches
-              </p>
-              <SkillTags skills={offeredSkills} type="OFFERED" max={3} />
+        {/* Bottom gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
+
+        {/* Info on top of gradient */}
+        <div className="absolute bottom-0 left-0 right-0 p-3.5">
+          <p className="text-sm font-bold text-white leading-tight truncate">
+            {user.name ?? "Anonymous"}
+          </p>
+          {user.location && (
+            <div className="flex items-center gap-1 mt-0.5 mb-2">
+              <MapPin className="w-3 h-3 text-gray-400 flex-shrink-0" />
+              <span className="text-[11px] text-gray-400 truncate">{user.location}</span>
             </div>
           )}
-          {wantedSkills.length > 0 && (
-            <div>
-              <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">
-                Wants to learn
-              </p>
-              <SkillTags skills={wantedSkills} type="WANTED" max={3} />
+          {topSkills.length > 0 && (
+            <div className="flex flex-wrap gap-1">
+              {topSkills.map((s, i) => (
+                <span
+                  key={i}
+                  className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${
+                    s.type === "OFFERED"
+                      ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/25"
+                      : "bg-indigo-500/20 text-indigo-400 border border-indigo-500/25"
+                  }`}
+                >
+                  {s.name}
+                </span>
+              ))}
             </div>
           )}
         </div>
-      </div>
+      </Link>
 
-      {/* Connect button */}
+      {/* Connect strip */}
       {showConnect && (
-        <div className="px-4 pb-4">
-          <div className="pt-3 border-t border-[#333333]">
-            <ConnectButton
-              targetUserId={user.id}
-              initialMatchStatus={matchStatus}
-              matchId={matchId}
-            />
-          </div>
+        <div className="p-2.5 bg-[#1e1e1e]">
+          <ConnectButton
+            targetUserId={user.id}
+            initialMatchStatus={matchStatus}
+            matchId={matchId}
+            fullWidth
+          />
         </div>
       )}
     </div>

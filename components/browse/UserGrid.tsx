@@ -1,5 +1,5 @@
 import ProfileCard from "@/components/profile/ProfileCard";
-import { Users, SearchX } from "lucide-react";
+import { SearchX } from "lucide-react";
 import Link from "next/link";
 import type { PublicUser } from "@/types";
 
@@ -11,19 +11,17 @@ interface UserGridProps {
 export default function UserGrid({ users, matchStatuses = {} }: UserGridProps) {
   if (users.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-12 text-center">
-        <div className="w-12 h-12 rounded-xl bg-[#2a2a2a] flex items-center justify-center mb-3 border border-[#333333]">
-          <SearchX className="w-5 h-5 text-gray-500" />
+      <div className="flex flex-col items-center justify-center py-16 text-center">
+        <div className="w-12 h-12 rounded-2xl bg-[#242424] flex items-center justify-center mb-3 border border-[#2e2e2e]">
+          <SearchX className="w-5 h-5 text-gray-600" />
         </div>
-        <h3 className="text-sm font-semibold text-white mb-1">
-          No users found
-        </h3>
-        <p className="text-xs text-gray-500 max-w-xs">
-          Try adjusting your search filters or clear them to see all available users.
+        <p className="text-sm font-semibold text-white mb-1">No results</p>
+        <p className="text-xs text-gray-600 mb-4 max-w-[200px]">
+          Try a different skill or clear your filters.
         </p>
         <Link
           href="/browse"
-          className="mt-3 text-xs text-indigo-400 hover:text-indigo-300 font-medium"
+          className="text-xs text-indigo-400 hover:text-indigo-300 font-semibold transition-colors"
         >
           Clear filters
         </Link>
@@ -32,27 +30,19 @@ export default function UserGrid({ users, matchStatuses = {} }: UserGridProps) {
   }
 
   return (
-    <div>
-      <div className="flex items-center gap-1.5 mb-3">
-        <Users className="w-3.5 h-3.5 text-gray-500" />
-        <span className="text-xs text-gray-500">
-          {users.length} {users.length === 1 ? "person" : "people"} found
-        </span>
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
-        {users.map((user) => {
-          const matchInfo = matchStatuses[user.id];
-          return (
-            <ProfileCard
-              key={user.id}
-              user={user}
-              showConnect={true}
-              matchStatus={matchInfo?.status ?? "NONE"}
-              matchId={matchInfo?.matchId}
-            />
-          );
-        })}
-      </div>
+    <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3">
+      {users.map((user) => {
+        const matchInfo = matchStatuses[user.id];
+        return (
+          <ProfileCard
+            key={user.id}
+            user={user}
+            showConnect={true}
+            matchStatus={matchInfo?.status ?? "NONE"}
+            matchId={matchInfo?.matchId}
+          />
+        );
+      })}
     </div>
   );
 }

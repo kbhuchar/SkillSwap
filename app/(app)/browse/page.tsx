@@ -93,14 +93,10 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
   }));
 
   return (
-    <div className="max-w-6xl mx-auto space-y-4">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-lg font-bold text-white">Browse Skills</h1>
-          <p className="text-xs text-gray-400 mt-0.5">
-            Find people to swap skills with
-          </p>
-        </div>
+    <div className="max-w-6xl mx-auto space-y-5">
+      <div>
+        <h1 className="text-2xl font-black text-white tracking-tight">Browse</h1>
+        <p className="text-sm text-gray-500 mt-0.5">{publicUsers.length} people available</p>
       </div>
 
       <BrowseFilters />

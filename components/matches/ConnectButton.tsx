@@ -12,13 +12,16 @@ interface ConnectButtonProps {
   targetUserId: string;
   initialMatchStatus?: MatchStatus;
   matchId?: string;
+  fullWidth?: boolean;
 }
 
 export default function ConnectButton({
   targetUserId,
   initialMatchStatus = "NONE",
   matchId: initialMatchId,
+  fullWidth,
 }: ConnectButtonProps) {
+  const fw = fullWidth ? "w-full justify-center" : "";
   const { data: session } = useSession();
   const router = useRouter();
   const [status, setStatus] = useState<MatchStatus>(initialMatchStatus);
@@ -72,7 +75,7 @@ export default function ConnectButton({
     return (
       <Link
         href={`/messages/${matchId}`}
-        className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium px-4 py-2 rounded-xl transition-colors"
+        className={`inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors ${fw}`}
       >
         <MessageSquare className="w-4 h-4" />
         Message
@@ -84,7 +87,7 @@ export default function ConnectButton({
     return (
       <button
         disabled
-        className="inline-flex items-center gap-2 bg-[#2a2a2a] text-gray-400 text-sm font-medium px-4 py-2 rounded-xl cursor-not-allowed border border-[#333333]"
+        className={`inline-flex items-center gap-2 bg-[#2a2a2a] text-gray-500 text-sm font-medium px-4 py-2 rounded-xl cursor-not-allowed border border-[#333333] ${fw}`}
       >
         <Clock className="w-4 h-4" />
         Pending
@@ -94,11 +97,11 @@ export default function ConnectButton({
 
   if (status === "PENDING_RECEIVED") {
     return (
-      <div className="flex items-center gap-2">
+      <div className={`flex items-center gap-2 ${fullWidth ? "w-full" : ""}`}>
         <button
           onClick={() => handleUpdateStatus("ACCEPTED")}
           disabled={actionLoading !== null}
-          className="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white text-sm font-medium px-3 py-2 rounded-xl transition-colors"
+          className={`inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white text-sm font-semibold px-3 py-2 rounded-xl transition-colors ${fullWidth ? "flex-1 justify-center" : ""}`}
         >
           {actionLoading === "accept" ? (
             <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -110,7 +113,7 @@ export default function ConnectButton({
         <button
           onClick={() => handleUpdateStatus("DECLINED")}
           disabled={actionLoading !== null}
-          className="inline-flex items-center gap-1.5 bg-[#2a2a2a] hover:bg-[#333333] disabled:opacity-50 text-gray-200 text-sm font-medium px-3 py-2 rounded-xl transition-colors border border-[#444444]"
+          className={`inline-flex items-center gap-1.5 bg-[#2a2a2a] hover:bg-[#333333] disabled:opacity-50 text-gray-300 text-sm font-medium px-3 py-2 rounded-xl transition-colors border border-[#444444] ${fullWidth ? "flex-1 justify-center" : ""}`}
         >
           {actionLoading === "decline" ? (
             <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -127,7 +130,7 @@ export default function ConnectButton({
     return (
       <button
         disabled
-        className="inline-flex items-center gap-2 bg-[#2a2a2a] text-gray-500 text-sm font-medium px-4 py-2 rounded-xl cursor-not-allowed border border-[#333333]"
+        className={`inline-flex items-center gap-2 bg-[#2a2a2a] text-gray-500 text-sm font-medium px-4 py-2 rounded-xl cursor-not-allowed border border-[#333333] ${fw}`}
       >
         <X className="w-4 h-4" />
         Declined
@@ -139,7 +142,7 @@ export default function ConnectButton({
     <button
       onClick={handleConnect}
       disabled={isLoading}
-      className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 disabled:cursor-not-allowed text-white text-sm font-medium px-4 py-2 rounded-xl transition-colors"
+      className={`inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors ${fw}`}
     >
       {isLoading ? (
         <Loader2 className="w-4 h-4 animate-spin" />
