@@ -57,7 +57,7 @@ export default function MessageInput({ matchId, onMessageSent }: MessageInputPro
   const hasContent = content.trim().length > 0;
 
   return (
-    <div className="bg-[#0d0d0d] border-t border-[#1e1e1e] px-3 pt-2 pb-1">
+    <div className="px-3 pt-1 pb-1">
       <div className="flex items-end gap-2.5 max-w-3xl mx-auto">
         <div
           className={`flex-1 flex items-end bg-[#1a1a1a] rounded-3xl border transition-all duration-200 ${
@@ -72,15 +72,15 @@ export default function MessageInput({ matchId, onMessageSent }: MessageInputPro
             placeholder="Message…"
             rows={1}
             // font-size must be ≥16px on mobile to prevent iOS/Android zoom
-            className="flex-1 px-4 py-3 bg-transparent text-white placeholder:text-[#555] focus:outline-none resize-none leading-snug"
-            style={{ minHeight: "44px", maxHeight: "120px", fontSize: "16px" }}
+            className="flex-1 px-4 py-2 bg-transparent text-white placeholder:text-[#555] focus:outline-none resize-none leading-snug"
+            style={{ minHeight: "36px", maxHeight: "120px", fontSize: "16px" }}
           />
         </div>
 
         <button
           onClick={handleSend}
           disabled={!hasContent || isSending}
-          className={`flex-shrink-0 w-11 h-11 rounded-full flex items-center justify-center transition-all duration-200 ${
+          className={`flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 ${
             hasContent && !isSending
               ? "bg-cyan-500 hover:bg-cyan-400 text-white shadow-lg shadow-cyan-900/30"
               : "bg-[#1a1a1a] text-[#444]"
