@@ -78,8 +78,7 @@ export default function LandingPage() {
             </h1>
 
             <p className="text-center text-sm sm:text-base text-gray-400 max-w-lg mx-auto mb-6 leading-relaxed">
-              Connect with people who have the skills you want to learn, and
-              share what you know. No money needed — just mutual growth.
+              You know something someone needs. They know something you want. Let&apos;s make that happen.
             </p>
 
             {/* CTAs */}
