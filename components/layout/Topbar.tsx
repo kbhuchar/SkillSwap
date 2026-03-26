@@ -22,8 +22,6 @@ export default function Topbar({ onMenuClick }: TopbarProps) {
   const pathname = usePathname();
   const { data: session } = useSession();
 
-  // Hide topbar on individual conversation pages
-  if (/^\/messages\/[^/]+/.test(pathname)) return null;
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -36,6 +34,9 @@ export default function Topbar({ onMenuClick }: TopbarProps) {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  // Hide topbar on individual conversation pages (after all hooks)
+  if (/^\/messages\/[^/]+/.test(pathname)) return null;
 
   const user = session?.user;
   const initials = getInitials(user?.name);
