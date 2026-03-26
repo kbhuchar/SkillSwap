@@ -26,12 +26,12 @@ interface MatchesTabsProps {
   defaultTab?: string;
 }
 
-export default function MatchesTabs({ pendingIncoming, accepted, currentUserId, defaultTab = "pending" }: MatchesTabsProps) {
+export default function MatchesTabs({ pendingIncoming, accepted, currentUserId, defaultTab = "connected" }: MatchesTabsProps) {
   const [activeTab, setActiveTab] = useState(defaultTab);
 
   const tabs = [
-    { id: "pending", label: "Pending", count: pendingIncoming.length, icon: <Clock className="w-3.5 h-3.5" /> },
     { id: "connected", label: "Connected", count: accepted.length, icon: <UserCheck className="w-3.5 h-3.5" /> },
+    { id: "pending", label: "Pending", count: pendingIncoming.length, icon: <Clock className="w-3.5 h-3.5" /> },
   ];
 
   return (

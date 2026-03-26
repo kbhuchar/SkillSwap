@@ -25,6 +25,12 @@ export async function GET(
 
   if (!match) return NextResponse.json({ error: "Forbidden" }, { status: 403 });
 
+  // Mark all unread messages from the other person as read
+  await prisma.message.updateMany({
+    where: { matchId, senderId: { not: session.user.id }, readAt: null },
+    data: { readAt: new Date() },
+  });
+
   const messages = await prisma.message.findMany({
     where: { matchId },
     include: { sender: { select: { id: true, name: true, image: true } } },

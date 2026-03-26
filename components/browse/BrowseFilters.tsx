@@ -124,7 +124,7 @@ export default function BrowseFilters({ hasLocation }: BrowseFiltersProps) {
   const activeFilterCount = (skill ? 1 : 0) + (category ? 1 : 0) + advancedFilterCount;
 
   return (
-    <div className="sticky top-16 z-20 bg-[#0d0d0d] py-3 -mx-4 sm:-mx-5 px-4 sm:px-5 border-b border-[#252525]/60 animate-fade-up-2">
+    <div className="sticky top-12 z-20 bg-[#0d0d0d] py-3 -mx-4 sm:-mx-5 px-4 sm:px-5 border-b border-[#252525]/60 animate-fade-up-2">
       <div className="space-y-2.5">
         {/* Row 1: Search + Category + Filters buttons */}
         <div className="flex gap-2">

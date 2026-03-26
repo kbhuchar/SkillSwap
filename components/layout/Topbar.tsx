@@ -42,7 +42,7 @@ export default function Topbar({ onMenuClick }: TopbarProps) {
   const initials = getInitials(user?.name);
 
   return (
-    <header className="fixed top-0 left-0 right-0 h-16 bg-[#1a1a1a] border-b border-[#252525] z-30 px-5">
+    <header className="fixed top-0 left-0 right-0 h-12 bg-[#1a1a1a] border-b border-[#252525] z-30 px-4">
       <div className="flex items-center justify-between h-full">
         {/* Left: Menu button */}
         <button

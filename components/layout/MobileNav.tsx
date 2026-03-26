@@ -43,7 +43,7 @@ export default function MobileNav() {
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-40 lg:hidden bg-[#1a1a1a] border-t border-[#252525]">
-      <div className="flex items-center justify-around h-16 px-2">
+      <div className="flex items-center justify-around h-12 px-2">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive =
@@ -63,7 +63,7 @@ export default function MobileNav() {
                 <span className="absolute top-0 left-1/2 -translate-x-1/2 w-6 h-0.5 rounded-full bg-cyan-500" />
               )}
               <div className="relative">
-                <Icon className="w-5 h-5 flex-shrink-0" />
+                <Icon className="w-4 h-4 flex-shrink-0" />
                 {showBadge && (
                   <span className="absolute -top-1.5 -right-1.5 min-w-[16px] h-4 rounded-full bg-red-500 text-white text-[9px] font-black flex items-center justify-center px-0.5 leading-none">
                     {unreadCount > 9 ? "9+" : unreadCount}
