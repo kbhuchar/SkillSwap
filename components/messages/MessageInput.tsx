@@ -57,7 +57,7 @@ export default function MessageInput({ matchId, onMessageSent }: MessageInputPro
   const hasContent = content.trim().length > 0;
 
   return (
-    <div className="bg-[#0d0d0d] border-t border-[#1e1e1e] px-3 py-3 safe-area-bottom">
+    <div className="bg-[#0d0d0d] border-t border-[#1e1e1e] px-3 pt-2 pb-1">
       <div className="flex items-end gap-2.5 max-w-3xl mx-auto">
         <div
           className={`flex-1 flex items-end bg-[#1a1a1a] rounded-3xl border transition-all duration-200 ${

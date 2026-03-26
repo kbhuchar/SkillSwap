@@ -56,14 +56,12 @@ export default async function ConversationPage({ params }: ConversationPageProps
   return (
     // Break out of AppShell's p-4 padding and fill the viewport
     <div className="-mx-4 sm:-mx-5 -mt-4 sm:-mt-5 h-[calc(100dvh-5rem)] lg:h-[calc(100dvh-2rem)] flex flex-col">
-      {/* Back button only */}
-      <div className="flex items-center px-2 pt-2 flex-shrink-0">
-        <Link
-          href="/messages"
-          className="p-2 rounded-xl hover:bg-[#1a1a1a] transition-colors text-[#888]"
-        >
-          <ArrowLeft className="w-5 h-5" />
+      {/* Compact header */}
+      <div className="flex items-center gap-2 px-2 pt-8 pb-1 flex-shrink-0">
+        <Link href="/messages" className="p-2 rounded-xl hover:bg-[#1a1a1a] transition-colors text-[#888] flex-shrink-0">
+          <ArrowLeft className="w-6 h-6" />
         </Link>
+        <p className="text-sm font-semibold text-[#e5e5e5] truncate">{partner.name ?? "Anonymous"}</p>
       </div>
 
       {/* Thread */}
