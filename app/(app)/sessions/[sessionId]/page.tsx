@@ -23,7 +23,7 @@ const statusConfig: Record<string, { label: string; className: string }> = {
   PROPOSED: { label: "Proposed", className: "bg-amber-900/20 text-amber-400" },
   ACCEPTED: { label: "Confirmed", className: "bg-emerald-900/20 text-emerald-400" },
   DECLINED: { label: "Declined", className: "bg-red-900/20 text-red-400" },
-  CANCELLED: { label: "Cancelled", className: "bg-[#2a2a2a] text-gray-500" },
+  CANCELLED: { label: "Cancelled", className: "bg-[#1f1f1f] text-gray-500" },
   COMPLETED: { label: "Completed", className: "bg-blue-900/20 text-blue-400" },
 };
 
@@ -73,7 +73,7 @@ export default async function SessionDetailPage({
   const status =
     statusConfig[swapSession.status] ?? {
       label: swapSession.status,
-      className: "bg-[#2a2a2a] text-gray-400",
+      className: "bg-[#1f1f1f] text-gray-400",
     };
   const partnerInitials = getInitials(partner.name);
 
@@ -82,7 +82,7 @@ export default async function SessionDetailPage({
       <div className="flex items-center gap-2">
         <Link
           href="/sessions"
-          className="p-1.5 hover:bg-[#2a2a2a] rounded-lg transition-colors text-gray-500"
+          className="p-1.5 hover:bg-[#1f1f1f] rounded-lg transition-colors text-gray-500"
         >
           <ArrowLeft className="w-4 h-4" />
         </Link>
@@ -95,7 +95,7 @@ export default async function SessionDetailPage({
       </div>
 
       {/* Main card */}
-      <div className="bg-[#242424] rounded-xl border border-[#333333] shadow-sm overflow-hidden">
+      <div className="bg-[#181818] rounded-xl border border-[#252525] shadow-sm overflow-hidden">
         {/* Status banner */}
         <div
           className={`px-4 py-2.5 border-b ${
@@ -103,7 +103,7 @@ export default async function SessionDetailPage({
               ? "bg-emerald-900/10 border-emerald-900/30"
               : swapSession.status === "PROPOSED"
               ? "bg-amber-900/10 border-amber-900/30"
-              : "bg-[#2a2a2a] border-[#333333]"
+              : "bg-[#1f1f1f] border-[#252525]"
           }`}
         >
           <div className="flex items-center justify-between">
@@ -131,9 +131,9 @@ export default async function SessionDetailPage({
 
           {/* Session details */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div className="flex items-center gap-2.5 p-3 bg-[#2a2a2a] rounded-lg">
-              <div className="w-8 h-8 rounded-lg bg-indigo-900/20 flex items-center justify-center flex-shrink-0">
-                <Calendar className="w-4 h-4 text-indigo-400" />
+            <div className="flex items-center gap-2.5 p-3 bg-[#1f1f1f] rounded-lg">
+              <div className="w-8 h-8 rounded-lg bg-violet-900/20 flex items-center justify-center flex-shrink-0">
+                <Calendar className="w-4 h-4 text-violet-400" />
               </div>
               <div>
                 <p className="text-xs text-gray-500 font-medium">Scheduled</p>
@@ -143,7 +143,7 @@ export default async function SessionDetailPage({
               </div>
             </div>
 
-            <div className="flex items-center gap-2.5 p-3 bg-[#2a2a2a] rounded-lg">
+            <div className="flex items-center gap-2.5 p-3 bg-[#1f1f1f] rounded-lg">
               <div className="w-8 h-8 rounded-lg bg-purple-900/20 flex items-center justify-center flex-shrink-0">
                 <Clock className="w-4 h-4 text-purple-400" />
               </div>
@@ -163,7 +163,7 @@ export default async function SessionDetailPage({
             </p>
             <Link
               href={`/profile/${partner.id}`}
-              className="flex items-center gap-2.5 p-3 bg-[#2a2a2a] rounded-lg hover:bg-indigo-900/10 transition-colors group"
+              className="flex items-center gap-2.5 p-3 bg-[#1f1f1f] rounded-lg hover:bg-violet-900/10 transition-colors group"
             >
               {partner.image ? (
                 <img
@@ -172,12 +172,12 @@ export default async function SessionDetailPage({
                   className="w-9 h-9 rounded-full object-cover"
                 />
               ) : (
-                <div className="w-9 h-9 rounded-full bg-indigo-900/20 text-indigo-400 flex items-center justify-center text-xs font-bold">
+                <div className="w-9 h-9 rounded-full bg-violet-900/20 text-violet-400 flex items-center justify-center text-xs font-bold">
                   {partnerInitials}
                 </div>
               )}
               <div>
-                <p className="text-sm font-semibold text-white group-hover:text-indigo-400 transition-colors">
+                <p className="text-sm font-semibold text-white group-hover:text-violet-400 transition-colors">
                   {partner.name ?? "Anonymous"}
                 </p>
                 <p className="text-xs text-gray-500">Click to view profile</p>
@@ -195,7 +195,7 @@ export default async function SessionDetailPage({
                 href={swapSession.meetingLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-indigo-400 hover:text-indigo-300 bg-indigo-900/10 hover:bg-indigo-900/20 px-3 py-2 rounded-lg transition-colors text-xs font-medium border border-indigo-800/30 truncate"
+                className="flex items-center gap-2 text-violet-400 hover:text-violet-300 bg-violet-900/10 hover:bg-violet-900/20 px-3 py-2 rounded-lg transition-colors text-xs font-medium border border-violet-800/30 truncate"
               >
                 <ExternalLink className="w-3.5 h-3.5 flex-shrink-0" />
                 {swapSession.meetingLink}
@@ -204,7 +204,7 @@ export default async function SessionDetailPage({
           )}
 
           {/* Actions */}
-          <div className="pt-3 border-t border-[#333333]">
+          <div className="pt-3 border-t border-[#252525]">
             <div className="flex items-center gap-2 flex-wrap">
               <SessionActions
                 session={swapSession as SwapSessionWithUsers}
@@ -212,7 +212,7 @@ export default async function SessionDetailPage({
               />
               <Link
                 href={`/messages/${swapSession.matchId}`}
-                className="inline-flex items-center gap-1.5 text-xs font-medium text-indigo-400 hover:text-indigo-300 bg-indigo-900/10 hover:bg-indigo-900/20 px-3 py-1.5 rounded-lg transition-colors border border-indigo-800/30"
+                className="inline-flex items-center gap-1.5 text-xs font-medium text-violet-400 hover:text-violet-300 bg-violet-900/10 hover:bg-violet-900/20 px-3 py-1.5 rounded-lg transition-colors border border-violet-800/30"
               >
                 <MessageSquare className="w-3.5 h-3.5" />
                 Message {partner.name?.split(" ")[0]}

@@ -47,10 +47,10 @@ export default function MatchCard({ match, currentUserId }: MatchCardProps) {
                 <img
                   src={partner.image}
                   alt={partner.name ?? ""}
-                  className="w-12 h-12 rounded-full object-cover ring-2 ring-indigo-50"
+                  className="w-12 h-12 rounded-full object-cover ring-2 ring-violet-50"
                 />
               ) : (
-                <div className="w-12 h-12 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center text-sm font-bold ring-2 ring-indigo-50">
+                <div className="w-12 h-12 rounded-full bg-violet-100 text-violet-700 flex items-center justify-center text-sm font-bold ring-2 ring-violet-50">
                   {initials}
                 </div>
               )}
@@ -58,7 +58,7 @@ export default function MatchCard({ match, currentUserId }: MatchCardProps) {
             <div>
               <Link
                 href={`/profile/${partner.id}`}
-                className="font-semibold text-slate-900 hover:text-indigo-700 transition-colors"
+                className="font-semibold text-slate-900 hover:text-violet-700 transition-colors"
               >
                 {partner.name ?? "Anonymous"}
               </Link>
@@ -109,7 +109,7 @@ export default function MatchCard({ match, currentUserId }: MatchCardProps) {
           <div className="flex items-center gap-2 pt-3 border-t border-slate-100">
             <Link
               href={`/messages/${match.id}`}
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-indigo-600 hover:text-indigo-700 bg-indigo-50 hover:bg-indigo-100 px-3.5 py-2 rounded-xl transition-colors"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-violet-600 hover:text-violet-700 bg-violet-50 hover:bg-violet-100 px-3.5 py-2 rounded-xl transition-colors"
             >
               <MessageSquare className="w-4 h-4" />
               Message

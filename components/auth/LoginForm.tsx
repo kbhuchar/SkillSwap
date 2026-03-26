@@ -64,7 +64,7 @@ export default function LoginForm() {
         type="button"
         onClick={handleGoogleSignIn}
         disabled={isGoogleLoading || isSubmitting}
-        className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-[#444444] rounded-xl text-sm font-medium text-gray-200 bg-[#2e2e2e] hover:bg-[#333333] disabled:opacity-50 disabled:cursor-not-allowed transition-colors mb-5"
+        className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-[#252525] rounded-xl text-sm font-medium text-gray-200 bg-[#242424] hover:bg-[#252525] disabled:opacity-50 disabled:cursor-not-allowed transition-colors mb-5"
       >
         {isGoogleLoading ? (
           <Loader2 className="w-4 h-4 animate-spin" />
@@ -93,10 +93,10 @@ export default function LoginForm() {
 
       <div className="relative mb-5">
         <div className="absolute inset-0 flex items-center">
-          <div className="w-full border-t border-[#333333]" />
+          <div className="w-full border-t border-[#252525]" />
         </div>
         <div className="relative flex justify-center text-xs">
-          <span className="bg-[#242424] px-3 text-gray-500">or continue with email</span>
+          <span className="bg-[#181818] px-3 text-gray-500">or continue with email</span>
         </div>
       </div>
 
@@ -119,7 +119,7 @@ export default function LoginForm() {
               autoComplete="email"
               placeholder="you@example.com"
               {...register("email")}
-              className="w-full pl-10 pr-4 py-3 rounded-xl border border-[#444444] bg-[#2e2e2e] text-white text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+              className="w-full pl-10 pr-4 py-3 rounded-xl border border-[#252525] bg-[#242424] text-white text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all"
             />
           </div>
           {errors.email && (
@@ -139,7 +139,7 @@ export default function LoginForm() {
               autoComplete="current-password"
               placeholder="Enter your password"
               {...register("password")}
-              className="w-full pl-10 pr-11 py-3 rounded-xl border border-[#444444] bg-[#2e2e2e] text-white text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+              className="w-full pl-10 pr-11 py-3 rounded-xl border border-[#252525] bg-[#242424] text-white text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all"
             />
             <button
               type="button"
@@ -157,7 +157,7 @@ export default function LoginForm() {
         <button
           type="submit"
           disabled={isSubmitting || isGoogleLoading}
-          className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 disabled:cursor-not-allowed text-white font-semibold py-3 px-4 rounded-xl text-sm transition-colors flex items-center justify-center gap-2 shadow-sm shadow-indigo-900/30"
+          className="w-full bg-violet-600 hover:bg-violet-700 disabled:bg-violet-400 disabled:cursor-not-allowed text-white font-semibold py-3 px-4 rounded-xl text-sm transition-colors flex items-center justify-center gap-2 shadow-sm shadow-violet-900/30"
         >
           {isSubmitting ? (
             <>
@@ -174,7 +174,7 @@ export default function LoginForm() {
         Don&apos;t have an account?{" "}
         <Link
           href="/register"
-          className="text-indigo-400 hover:text-indigo-300 font-medium"
+          className="text-violet-400 hover:text-violet-300 font-medium"
         >
           Create one free
         </Link>

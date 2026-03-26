@@ -18,6 +18,7 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
   const userId = session!.user.id;
   const params = await searchParams;
   const { skill, type } = params;
+  const isFiltered = !!(skill || type);
 
   const whereClause: Record<string, unknown> = {
     id: { not: userId },
@@ -28,14 +29,7 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
       some: {
         ...(type ? { type } : {}),
         ...(skill
-          ? {
-              skill: {
-                name: {
-                  contains: skill,
-                  mode: "insensitive",
-                },
-              },
-            }
+          ? { skill: { name: { contains: skill, mode: "insensitive" } } }
           : {}),
       },
     };
@@ -43,11 +37,7 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
 
   const users = await prisma.user.findMany({
     where: whereClause,
-    include: {
-      skills: {
-        include: { skill: true },
-      },
-    },
+    include: { skills: { include: { skill: true } } },
     orderBy: { createdAt: "desc" },
     take: 50,
   });
@@ -61,27 +51,22 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
 
   const matchStatuses: Record<
     string,
-    {
-      status: "NONE" | "PENDING_SENT" | "PENDING_RECEIVED" | "ACCEPTED" | "DECLINED";
-      matchId?: string;
-    }
+    { status: "NONE" | "PENDING_SENT" | "PENDING_RECEIVED" | "ACCEPTED" | "DECLINED"; matchId?: string }
   > = {};
 
   for (const match of matches) {
-    const partnerId =
-      match.senderId === userId ? match.receiverId : match.senderId;
+    const partnerId = match.senderId === userId ? match.receiverId : match.senderId;
     if (match.status === "ACCEPTED") {
       matchStatuses[partnerId] = { status: "ACCEPTED", matchId: match.id };
     } else if (match.status === "PENDING") {
-      if (match.senderId === userId) {
-        matchStatuses[partnerId] = { status: "PENDING_SENT", matchId: match.id };
-      } else {
-        matchStatuses[partnerId] = { status: "PENDING_RECEIVED", matchId: match.id };
-      }
+      matchStatuses[partnerId] = {
+        status: match.senderId === userId ? "PENDING_SENT" : "PENDING_RECEIVED",
+        matchId: match.id,
+      };
     }
   }
 
-  const publicUsers: PublicUser[] = users.map((u: typeof users[number]) => ({
+  const publicUsers: PublicUser[] = users.map((u) => ({
     id: u.id,
     name: u.name,
     email: u.email,
@@ -93,15 +78,29 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
   }));
 
   return (
-    <div className="max-w-6xl mx-auto space-y-5">
-      <div>
-        <h1 className="text-2xl font-black text-white tracking-tight">Browse</h1>
-        <p className="text-sm text-gray-500 mt-0.5">{publicUsers.length} people available</p>
+    <div className="max-w-6xl mx-auto pb-8">
+      {/* Header */}
+      <div className="flex items-end justify-between pb-1 animate-fade-up-1">
+        <div>
+          <h1 className="text-2xl font-extrabold text-[#e5e5e5] tracking-tight">Browse</h1>
+          <p className="text-sm text-[#888] mt-0.5">
+            {isFiltered ? "Showing filtered results" : "Discover people to swap skills with"}
+          </p>
+        </div>
+        <div className="flex items-center gap-1.5 bg-[#181818] border border-[#252525] rounded-full px-3 py-1.5">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+          <span className="text-xs font-semibold text-[#e5e5e5]">{publicUsers.length}</span>
+          <span className="text-xs text-[#888]">people</span>
+        </div>
       </div>
 
+      {/* Sticky filters */}
       <BrowseFilters />
 
-      <UserGrid users={publicUsers} matchStatuses={matchStatuses} />
+      {/* Grid */}
+      <div className="pt-5">
+        <UserGrid users={publicUsers} matchStatuses={matchStatuses} />
+      </div>
     </div>
   );
 }

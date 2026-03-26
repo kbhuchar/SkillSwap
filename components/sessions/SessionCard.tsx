@@ -25,11 +25,11 @@ const statusConfig: Record<string, { label: string; className: string }> = {
   },
   CANCELLED: {
     label: "Cancelled",
-    className: "bg-[#333333] text-gray-500",
+    className: "bg-[#252525] text-gray-500",
   },
   COMPLETED: {
     label: "Completed",
-    className: "bg-indigo-900/20 text-indigo-400",
+    className: "bg-violet-900/20 text-violet-400",
   },
 };
 
@@ -41,22 +41,22 @@ export default function SessionCard({ session, currentUserId }: SessionCardProps
   const isProposer = session.proposerId === currentUserId;
   const status = statusConfig[session.status] ?? {
     label: session.status,
-    className: "bg-[#333333] text-gray-400",
+    className: "bg-[#252525] text-gray-400",
   };
   const partnerInitials = getInitials(partner.name);
 
   return (
     <div className={cn(
-      "bg-[#242424] rounded-xl border p-4 transition-all",
+      "bg-[#181818] rounded-xl border p-4 transition-all",
       session.status === "ACCEPTED"
         ? "border-emerald-800/40 hover:shadow-md hover:shadow-emerald-900/10"
-        : "border-[#333333]"
+        : "border-[#252525]"
     )}>
       <div className="flex items-start justify-between gap-2 mb-2.5">
         <div className="min-w-0">
           <Link
             href={`/sessions/${session.id}`}
-            className="text-sm font-semibold text-white hover:text-indigo-400 transition-colors block truncate"
+            className="text-sm font-semibold text-white hover:text-violet-400 transition-colors block truncate"
           >
             {session.title}
           </Link>
@@ -88,7 +88,7 @@ export default function SessionCard({ session, currentUserId }: SessionCardProps
           </span>
           <Link
             href={`/profile/${partner.id}`}
-            className="flex items-center gap-1 hover:text-indigo-400 transition-colors"
+            className="flex items-center gap-1 hover:text-violet-400 transition-colors"
           >
             {partner.image ? (
               <img
@@ -97,7 +97,7 @@ export default function SessionCard({ session, currentUserId }: SessionCardProps
                 className="w-4 h-4 rounded-full object-cover"
               />
             ) : (
-              <div className="w-4 h-4 rounded-full bg-indigo-900/20 text-indigo-400 flex items-center justify-center text-[9px] font-bold">
+              <div className="w-4 h-4 rounded-full bg-violet-900/20 text-violet-400 flex items-center justify-center text-[9px] font-bold">
                 {partnerInitials}
               </div>
             )}
@@ -109,7 +109,7 @@ export default function SessionCard({ session, currentUserId }: SessionCardProps
             href={session.meetingLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-xs text-indigo-400 hover:text-indigo-300"
+            className="flex items-center gap-1.5 text-xs text-violet-400 hover:text-violet-300"
           >
             <ExternalLink className="w-3.5 h-3.5" />
             Join meeting
@@ -118,7 +118,7 @@ export default function SessionCard({ session, currentUserId }: SessionCardProps
       </div>
 
       {/* Actions */}
-      <div className="pt-2.5 border-t border-[#333333]">
+      <div className="pt-2.5 border-t border-[#252525]">
         <SessionActions session={session} currentUserId={currentUserId} />
       </div>
     </div>

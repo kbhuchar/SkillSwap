@@ -83,14 +83,14 @@ export default async function SessionsPage({ searchParams }: SessionsPageProps) 
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center gap-1 bg-[#2a2a2a] rounded-lg p-1 w-fit border border-[#333333]">
+      <div className="flex items-center gap-1 bg-[#1f1f1f] rounded-lg p-1 w-fit border border-[#252525]">
         {tabs.map((tab) => (
           <Link
             key={tab.id}
             href={`/sessions?tab=${tab.id}`}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
               activeTab === tab.id
-                ? "bg-[#1a1a1a] text-white shadow-sm"
+                ? "bg-[#0d0d0d] text-white shadow-sm"
                 : "text-gray-500 hover:text-gray-200"
             }`}
           >
@@ -100,8 +100,8 @@ export default async function SessionsPage({ searchParams }: SessionsPageProps) 
               <span
                 className={`text-xs font-bold px-1.5 py-0.5 rounded-full ${
                   activeTab === tab.id
-                    ? "bg-indigo-900/20 text-indigo-400"
-                    : "bg-[#333333] text-gray-400"
+                    ? "bg-violet-900/20 text-violet-400"
+                    : "bg-[#252525] text-gray-400"
                 }`}
               >
                 {tab.count}
@@ -115,7 +115,7 @@ export default async function SessionsPage({ searchParams }: SessionsPageProps) 
       {activeTab === "upcoming" && (
         <div>
           {upcoming.length === 0 ? (
-            <div className="bg-[#242424] rounded-xl border border-[#333333] p-8 text-center">
+            <div className="bg-[#181818] rounded-xl border border-[#252525] p-8 text-center">
               <div className="w-10 h-10 rounded-lg bg-emerald-900/20 flex items-center justify-center mx-auto mb-2">
                 <Calendar className="w-5 h-5 text-emerald-400" />
               </div>
@@ -127,7 +127,7 @@ export default async function SessionsPage({ searchParams }: SessionsPageProps) 
               </p>
               <Link
                 href="/matches?tab=connected"
-                className="inline-flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
+                className="inline-flex items-center gap-1.5 bg-violet-600 hover:bg-violet-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
               >
                 View my connections
               </Link>
@@ -150,8 +150,8 @@ export default async function SessionsPage({ searchParams }: SessionsPageProps) 
       {activeTab === "past" && (
         <div>
           {past.length === 0 ? (
-            <div className="bg-[#242424] rounded-xl border border-[#333333] p-8 text-center">
-              <div className="w-10 h-10 rounded-lg bg-[#2a2a2a] flex items-center justify-center mx-auto mb-2">
+            <div className="bg-[#181818] rounded-xl border border-[#252525] p-8 text-center">
+              <div className="w-10 h-10 rounded-lg bg-[#1f1f1f] flex items-center justify-center mx-auto mb-2">
                 <Clock className="w-5 h-5 text-gray-500" />
               </div>
               <h3 className="text-sm font-semibold text-white mb-1">

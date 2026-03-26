@@ -68,14 +68,14 @@ export default async function MatchesPage({ searchParams }: MatchesPageProps) {
       </div>
 
       {/* Tabs */}
-      <div className="flex items-center gap-1 bg-[#2a2a2a] rounded-lg p-1 w-fit border border-[#333333]">
+      <div className="flex items-center gap-1 bg-[#1f1f1f] rounded-lg p-1 w-fit border border-[#252525]">
         {tabs.map((tab) => (
           <Link
             key={tab.id}
             href={`/matches?tab=${tab.id}`}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
               activeTab === tab.id
-                ? "bg-[#1a1a1a] text-white shadow-sm"
+                ? "bg-[#0d0d0d] text-white shadow-sm"
                 : "text-gray-500 hover:text-gray-200"
             }`}
           >
@@ -88,7 +88,7 @@ export default async function MatchesPage({ searchParams }: MatchesPageProps) {
                     ? tab.id === "pending"
                       ? "bg-amber-900/20 text-amber-400"
                       : "bg-emerald-900/20 text-emerald-400"
-                    : "bg-[#333333] text-gray-400"
+                    : "bg-[#252525] text-gray-400"
                 }`}
               >
                 {tab.count}
@@ -102,7 +102,7 @@ export default async function MatchesPage({ searchParams }: MatchesPageProps) {
       {activeTab === "pending" && (
         <div>
           {pendingIncoming.length === 0 ? (
-            <div className="bg-[#242424] rounded-xl border border-[#333333] p-8 text-center">
+            <div className="bg-[#181818] rounded-xl border border-[#252525] p-8 text-center">
               <Clock className="w-8 h-8 text-amber-400 mx-auto mb-2" />
               <h3 className="text-sm font-semibold text-white mb-1">
                 No pending requests
@@ -112,7 +112,7 @@ export default async function MatchesPage({ searchParams }: MatchesPageProps) {
               </p>
               <Link
                 href="/browse"
-                className="inline-flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
+                className="inline-flex items-center gap-1.5 bg-violet-600 hover:bg-violet-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
               >
                 <Users className="w-3.5 h-3.5" />
                 Browse Skills
@@ -125,7 +125,7 @@ export default async function MatchesPage({ searchParams }: MatchesPageProps) {
                 return (
                   <div
                     key={match.id}
-                    className="bg-[#242424] rounded-xl border border-[#333333] p-4"
+                    className="bg-[#181818] rounded-xl border border-[#252525] p-4"
                   >
                     <div className="flex items-center justify-between gap-3">
                       <div className="flex items-center gap-2.5">
@@ -137,7 +137,7 @@ export default async function MatchesPage({ searchParams }: MatchesPageProps) {
                               className="w-9 h-9 rounded-full object-cover"
                             />
                           ) : (
-                            <div className="w-9 h-9 rounded-full bg-indigo-900/20 text-indigo-400 flex items-center justify-center text-xs font-bold">
+                            <div className="w-9 h-9 rounded-full bg-violet-900/20 text-violet-400 flex items-center justify-center text-xs font-bold">
                               {initials}
                             </div>
                           )}
@@ -145,7 +145,7 @@ export default async function MatchesPage({ searchParams }: MatchesPageProps) {
                         <div>
                           <Link
                             href={`/profile/${match.sender.id}`}
-                            className="text-sm font-semibold text-white hover:text-indigo-400 transition-colors"
+                            className="text-sm font-semibold text-white hover:text-violet-400 transition-colors"
                           >
                             {match.sender.name ?? "Anonymous"}
                           </Link>
@@ -168,7 +168,7 @@ export default async function MatchesPage({ searchParams }: MatchesPageProps) {
       {activeTab === "connected" && (
         <div>
           {accepted.length === 0 ? (
-            <div className="bg-[#242424] rounded-xl border border-[#333333] p-8 text-center">
+            <div className="bg-[#181818] rounded-xl border border-[#252525] p-8 text-center">
               <UserCheck className="w-8 h-8 text-emerald-400 mx-auto mb-2" />
               <h3 className="text-sm font-semibold text-white mb-1">
                 No connections yet
@@ -178,7 +178,7 @@ export default async function MatchesPage({ searchParams }: MatchesPageProps) {
               </p>
               <Link
                 href="/browse"
-                className="inline-flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
+                className="inline-flex items-center gap-1.5 bg-violet-600 hover:bg-violet-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
               >
                 <Users className="w-3.5 h-3.5" />
                 Find People to Connect With

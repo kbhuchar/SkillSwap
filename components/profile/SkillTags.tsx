@@ -33,7 +33,7 @@ export default function SkillTags({ skills, type, max, size = "sm" }: SkillTagsP
             size === "sm" ? "text-xs px-2.5 py-0.5" : "text-sm px-3 py-1",
             type === "OFFERED"
               ? "bg-emerald-900/20 text-emerald-400 border border-emerald-800/30"
-              : "bg-indigo-900/20 text-indigo-400 border border-indigo-800/30"
+              : "bg-violet-900/20 text-violet-400 border border-violet-800/30"
           )}
         >
           {skill.name}
@@ -50,7 +50,7 @@ export default function SkillTags({ skills, type, max, size = "sm" }: SkillTagsP
       {remaining > 0 && (
         <span
           className={cn(
-            "inline-flex items-center rounded-full font-medium bg-[#2a2a2a] text-gray-400 border border-[#333333]",
+            "inline-flex items-center rounded-full font-medium bg-[#1f1f1f] text-gray-400 border border-[#252525]",
             size === "sm" ? "text-xs px-2.5 py-0.5" : "text-sm px-3 py-1"
           )}
         >

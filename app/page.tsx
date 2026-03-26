@@ -18,31 +18,31 @@ export default function LandingPage() {
       <SplashScreen />
 
       <div
-        className="min-h-screen flex flex-col bg-[#1a1a1a] transition-opacity duration-700"
+        className="min-h-screen flex flex-col bg-[#0d0d0d] transition-opacity duration-700"
         style={{ opacity: show ? 1 : 0 }}
       >
         {/* Navbar */}
-        <header className="fixed top-0 left-0 right-0 z-50 bg-[#1a1a1a]/90 backdrop-blur-md border-b border-[#333333]">
+        <header className="fixed top-0 left-0 right-0 z-50 bg-[#0d0d0d]/90 backdrop-blur-md border-b border-[#252525]">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             <div className="flex items-center justify-between h-12">
               <div className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-lg bg-indigo-600 flex items-center justify-center">
+                <div className="w-7 h-7 rounded-lg bg-violet-600 flex items-center justify-center">
                   <Zap className="w-3.5 h-3.5 text-white" />
                 </div>
                 <span className="text-base font-bold text-white">
-                  Skill<span className="text-indigo-400">Swap</span>
+                  Skill<span className="text-violet-400">Swap</span>
                 </span>
               </div>
               <div className="flex items-center gap-2">
                 <Link
                   href="/login"
-                  className="text-sm font-medium text-gray-300 hover:text-indigo-400 px-3 py-1.5 rounded-lg hover:bg-indigo-900/20 transition-colors"
+                  className="text-sm font-medium text-gray-300 hover:text-violet-400 px-3 py-1.5 rounded-lg hover:bg-violet-900/20 transition-colors"
                 >
                   Sign in
                 </Link>
                 <Link
                   href="/register"
-                  className="text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 px-3 py-1.5 rounded-lg transition-colors"
+                  className="text-sm font-medium text-white bg-violet-600 hover:bg-violet-700 px-3 py-1.5 rounded-lg transition-colors"
                 >
                   Get started
                 </Link>
@@ -55,15 +55,15 @@ export default function LandingPage() {
         <section className="flex-1 flex flex-col justify-center pt-20 sm:pt-12 px-5 sm:px-6 relative">
           {/* Background glows */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="absolute -top-32 -right-32 w-80 h-80 rounded-full bg-indigo-900/30 blur-3xl" />
+            <div className="absolute -top-32 -right-32 w-80 h-80 rounded-full bg-violet-900/30 blur-3xl" />
             <div className="absolute -bottom-32 -left-32 w-80 h-80 rounded-full bg-purple-900/30 blur-3xl" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-indigo-950/20 blur-3xl" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-violet-950/20 blur-3xl" />
           </div>
 
           <div className="max-w-6xl mx-auto w-full relative">
             {/* Badge */}
             <div className="flex justify-center mb-4">
-              <div className="inline-flex items-center gap-1.5 bg-indigo-900/20 text-indigo-400 text-xs font-medium px-3 py-1 rounded-full border border-indigo-800/40">
+              <div className="inline-flex items-center gap-1.5 bg-violet-900/20 text-violet-400 text-xs font-medium px-3 py-1 rounded-full border border-violet-800/40">
                 <Zap className="w-3 h-3" />
                 Peer-to-peer skill sharing, for free
               </div>
@@ -72,7 +72,7 @@ export default function LandingPage() {
             {/* Headline */}
             <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white mb-3 leading-tight tracking-tight">
               Share Skills,{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400">
                 Grow Together
               </span>
             </h1>
@@ -86,14 +86,14 @@ export default function LandingPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12">
               <Link
                 href="/register"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-6 py-2.5 rounded-xl shadow-lg shadow-indigo-900/40 group transition-all"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-violet-600 hover:bg-violet-500 text-white font-semibold px-6 py-2.5 rounded-xl shadow-lg shadow-violet-900/40 group transition-all"
               >
                 Get Started Free
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </Link>
               <Link
                 href="/browse"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#242424] hover:bg-[#2e2e2e] text-gray-200 font-semibold px-6 py-2.5 rounded-xl border border-[#333333] hover:border-indigo-800/60 transition-all"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#181818] hover:bg-[#242424] text-gray-200 font-semibold px-6 py-2.5 rounded-xl border border-[#252525] hover:border-violet-800/60 transition-all"
               >
                 Browse Skills
               </Link>
@@ -104,8 +104,8 @@ export default function LandingPage() {
               {[
                 {
                   icon: <Users className="w-4 h-4" />,
-                  color: "bg-indigo-900/20 text-indigo-400",
-                  border: "hover:border-indigo-800/60",
+                  color: "bg-violet-900/20 text-violet-400",
+                  border: "hover:border-violet-800/60",
                   title: "Create Your Profile",
                   description:
                     "List the skills you can teach and the ones you want to learn.",
@@ -129,7 +129,7 @@ export default function LandingPage() {
               ].map((feature, i) => (
                 <div
                   key={i}
-                  className={`p-4 rounded-xl border border-[#333333] bg-[#242424]/80 backdrop-blur-sm ${feature.border} hover:shadow-lg hover:shadow-indigo-900/10 transition-all group`}
+                  className={`p-4 rounded-xl border border-[#252525] bg-[#181818]/80 backdrop-blur-sm ${feature.border} hover:shadow-lg hover:shadow-violet-900/10 transition-all group`}
                 >
                   <div
                     className={`w-8 h-8 rounded-lg ${feature.color} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}
@@ -149,14 +149,14 @@ export default function LandingPage() {
         </section>
 
         {/* Footer */}
-        <footer className="py-3 px-4 border-t border-[#333333]">
+        <footer className="py-3 px-4 border-t border-[#252525]">
           <div className="max-w-6xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-1.5">
-              <div className="w-5 h-5 rounded-md bg-indigo-600 flex items-center justify-center">
+              <div className="w-5 h-5 rounded-md bg-violet-600 flex items-center justify-center">
                 <Zap className="w-3 h-3 text-white" />
               </div>
               <span className="text-sm font-semibold text-white">
-                Skill<span className="text-indigo-400">Swap</span>
+                Skill<span className="text-violet-400">Swap</span>
               </span>
             </div>
             <p className="text-xs text-gray-500">

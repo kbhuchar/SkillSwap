@@ -26,7 +26,7 @@ export default function MessageBubble({ message, isOwn }: MessageBubbleProps) {
               className="w-6 h-6 rounded-full object-cover"
             />
           ) : (
-            <div className="w-6 h-6 rounded-full bg-indigo-900/20 text-indigo-400 flex items-center justify-center text-[10px] font-bold">
+            <div className="w-6 h-6 rounded-full bg-violet-900/20 text-violet-400 flex items-center justify-center text-[10px] font-bold">
               {initials}
             </div>
           )}
@@ -48,8 +48,8 @@ export default function MessageBubble({ message, isOwn }: MessageBubbleProps) {
           className={cn(
             "px-3 py-2 rounded-xl text-sm leading-snug",
             isOwn
-              ? "bg-indigo-600 text-white rounded-br-sm"
-              : "bg-[#2e2e2e] border border-[#3a3a3a] text-gray-100 rounded-bl-sm"
+              ? "bg-violet-600 text-white rounded-br-sm"
+              : "bg-[#242424] border border-[#313131] text-gray-100 rounded-bl-sm"
           )}
         >
           {message.content}

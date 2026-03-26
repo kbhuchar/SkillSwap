@@ -42,22 +42,22 @@ export default async function MessagesPage() {
       </div>
 
       {matches.length === 0 ? (
-        <div className="bg-[#242424] rounded-xl border border-[#333333] p-8 text-center">
-          <MessageSquare className="w-8 h-8 text-indigo-400 mx-auto mb-2" />
+        <div className="bg-[#181818] rounded-xl border border-[#252525] p-8 text-center">
+          <MessageSquare className="w-8 h-8 text-violet-400 mx-auto mb-2" />
           <h3 className="text-sm font-semibold text-white mb-1">No conversations yet</h3>
           <p className="text-xs text-gray-500 mb-3">
             Connect with someone to start messaging
           </p>
           <Link
             href="/browse"
-            className="inline-flex items-center gap-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
+            className="inline-flex items-center gap-1.5 bg-violet-600 hover:bg-violet-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
           >
             Browse Skills
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
       ) : (
-        <div className="bg-[#242424] rounded-xl border border-[#333333] shadow-sm divide-y divide-[#2e2e2e]">
+        <div className="bg-[#181818] rounded-xl border border-[#252525] shadow-sm divide-y divide-[#242424]">
           {matches.map((match: typeof matches[number]) => {
             const partner =
               match.senderId === userId ? match.receiver : match.sender;
@@ -69,7 +69,7 @@ export default async function MessagesPage() {
               <Link
                 key={match.id}
                 href={`/messages/${match.id}`}
-                className="flex items-center gap-3 px-4 py-3 hover:bg-[#2e2e2e] transition-colors first:rounded-t-xl last:rounded-b-xl"
+                className="flex items-center gap-3 px-4 py-3 hover:bg-[#242424] transition-colors first:rounded-t-xl last:rounded-b-xl"
               >
                 {/* Avatar */}
                 <div className="relative flex-shrink-0">
@@ -80,7 +80,7 @@ export default async function MessagesPage() {
                       className="w-9 h-9 rounded-full object-cover"
                     />
                   ) : (
-                    <div className="w-9 h-9 rounded-full bg-indigo-900/20 text-indigo-400 flex items-center justify-center text-xs font-bold">
+                    <div className="w-9 h-9 rounded-full bg-violet-900/20 text-violet-400 flex items-center justify-center text-xs font-bold">
                       {initials}
                     </div>
                   )}

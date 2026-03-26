@@ -64,7 +64,7 @@ export default function ProposeSessionForm({
       <div className="bg-white rounded-2xl shadow-xl w-full max-w-md">
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
           <div className="flex items-center gap-2">
-            <Calendar className="w-5 h-5 text-indigo-600" />
+            <Calendar className="w-5 h-5 text-violet-600" />
             <h2 className="font-semibold text-slate-900">Propose a Session</h2>
           </div>
           <button
@@ -92,7 +92,7 @@ export default function ProposeSessionForm({
               type="text"
               placeholder="e.g. Python for Beginners"
               {...register("title")}
-              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent"
             />
             {errors.title && (
               <p className="mt-1 text-xs text-red-600">{errors.title.message}</p>
@@ -107,7 +107,7 @@ export default function ProposeSessionForm({
               rows={2}
               placeholder="What will you cover in this session?"
               {...register("description")}
-              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none"
+              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent resize-none"
             />
           </div>
 
@@ -120,7 +120,7 @@ export default function ProposeSessionForm({
                 type="datetime-local"
                 {...register("scheduledAt")}
                 min={new Date().toISOString().slice(0, 16)}
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent"
               />
               {errors.scheduledAt && (
                 <p className="mt-1 text-xs text-red-600">
@@ -135,7 +135,7 @@ export default function ProposeSessionForm({
               </label>
               <select
                 {...register("durationMin", { valueAsNumber: true })}
-                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
               >
                 <option value={15}>15 min</option>
                 <option value={30}>30 min</option>
@@ -155,7 +155,7 @@ export default function ProposeSessionForm({
               type="url"
               placeholder="https://zoom.us/j/... or Google Meet link"
               {...register("meetingLink")}
-              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              className="w-full px-4 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent"
             />
             {errors.meetingLink && (
               <p className="mt-1 text-xs text-red-600">
@@ -175,7 +175,7 @@ export default function ProposeSessionForm({
             <button
               type="submit"
               disabled={isSubmitting}
-              className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 text-white font-semibold py-2.5 px-5 rounded-xl text-sm transition-colors"
+              className="inline-flex items-center gap-2 bg-violet-600 hover:bg-violet-700 disabled:bg-violet-400 text-white font-semibold py-2.5 px-5 rounded-xl text-sm transition-colors"
             >
               {isSubmitting ? (
                 <>

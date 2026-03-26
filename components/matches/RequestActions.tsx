@@ -60,7 +60,7 @@ export default function RequestActions({ matchId, onSuccess, compact }: RequestA
         <button
           onClick={() => handleAction("DECLINED")}
           disabled={actionLoading !== null}
-          className="flex-1 flex items-center justify-center bg-[#333333] hover:bg-[#3a3a3a] disabled:opacity-50 disabled:cursor-not-allowed text-gray-400 py-1.5 rounded-lg transition-colors"
+          className="flex-1 flex items-center justify-center bg-[#252525] hover:bg-[#313131] disabled:opacity-50 disabled:cursor-not-allowed text-gray-400 py-1.5 rounded-lg transition-colors"
         >
           {actionLoading === "decline" ? (
             <Loader2 className="w-3.5 h-3.5 animate-spin" />

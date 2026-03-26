@@ -87,7 +87,7 @@ export default function ConnectButton({
     return (
       <button
         disabled
-        className={`inline-flex items-center gap-2 bg-[#2a2a2a] text-gray-500 text-sm font-medium px-4 py-2 rounded-xl cursor-not-allowed border border-[#333333] ${fw}`}
+        className={`inline-flex items-center gap-2 bg-[#1f1f1f] text-gray-500 text-sm font-medium px-4 py-2 rounded-xl cursor-not-allowed border border-[#252525] ${fw}`}
       >
         <Clock className="w-4 h-4" />
         Pending
@@ -113,7 +113,7 @@ export default function ConnectButton({
         <button
           onClick={() => handleUpdateStatus("DECLINED")}
           disabled={actionLoading !== null}
-          className={`inline-flex items-center gap-1.5 bg-[#2a2a2a] hover:bg-[#333333] disabled:opacity-50 text-gray-300 text-sm font-medium px-3 py-2 rounded-xl transition-colors border border-[#444444] ${fullWidth ? "flex-1 justify-center" : ""}`}
+          className={`inline-flex items-center gap-1.5 bg-[#1f1f1f] hover:bg-[#252525] disabled:opacity-50 text-gray-300 text-sm font-medium px-3 py-2 rounded-xl transition-colors border border-[#252525] ${fullWidth ? "flex-1 justify-center" : ""}`}
         >
           {actionLoading === "decline" ? (
             <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -130,7 +130,7 @@ export default function ConnectButton({
     return (
       <button
         disabled
-        className={`inline-flex items-center gap-2 bg-[#2a2a2a] text-gray-500 text-sm font-medium px-4 py-2 rounded-xl cursor-not-allowed border border-[#333333] ${fw}`}
+        className={`inline-flex items-center gap-2 bg-[#1f1f1f] text-gray-500 text-sm font-medium px-4 py-2 rounded-xl cursor-not-allowed border border-[#252525] ${fw}`}
       >
         <X className="w-4 h-4" />
         Declined
@@ -142,7 +142,7 @@ export default function ConnectButton({
     <button
       onClick={handleConnect}
       disabled={isLoading}
-      className={`inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-60 disabled:cursor-not-allowed text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors ${fw}`}
+      className={`inline-flex items-center gap-2 bg-violet-600 hover:bg-violet-500 disabled:opacity-60 disabled:cursor-not-allowed text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors ${fw}`}
     >
       {isLoading ? (
         <Loader2 className="w-4 h-4 animate-spin" />

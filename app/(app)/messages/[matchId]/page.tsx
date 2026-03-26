@@ -88,11 +88,11 @@ export default async function ConversationPage({
   return (
     <div className="max-w-3xl mx-auto h-[calc(100dvh-9rem)] lg:h-[calc(100dvh-6rem)] flex flex-col">
       {/* Header */}
-      <div className="bg-[#242424] rounded-t-2xl border border-b-0 border-[#333333] shadow-sm px-5 py-4">
+      <div className="bg-[#181818] rounded-t-2xl border border-b-0 border-[#252525] shadow-sm px-5 py-4">
         <div className="flex items-center gap-4">
           <Link
             href="/messages"
-            className="p-2 hover:bg-[#2a2a2a] rounded-xl transition-colors text-gray-500"
+            className="p-2 hover:bg-[#1f1f1f] rounded-xl transition-colors text-gray-500"
           >
             <ArrowLeft className="w-4 h-4" />
           </Link>
@@ -105,12 +105,12 @@ export default async function ConversationPage({
                 className="w-10 h-10 rounded-full object-cover ring-2 ring-emerald-800/40"
               />
             ) : (
-              <div className="w-10 h-10 rounded-full bg-indigo-900/20 text-indigo-400 flex items-center justify-center text-sm font-bold">
+              <div className="w-10 h-10 rounded-full bg-violet-900/20 text-violet-400 flex items-center justify-center text-sm font-bold">
                 {initials}
               </div>
             )}
             <div>
-              <p className="font-semibold text-white group-hover:text-indigo-400 transition-colors text-sm">
+              <p className="font-semibold text-white group-hover:text-violet-400 transition-colors text-sm">
                 {partner.name ?? "Anonymous"}
               </p>
               <div className="flex items-center gap-3 text-xs text-gray-500">
@@ -136,7 +136,7 @@ export default async function ConversationPage({
       </div>
 
       {/* Thread */}
-      <div className="flex-1 bg-[#1a1a1a] border border-[#333333] rounded-b-2xl overflow-hidden shadow-sm">
+      <div className="flex-1 bg-[#0d0d0d] border border-[#252525] rounded-b-2xl overflow-hidden shadow-sm">
         <MessageThread matchId={matchId} initialMessages={initialMessages} />
       </div>
     </div>

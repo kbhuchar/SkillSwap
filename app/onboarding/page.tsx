@@ -85,9 +85,9 @@ const CITIES = [
 function ProgressBar({ step, total }: { step: number; total: number }) {
   const pct = Math.round((step / total) * 100);
   return (
-    <div className="fixed top-0 left-0 right-0 h-[3px] bg-[#2a2a2a] z-50">
+    <div className="fixed top-0 left-0 right-0 h-[3px] bg-[#1f1f1f] z-50">
       <div
-        className="h-full bg-indigo-500 transition-all duration-500 ease-out"
+        className="h-full bg-violet-500 transition-all duration-500 ease-out"
         style={{ width: `${pct}%` }}
       />
     </div>
@@ -137,15 +137,15 @@ function CityAutocompleteInput({
         }}
         placeholder="Type your city…"
         autoFocus
-        className="w-full bg-[#242424] border-2 border-[#333333] focus:border-indigo-500 rounded-2xl py-4 px-5 text-white text-lg placeholder-gray-600 outline-none transition-colors"
+        className="w-full bg-[#181818] border-2 border-[#252525] focus:border-violet-500 rounded-2xl py-4 px-5 text-white text-lg placeholder-gray-600 outline-none transition-colors"
       />
       {open && filtered.length > 0 && (
-        <ul className="absolute z-10 w-full bg-[#2a2a2a] border border-[#444] rounded-2xl mt-1 overflow-hidden shadow-xl">
+        <ul className="absolute z-10 w-full bg-[#1f1f1f] border border-[#252525] rounded-2xl mt-1 overflow-hidden shadow-xl">
           {filtered.map((city) => (
             <li
               key={city}
               onMouseDown={() => { onChange(city); setOpen(false); }}
-              className="px-4 py-3 text-sm text-white hover:bg-indigo-600/20 cursor-pointer transition-colors"
+              className="px-4 py-3 text-sm text-white hover:bg-violet-600/20 cursor-pointer transition-colors"
             >
               {city}
             </li>
@@ -218,11 +218,11 @@ function SkillsAutocompleteInput({
 
   const chipCls = color === "emerald"
     ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/40"
-    : "bg-indigo-500/20 text-indigo-300 border border-indigo-500/40";
+    : "bg-violet-500/20 text-violet-300 border border-violet-500/40";
 
   const suggCls = color === "emerald"
     ? "border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10"
-    : "border border-indigo-500/30 text-indigo-400 hover:bg-indigo-500/10";
+    : "border border-violet-500/30 text-violet-400 hover:bg-violet-500/10";
 
   const unused = suggestions.filter(
     (s) => !skills.some((sk) => sk.name.toLowerCase() === s.toLowerCase())
@@ -238,7 +238,7 @@ function SkillsAutocompleteInput({
           onFocus={() => { if (results.length > 0) setOpen(true); }}
           onKeyDown={handleKey}
           placeholder={placeholder}
-          className="w-full bg-[#242424] border-2 border-[#333333] focus:border-indigo-500 rounded-2xl py-4 px-5 text-white text-lg placeholder-gray-600 outline-none transition-colors pr-14"
+          className="w-full bg-[#181818] border-2 border-[#252525] focus:border-violet-500 rounded-2xl py-4 px-5 text-white text-lg placeholder-gray-600 outline-none transition-colors pr-14"
         />
         {loading ? (
           <div className="absolute right-4 top-1/2 -translate-y-1/2">
@@ -248,18 +248,18 @@ function SkillsAutocompleteInput({
           <button
             type="button"
             onMouseDown={() => addSkill(input)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl p-1.5 transition-colors"
+            className="absolute right-3 top-1/2 -translate-y-1/2 bg-violet-600 hover:bg-violet-500 text-white rounded-xl p-1.5 transition-colors"
           >
             <Plus size={16} />
           </button>
         )}
         {open && results.length > 0 && (
-          <ul className="absolute z-10 w-full bg-[#2a2a2a] border border-[#444] rounded-2xl mt-1 overflow-hidden shadow-xl">
+          <ul className="absolute z-10 w-full bg-[#1f1f1f] border border-[#252525] rounded-2xl mt-1 overflow-hidden shadow-xl">
             {results.slice(0, 6).map((name) => (
               <li
                 key={name}
                 onMouseDown={() => addSkill(name)}
-                className="px-4 py-3 text-sm text-white hover:bg-indigo-600/20 cursor-pointer transition-colors"
+                className="px-4 py-3 text-sm text-white hover:bg-violet-600/20 cursor-pointer transition-colors"
               >
                 {name}
               </li>
@@ -421,10 +421,10 @@ export default function OnboardingPage() {
   // ── Step 0: Welcome ────────────────────────────────────────────────────────
   if (step === 0) {
     return (
-      <div className="min-h-screen bg-[#1a1a1a] flex flex-col items-center justify-center px-6">
+      <div className="min-h-screen bg-[#0d0d0d] flex flex-col items-center justify-center px-6">
         <div className="animate-fade-up w-full max-w-sm text-center">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-indigo-600/20 border border-indigo-500/30 mb-8">
-            <Zap size={38} className="text-indigo-400" />
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-violet-600/20 border border-violet-500/30 mb-8">
+            <Zap size={38} className="text-violet-400" />
           </div>
           <h1 className="text-3xl font-bold text-white mb-3">
             Hey {session?.user?.name?.split(" ")[0] || "there"}! 👋
@@ -435,7 +435,7 @@ export default function OnboardingPage() {
           <button
             type="button"
             onClick={goNext}
-            className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-base py-4 rounded-2xl transition-colors"
+            className="w-full bg-violet-600 hover:bg-violet-500 text-white font-bold text-base py-4 rounded-2xl transition-colors"
           >
             Let&apos;s go →
           </button>
@@ -448,16 +448,16 @@ export default function OnboardingPage() {
   if (step === 8) {
     const firstName = name.split(" ")[0];
     return (
-      <div className="min-h-screen bg-[#1a1a1a] flex flex-col items-center justify-center px-6 py-12">
+      <div className="min-h-screen bg-[#0d0d0d] flex flex-col items-center justify-center px-6 py-12">
         {/* Glow backdrop */}
         <div className="pointer-events-none fixed inset-0 overflow-hidden">
-          <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-indigo-900/20 blur-3xl" />
+          <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full bg-violet-900/20 blur-3xl" />
         </div>
 
         <div className="animate-fade-up w-full max-w-sm relative">
           {/* Check + greeting */}
           <div className="text-center mb-10">
-            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-indigo-600 mb-6 shadow-2xl shadow-indigo-600/40 ring-4 ring-indigo-500/20">
+            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-violet-600 mb-6 shadow-2xl shadow-violet-600/40 ring-4 ring-violet-500/20">
               <Check size={38} className="text-white" strokeWidth={2.5} />
             </div>
             <h1 className="text-3xl font-bold text-white mb-2">
@@ -471,16 +471,16 @@ export default function OnboardingPage() {
           {/* 3 action cards */}
           <div className="flex flex-col gap-3">
             {/* Browse Skills */}
-            <Link href="/browse" className="group relative overflow-hidden rounded-2xl border border-indigo-500/20 bg-gradient-to-br from-indigo-600/10 to-purple-600/5 p-5 hover:border-indigo-500/50 hover:from-indigo-600/20 hover:to-purple-600/10 transition-all duration-200 active:scale-[0.98]">
+            <Link href="/browse" className="group relative overflow-hidden rounded-2xl border border-violet-500/20 bg-gradient-to-br from-violet-600/10 to-purple-600/5 p-5 hover:border-violet-500/50 hover:from-violet-600/20 hover:to-purple-600/10 transition-all duration-200 active:scale-[0.98]">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center flex-shrink-0 group-hover:bg-indigo-600/30 transition-colors">
-                  <Search size={22} className="text-indigo-400" />
+                <div className="w-12 h-12 rounded-xl bg-violet-600/20 border border-violet-500/30 flex items-center justify-center flex-shrink-0 group-hover:bg-violet-600/30 transition-colors">
+                  <Search size={22} className="text-violet-400" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-base font-semibold text-white">Browse Skills</p>
                   <p className="text-xs text-gray-500 mt-0.5">Find people who match what you want to learn</p>
                 </div>
-                <ArrowRight size={18} className="text-gray-600 group-hover:text-indigo-400 group-hover:translate-x-0.5 transition-all flex-shrink-0" />
+                <ArrowRight size={18} className="text-gray-600 group-hover:text-violet-400 group-hover:translate-x-0.5 transition-all flex-shrink-0" />
               </div>
             </Link>
 
@@ -519,7 +519,7 @@ export default function OnboardingPage() {
 
   // ── Steps 1–7 ─────────────────────────────────────────────────────────────
   return (
-    <div className="min-h-screen bg-[#1a1a1a] flex flex-col px-6 py-6">
+    <div className="min-h-screen bg-[#0d0d0d] flex flex-col px-6 py-6">
       <ProgressBar step={step} total={TOTAL_STEPS} />
 
       {/* Header */}
@@ -527,7 +527,7 @@ export default function OnboardingPage() {
         <button
           type="button"
           onClick={goBack}
-          className={`p-2 rounded-xl text-gray-400 hover:text-white hover:bg-[#2a2a2a] transition-colors ${step === 1 ? "invisible" : ""}`}
+          className={`p-2 rounded-xl text-gray-400 hover:text-white hover:bg-[#1f1f1f] transition-colors ${step === 1 ? "invisible" : ""}`}
         >
           <ChevronLeft size={22} />
         </button>
@@ -550,11 +550,11 @@ export default function OnboardingPage() {
                 placeholder="Your full name"
                 autoFocus
                 onKeyDown={(e) => { if (e.key === "Enter" && canContinue[1]) goNext(); }}
-                className="w-full bg-[#242424] border-2 border-[#333333] focus:border-indigo-500 rounded-2xl py-4 px-5 text-white text-lg placeholder-gray-600 outline-none transition-colors text-center"
+                className="w-full bg-[#181818] border-2 border-[#252525] focus:border-violet-500 rounded-2xl py-4 px-5 text-white text-lg placeholder-gray-600 outline-none transition-colors text-center"
               />
             </div>
             <button type="button" onClick={goNext} disabled={!canContinue[1]}
-              className="w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold text-base py-4 rounded-2xl transition-colors mt-6">
+              className="w-full bg-violet-600 hover:bg-violet-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold text-base py-4 rounded-2xl transition-colors mt-6">
               Continue
             </button>
           </div>
@@ -572,7 +572,7 @@ export default function OnboardingPage() {
                   <select
                     value={dobMonth}
                     onChange={(e) => setDobMonth(e.target.value)}
-                    className="w-full appearance-none bg-[#242424] border-2 border-[#333333] focus:border-indigo-500 rounded-2xl py-4 pl-4 pr-8 text-white text-base outline-none transition-colors cursor-pointer"
+                    className="w-full appearance-none bg-[#181818] border-2 border-[#252525] focus:border-violet-500 rounded-2xl py-4 pl-4 pr-8 text-white text-base outline-none transition-colors cursor-pointer"
                   >
                     <option value="">Month</option>
                     {MONTHS.map((m) => <option key={m} value={m}>{m}</option>)}
@@ -584,7 +584,7 @@ export default function OnboardingPage() {
                   <select
                     value={dobDay}
                     onChange={(e) => setDobDay(e.target.value)}
-                    className="w-full appearance-none bg-[#242424] border-2 border-[#333333] focus:border-indigo-500 rounded-2xl py-4 pl-4 pr-8 text-white text-base outline-none transition-colors cursor-pointer"
+                    className="w-full appearance-none bg-[#181818] border-2 border-[#252525] focus:border-violet-500 rounded-2xl py-4 pl-4 pr-8 text-white text-base outline-none transition-colors cursor-pointer"
                   >
                     <option value="">Day</option>
                     {days.map((d) => <option key={d} value={d}>{d}</option>)}
@@ -596,7 +596,7 @@ export default function OnboardingPage() {
                   <select
                     value={dobYear}
                     onChange={(e) => setDobYear(e.target.value)}
-                    className="w-full appearance-none bg-[#242424] border-2 border-[#333333] focus:border-indigo-500 rounded-2xl py-4 pl-4 pr-8 text-white text-base outline-none transition-colors cursor-pointer"
+                    className="w-full appearance-none bg-[#181818] border-2 border-[#252525] focus:border-violet-500 rounded-2xl py-4 pl-4 pr-8 text-white text-base outline-none transition-colors cursor-pointer"
                   >
                     <option value="">Year</option>
                     {years.map((y) => <option key={y} value={y}>{y}</option>)}
@@ -606,7 +606,7 @@ export default function OnboardingPage() {
               </div>
             </div>
             <button type="button" onClick={goNext} disabled={!canContinue[2]}
-              className="w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold text-base py-4 rounded-2xl transition-colors mt-6">
+              className="w-full bg-violet-600 hover:bg-violet-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold text-base py-4 rounded-2xl transition-colors mt-6">
               Continue
             </button>
           </div>
@@ -629,20 +629,20 @@ export default function OnboardingPage() {
                     <img
                       src={image}
                       alt="Profile preview"
-                      className="w-40 h-40 rounded-full object-cover ring-4 ring-indigo-500 shadow-xl"
+                      className="w-40 h-40 rounded-full object-cover ring-4 ring-violet-500 shadow-xl"
                     />
                     <div className="absolute inset-0 rounded-full bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                       <Camera size={28} className="text-white" />
                     </div>
                   </div>
                 ) : (
-                  <div className="w-40 h-40 rounded-full bg-[#242424] border-2 border-dashed border-[#444] flex flex-col items-center justify-center gap-2 group-hover:border-indigo-500 transition-colors">
+                  <div className="w-40 h-40 rounded-full bg-[#181818] border-2 border-dashed border-[#252525] flex flex-col items-center justify-center gap-2 group-hover:border-violet-500 transition-colors">
                     {imageUploading ? (
-                      <Loader2 size={28} className="animate-spin text-indigo-400" />
+                      <Loader2 size={28} className="animate-spin text-violet-400" />
                     ) : (
                       <>
-                        <Camera size={28} className="text-gray-500 group-hover:text-indigo-400 transition-colors" />
-                        <span className="text-xs text-gray-500 group-hover:text-indigo-400 transition-colors">Upload photo</span>
+                        <Camera size={28} className="text-gray-500 group-hover:text-violet-400 transition-colors" />
+                        <span className="text-xs text-gray-500 group-hover:text-violet-400 transition-colors">Upload photo</span>
                       </>
                     )}
                   </div>
@@ -661,14 +661,14 @@ export default function OnboardingPage() {
                 <button
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
-                  className="mt-4 text-sm text-indigo-400 hover:text-indigo-300 transition-colors"
+                  className="mt-4 text-sm text-violet-400 hover:text-violet-300 transition-colors"
                 >
                   Change photo
                 </button>
               )}
             </div>
             <button type="button" onClick={goNext} disabled={!canContinue[3] || imageUploading}
-              className="w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold text-base py-4 rounded-2xl transition-colors mt-6">
+              className="w-full bg-violet-600 hover:bg-violet-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold text-base py-4 rounded-2xl transition-colors mt-6">
               Continue
             </button>
           </div>
@@ -683,7 +683,7 @@ export default function OnboardingPage() {
               <CityAutocompleteInput value={location} onChange={setLocation} />
             </div>
             <button type="button" onClick={goNext} disabled={!canContinue[4]}
-              className="w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold text-base py-4 rounded-2xl transition-colors mt-6">
+              className="w-full bg-violet-600 hover:bg-violet-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold text-base py-4 rounded-2xl transition-colors mt-6">
               Continue
             </button>
           </div>
@@ -701,12 +701,12 @@ export default function OnboardingPage() {
                 placeholder="I'm a designer who loves teaching UI/UX and wants to learn guitar…"
                 rows={5}
                 autoFocus
-                className="w-full bg-[#242424] border-2 border-[#333333] focus:border-indigo-500 rounded-2xl py-4 px-5 text-white text-base placeholder-gray-600 outline-none transition-colors resize-none leading-relaxed"
+                className="w-full bg-[#181818] border-2 border-[#252525] focus:border-violet-500 rounded-2xl py-4 px-5 text-white text-base placeholder-gray-600 outline-none transition-colors resize-none leading-relaxed"
               />
               <p className="text-xs text-gray-600 mt-2 text-right">{bio.length} / 300</p>
             </div>
             <button type="button" onClick={goNext} disabled={!canContinue[5]}
-              className="w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold text-base py-4 rounded-2xl transition-colors mt-6">
+              className="w-full bg-violet-600 hover:bg-violet-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold text-base py-4 rounded-2xl transition-colors mt-6">
               Continue
             </button>
           </div>
@@ -728,7 +728,7 @@ export default function OnboardingPage() {
               />
             </div>
             <button type="button" onClick={goNext} disabled={!canContinue[6]}
-              className="w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold text-base py-4 rounded-2xl transition-colors mt-6">
+              className="w-full bg-violet-600 hover:bg-violet-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold text-base py-4 rounded-2xl transition-colors mt-6">
               Continue
             </button>
           </div>
@@ -753,7 +753,7 @@ export default function OnboardingPage() {
               type="button"
               onClick={handleFinish}
               disabled={!canContinue[7] || submitting}
-              className="w-full bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold text-base py-4 rounded-2xl transition-colors mt-6 flex items-center justify-center gap-2"
+              className="w-full bg-violet-600 hover:bg-violet-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold text-base py-4 rounded-2xl transition-colors mt-6 flex items-center justify-center gap-2"
             >
               {submitting ? <><Loader2 size={20} className="animate-spin" /> Saving…</> : "Finish →"}
             </button>

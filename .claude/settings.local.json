@@ -27,7 +27,11 @@
       "Bash(find \"C:/Users/Kartikay/OneDrive/Desktop/SkillSwap/app/\\(auth\\)\" -type f)",
       "Bash(npx tsc:*)",
       "Bash(grep -v \"^$\")",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(ls:*)",
+      "Bash(cat -n \"app/\\(app\\)/browse/page.tsx\")",
+      "Bash(xargs sed:*)",
+      "Bash(python3 -c \":*)"
     ]
   }
 }

@@ -28,8 +28,7 @@
   --color-primary: var(--primary);
   --color-primary-hover: var(--primary-hover);
   --color-border: var(--border);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-plus-jakarta-sans);
 }
 
 * {
@@ -43,7 +42,7 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-plus-jakarta-sans), system-ui, -apple-system, sans-serif;
   min-height: 100%;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -77,11 +76,11 @@ a, button {
   transition: all 0.15s ease;
 }
 
-/* Onboarding step animation */
+/* Fade up animation */
 @keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -90,5 +89,30 @@ a, button {
 }
 
 .animate-fade-up {
-  animation: fade-up 0.3s ease-out;
+  animation: fade-up 0.4s ease-out both;
+}
+
+.animate-fade-up-1 { animation: fade-up 0.4s ease-out 0ms both; }
+.animate-fade-up-2 { animation: fade-up 0.4s ease-out 80ms both; }
+.animate-fade-up-3 { animation: fade-up 0.4s ease-out 160ms both; }
+.animate-fade-up-4 { animation: fade-up 0.4s ease-out 240ms both; }
+.animate-fade-up-5 { animation: fade-up 0.4s ease-out 320ms both; }
+
+/* Shimmer on CTA button */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    #7c3aed 0%,
+    #8b5cf6 40%,
+    #a78bfa 50%,
+    #8b5cf6 60%,
+    #7c3aed 100%
+  );
+  background-size: 200% auto;
+  animation: shimmer 3s linear infinite;
 }
