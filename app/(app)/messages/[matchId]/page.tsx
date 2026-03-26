@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import MessageThread from "@/components/messages/MessageThread";
-import { getInitials } from "@/lib/utils";
 import type { Metadata } from "next";
 import type { MessageWithSender } from "@/types";
 
@@ -58,37 +57,13 @@ export default async function ConversationPage({ params }: ConversationPageProps
   return (
     // Break out of AppShell's p-4 padding and fill the viewport
     <div className="-mx-4 sm:-mx-5 -mt-4 sm:-mt-5 h-[calc(100dvh-9rem)] lg:h-[calc(100dvh-6rem)] flex flex-col">
-      {/* Header */}
-      <div className="flex items-center gap-3 px-3 sm:px-4 py-3 border-b border-[#1e1e1e] bg-[#0d0d0d] flex-shrink-0">
+      {/* Back button only */}
+      <div className="flex items-center px-2 pt-2 flex-shrink-0">
         <Link
           href="/messages"
-          className="p-2 -ml-1 rounded-xl hover:bg-[#1a1a1a] transition-colors text-[#888]"
+          className="p-2 rounded-xl hover:bg-[#1a1a1a] transition-colors text-[#888]"
         >
           <ArrowLeft className="w-5 h-5" />
-        </Link>
-
-        <Link href={`/profile/${partner.id}`} className="flex items-center gap-3 flex-1 min-w-0 group">
-          <div className="relative flex-shrink-0">
-            {partner.image ? (
-              <img
-                src={partner.image}
-                alt={partner.name ?? ""}
-                className="w-10 h-10 rounded-full object-cover"
-              />
-            ) : (
-              <div className="w-10 h-10 rounded-full bg-[#1a1a1a] text-cyan-400 flex items-center justify-center text-sm font-bold">
-                {initials}
-              </div>
-            )}
-            <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-400 rounded-full ring-2 ring-[#0d0d0d]" />
-          </div>
-
-          <div className="min-w-0">
-            <p className="font-semibold text-[#e5e5e5] group-hover:text-cyan-400 transition-colors text-sm leading-tight truncate">
-              {partner.name ?? "Anonymous"}
-            </p>
-            <p className="text-xs text-[#555] mt-0.5">Active now</p>
-          </div>
         </Link>
       </div>
 
