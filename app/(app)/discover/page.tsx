@@ -42,11 +42,8 @@ export default async function DiscoverPage() {
   }));
 
   return (
-    <div className="max-w-sm mx-auto flex flex-col">
-      <div className="mb-4">
-        <h1 className="text-xl font-extrabold text-[#e5e5e5] tracking-tight">Discover</h1>
-        <p className="text-xs text-[#555] mt-0.5">{publicUsers.length} people to explore</p>
-      </div>
+    // Break out of AppShell's p-4 horizontal padding on mobile, fill height between topbar and bottom nav
+    <div className="-mx-4 sm:mx-auto sm:max-w-sm h-[calc(100dvh-3rem-3.5rem-2rem)] sm:h-[calc(100dvh-8.5rem)]">
       <DiscoverDeck users={publicUsers} />
     </div>
   );
