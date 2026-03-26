@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { updateProfileSchema } from "@/lib/validations/profile";
+import { inferCategory } from "@/lib/skillCategories";
 
 export async function GET(
   _req: Request,
@@ -65,10 +66,11 @@ export async function PATCH(
     if (skillsOffered !== undefined) {
       await tx.userSkill.deleteMany({ where: { userId, type: "OFFERED" } });
       for (const s of skillsOffered) {
+        const category = inferCategory(s.name);
         const skill = await tx.skill.upsert({
           where: { name: s.name },
-          update: {},
-          create: { name: s.name },
+          update: category ? { category } : {},
+          create: { name: s.name, ...(category ? { category } : {}) },
         });
         await tx.userSkill.create({
           data: { userId, skillId: skill.id, type: "OFFERED", level: s.level },
@@ -79,10 +81,11 @@ export async function PATCH(
     if (skillsWanted !== undefined) {
       await tx.userSkill.deleteMany({ where: { userId, type: "WANTED" } });
       for (const s of skillsWanted) {
+        const category = inferCategory(s.name);
         const skill = await tx.skill.upsert({
           where: { name: s.name },
-          update: {},
-          create: { name: s.name },
+          update: category ? { category } : {},
+          create: { name: s.name, ...(category ? { category } : {}) },
         });
         await tx.userSkill.create({
           data: { userId, skillId: skill.id, type: "WANTED", level: s.level },

@@ -4,59 +4,77 @@ import type { MessageWithSender } from "@/types";
 interface MessageBubbleProps {
   message: MessageWithSender;
   isOwn: boolean;
+  hasSameAbove: boolean; // previous message is from same sender
+  hasSameBelow: boolean; // next message is from same sender
 }
 
-export default function MessageBubble({ message, isOwn }: MessageBubbleProps) {
+export default function MessageBubble({ message, isOwn, hasSameAbove, hasSameBelow }: MessageBubbleProps) {
   const initials = getInitials(message.sender.name);
+  const isGroupEnd = !hasSameBelow;
+
+  // Corner radius: reduce the corner on the "chat side" for grouped messages
+  // Own messages sit on the right → reduce right-side corners when grouped
+  // Other messages sit on the left → reduce left-side corners when grouped
+  const bubbleRadius = cn(
+    "rounded-3xl",
+    isOwn ? [
+      hasSameAbove && "rounded-tr-lg",
+      hasSameBelow && "rounded-br-lg",
+    ] : [
+      hasSameAbove && "rounded-tl-lg",
+      hasSameBelow && "rounded-bl-lg",
+    ]
+  );
 
   return (
     <div
       className={cn(
-        "flex items-end gap-1.5",
-        isOwn ? "flex-row-reverse" : "flex-row"
+        "flex items-end gap-2",
+        isOwn ? "flex-row-reverse" : "flex-row",
+        hasSameAbove ? "mt-0.5" : "mt-3"
       )}
     >
-      {/* Avatar (only for others) */}
+      {/* Avatar — only shown at the end of a received group */}
       {!isOwn && (
-        <div className="flex-shrink-0 mb-0.5">
-          {message.sender.image ? (
-            <img
-              src={message.sender.image}
-              alt={message.sender.name ?? ""}
-              className="w-6 h-6 rounded-full object-cover"
-            />
+        <div className="flex-shrink-0 w-7 self-end mb-0.5">
+          {isGroupEnd ? (
+            message.sender.image ? (
+              <img
+                src={message.sender.image}
+                alt={message.sender.name ?? ""}
+                className="w-7 h-7 rounded-full object-cover"
+              />
+            ) : (
+              <div className="w-7 h-7 rounded-full bg-[#2a2a2a] text-cyan-400 flex items-center justify-center text-[10px] font-bold">
+                {initials}
+              </div>
+            )
           ) : (
-            <div className="w-6 h-6 rounded-full bg-cyan-900/20 text-cyan-400 flex items-center justify-center text-[10px] font-bold">
-              {initials}
-            </div>
+            // Spacer so bubbles align regardless of avatar visibility
+            <div className="w-7" />
           )}
         </div>
       )}
 
-      <div
-        className={cn(
-          "flex flex-col max-w-xs sm:max-w-sm lg:max-w-md",
-          isOwn ? "items-end" : "items-start"
-        )}
-      >
-        {!isOwn && (
-          <span className="text-[11px] text-gray-500 mb-0.5 ml-1">
-            {message.sender.name ?? "Unknown"}
-          </span>
-        )}
+      <div className={cn("flex flex-col max-w-[72%] sm:max-w-sm", isOwn ? "items-end" : "items-start")}>
         <div
           className={cn(
-            "px-3 py-2 rounded-xl text-sm leading-snug",
+            "px-4 py-2.5 text-[15px] leading-relaxed break-words",
+            bubbleRadius,
             isOwn
-              ? "bg-cyan-600 text-white rounded-br-sm"
-              : "bg-[#242424] border border-[#313131] text-gray-100 rounded-bl-sm"
+              ? "bg-cyan-500 text-white"
+              : "bg-[#222] text-[#e5e5e5]"
           )}
         >
           {message.content}
         </div>
-        <span className="text-[10px] mt-0.5 px-1 text-gray-500">
-          {formatRelativeTime(message.createdAt)}
-        </span>
+
+        {/* Timestamp — only after the last bubble in a group */}
+        {isGroupEnd && (
+          <span className="text-[11px] mt-1 px-1 text-[#555]">
+            {formatRelativeTime(message.createdAt)}
+          </span>
+        )}
       </div>
     </div>
   );

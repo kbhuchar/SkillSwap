@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 interface BrowsePageProps {
-  searchParams: Promise<{ skill?: string; type?: string; miles?: string }>;
+  searchParams: Promise<{ skill?: string; type?: string; miles?: string; category?: string }>;
 }
 
 function haversineDistance(lat1: number, lng1: number, lat2: number, lng2: number): number {
@@ -30,9 +30,9 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
   const session = await auth();
   const userId = session!.user.id;
   const params = await searchParams;
-  const { skill, type, miles: milesParam } = params;
+  const { skill, type, miles: milesParam, category } = params;
   const miles = milesParam ? parseInt(milesParam) : null;
-  const isFiltered = !!(skill || type || miles);
+  const isFiltered = !!(skill || type || miles || category);
 
   const currentUser = await prisma.user.findUnique({
     where: { id: userId },
@@ -43,13 +43,15 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
     id: { not: userId },
   };
 
-  if (skill || type) {
+  if (skill || type || category) {
+    const skillFilter = {
+      ...(skill ? { name: { contains: skill, mode: "insensitive" } } : {}),
+      ...(category ? { category } : {}),
+    };
     whereClause.skills = {
       some: {
         ...(type ? { type } : {}),
-        ...(skill
-          ? { skill: { name: { contains: skill, mode: "insensitive" } } }
-          : {}),
+        ...(Object.keys(skillFilter).length > 0 ? { skill: skillFilter } : {}),
       },
     };
   }

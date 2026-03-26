@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { inferCategory } from "@/lib/skillCategories";
 
 export async function POST(req: Request) {
   const session = await auth();
@@ -24,7 +25,8 @@ export async function POST(req: Request) {
     });
 
     for (const s of skillsOffered) {
-      const skill = await tx.skill.upsert({ where: { name: s.name }, update: {}, create: { name: s.name } });
+      const category = inferCategory(s.name);
+      const skill = await tx.skill.upsert({ where: { name: s.name }, update: {}, create: { name: s.name, ...(category ? { category } : {}) } });
       await tx.userSkill.upsert({
         where: { userId_skillId_type: { userId, skillId: skill.id, type: "OFFERED" } },
         update: {},
@@ -33,7 +35,8 @@ export async function POST(req: Request) {
     }
 
     for (const s of skillsWanted) {
-      const skill = await tx.skill.upsert({ where: { name: s.name }, update: {}, create: { name: s.name } });
+      const category = inferCategory(s.name);
+      const skill = await tx.skill.upsert({ where: { name: s.name }, update: {}, create: { name: s.name, ...(category ? { category } : {}) } });
       await tx.userSkill.upsert({
         where: { userId_skillId_type: { userId, skillId: skill.id, type: "WANTED" } },
         update: {},
