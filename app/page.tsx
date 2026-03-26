@@ -83,7 +83,7 @@ export default function LandingPage() {
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12">
+            <div className="flex items-center justify-center mb-12">
               <Link
                 href="/register"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-cyan-600 hover:bg-cyan-500 text-white font-semibold px-6 py-2.5 rounded-xl shadow-lg shadow-cyan-900/40 group transition-all"
@@ -91,55 +91,44 @@ export default function LandingPage() {
                 Get Started Free
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </Link>
-              <Link
-                href="/browse"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#181818] hover:bg-[#242424] text-gray-200 font-semibold px-6 py-2.5 rounded-xl border border-[#252525] hover:border-cyan-800/60 transition-all"
-              >
-                Browse Skills
-              </Link>
             </div>
 
             {/* Feature cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-8">
+            <div className="grid grid-cols-3 gap-2 mb-8">
               {[
                 {
-                  icon: <Users className="w-4 h-4" />,
+                  icon: <Users className="w-3.5 h-3.5" />,
                   color: "bg-cyan-900/20 text-cyan-400",
                   border: "hover:border-cyan-800/60",
-                  title: "Create Your Profile",
-                  description:
-                    "List the skills you can teach and the ones you want to learn.",
+                  title: "Create Profile",
+                  description: "List skills you teach and want to learn.",
                 },
                 {
-                  icon: <Globe className="w-4 h-4" />,
+                  icon: <Globe className="w-3.5 h-3.5" />,
                   color: "bg-cyan-900/20 text-cyan-400",
                   border: "hover:border-cyan-800/60",
-                  title: "Find Perfect Matches",
-                  description:
-                    "Smart matching connects you with people whose skills complement yours.",
+                  title: "Find Matches",
+                  description: "Connect with people whose skills complement yours.",
                 },
                 {
-                  icon: <Calendar className="w-4 h-4" />,
+                  icon: <Calendar className="w-3.5 h-3.5" />,
                   color: "bg-pink-900/20 text-pink-400",
                   border: "hover:border-pink-800/60",
-                  title: "Schedule Sessions",
-                  description:
-                    "Book live sessions — video, audio, or text. You choose.",
+                  title: "Book Sessions",
+                  description: "Schedule live sessions — video, audio, or text.",
                 },
               ].map((feature, i) => (
                 <div
                   key={i}
-                  className={`p-4 rounded-xl border border-[#252525] bg-[#181818]/80 backdrop-blur-sm ${feature.border} hover:shadow-lg hover:shadow-cyan-900/10 transition-all group`}
+                  className={`p-3 rounded-xl border border-[#252525] bg-[#181818]/80 backdrop-blur-sm ${feature.border} transition-all group`}
                 >
-                  <div
-                    className={`w-8 h-8 rounded-lg ${feature.color} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}
-                  >
+                  <div className={`w-7 h-7 rounded-lg ${feature.color} flex items-center justify-center mb-2`}>
                     {feature.icon}
                   </div>
-                  <h3 className="text-sm font-semibold text-white mb-1">
+                  <h3 className="text-xs font-semibold text-white mb-1 leading-tight">
                     {feature.title}
                   </h3>
-                  <p className="text-xs text-gray-500 leading-relaxed">
+                  <p className="text-[11px] text-gray-500 leading-snug hidden sm:block">
                     {feature.description}
                   </p>
                 </div>
