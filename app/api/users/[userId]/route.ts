@@ -14,6 +14,7 @@ export async function GET(
       id: true,
       name: true,
       image: true,
+      photos: true,
       bio: true,
       location: true,
       createdAt: true,
@@ -51,7 +52,12 @@ export async function PATCH(
   if (profileData.name !== undefined) updateData.name = profileData.name;
   if (profileData.bio !== undefined) updateData.bio = profileData.bio;
   if (profileData.location !== undefined) updateData.location = profileData.location;
-  if (profileData.image !== undefined) updateData.image = profileData.image;
+  if (profileData.photos !== undefined) {
+    updateData.photos = profileData.photos;
+    if (profileData.photos.length > 0) updateData.image = profileData.photos[0];
+  } else if (profileData.image !== undefined) {
+    updateData.image = profileData.image;
+  }
 
   // Handle skills update in a transaction
   const user = await prisma.$transaction(async (tx) => {
@@ -90,6 +96,7 @@ export async function PATCH(
         id: true,
         name: true,
         image: true,
+        photos: true,
         bio: true,
         location: true,
         skills: { include: { skill: true } },

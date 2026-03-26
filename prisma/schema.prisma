@@ -60,6 +60,7 @@ model User {
   location       String?
   lat            Float?
   lng            Float?
+  photos         String[]
   dateOfBirth    DateTime?
   onboarded      Boolean   @default(false)
   createdAt      DateTime  @default(now())

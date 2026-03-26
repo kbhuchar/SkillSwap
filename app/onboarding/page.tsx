@@ -17,13 +17,13 @@ import {
   Check,
   Loader2,
   ChevronDown,
-  Camera,
   Plus,
   Search,
   Users,
   LayoutDashboard,
   ArrowRight,
 } from "lucide-react";
+import PhotoGrid, { MIN_PHOTOS } from "@/components/profile/PhotoGrid";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -302,31 +302,6 @@ function SkillsAutocompleteInput({
   );
 }
 
-// ─── Image upload helper (client-side resize → base64) ───────────────────────
-
-function resizeToBase64(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onerror = reject;
-    reader.onload = (ev) => {
-      const img = new Image();
-      img.onerror = reject;
-      img.onload = () => {
-        const MAX = 600;
-        let w = img.width, h = img.height;
-        if (w > h) { if (w > MAX) { h = Math.round(h * MAX / w); w = MAX; } }
-        else { if (h > MAX) { w = Math.round(w * MAX / h); h = MAX; } }
-        const canvas = document.createElement("canvas");
-        canvas.width = w; canvas.height = h;
-        canvas.getContext("2d")!.drawImage(img, 0, 0, w, h);
-        resolve(canvas.toDataURL("image/jpeg", 0.78));
-      };
-      img.src = ev.target?.result as string;
-    };
-    reader.readAsDataURL(file);
-  });
-}
-
 // ─── Main Page ────────────────────────────────────────────────────────────────
 
 export default function OnboardingPage() {
@@ -341,14 +316,11 @@ export default function OnboardingPage() {
   const [dobMonth, setDobMonth] = useState("");
   const [dobDay, setDobDay] = useState("");
   const [dobYear, setDobYear] = useState("");
-  const [image, setImage] = useState("");
-  const [imageUploading, setImageUploading] = useState(false);
+  const [photos, setPhotos] = useState<string[]>([]);
   const [location, setLocation] = useState("");
   const [bio, setBio] = useState("");
   const [skillsOffered, setSkillsOffered] = useState<Skill[]>([]);
   const [skillsWanted, setSkillsWanted] = useState<Skill[]>([]);
-
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Prefill name from session once it loads
   useEffect(() => {
@@ -363,20 +335,6 @@ export default function OnboardingPage() {
   const addWanted = (n: string) => setSkillsWanted((p) => [...p, { name: n }]);
   const removeWanted = (n: string) => setSkillsWanted((p) => p.filter((s) => s.name !== n));
 
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    setImageUploading(true);
-    try {
-      const base64 = await resizeToBase64(file);
-      setImage(base64);
-    } catch {
-      alert("Failed to process image. Please try another file.");
-    } finally {
-      setImageUploading(false);
-    }
-  };
-
   const handleFinish = async () => {
     setSubmitting(true);
     try {
@@ -384,7 +342,7 @@ export default function OnboardingPage() {
       const res = await fetch("/api/onboarding", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, dateOfBirth, image, location, bio, skillsOffered, skillsWanted }),
+        body: JSON.stringify({ name, dateOfBirth, photos, location, bio, skillsOffered, skillsWanted }),
       });
       if (!res.ok) throw new Error("Failed");
       setStep(8);
@@ -406,7 +364,7 @@ export default function OnboardingPage() {
   const canContinue: Record<number, boolean> = {
     1: name.trim().length > 0,
     2: dobValid,
-    3: image.trim().length > 0,
+    3: photos.length >= MIN_PHOTOS,
     4: location.trim().length > 0,
     5: bio.trim().length > 0,
     6: skillsOffered.length > 0,
@@ -612,62 +570,15 @@ export default function OnboardingPage() {
           </div>
         )}
 
-        {/* ── Step 3: Profile Photo ── */}
+        {/* ── Step 3: Photos ── */}
         {step === 3 && (
           <div key={3} className="animate-fade-up flex-1 flex flex-col">
-            <div className="flex-1 flex flex-col justify-center items-center">
-              <h2 className="text-2xl font-bold text-white mb-2 text-center">Add your photo</h2>
-              <p className="text-sm text-gray-400 mb-8 text-center">A photo helps people recognise you</p>
-
-              {/* Upload area */}
-              <div
-                onClick={() => fileInputRef.current?.click()}
-                className="relative cursor-pointer group"
-              >
-                {image ? (
-                  <div className="relative">
-                    <img
-                      src={image}
-                      alt="Profile preview"
-                      className="w-40 h-40 rounded-full object-cover ring-4 ring-cyan-500 shadow-xl"
-                    />
-                    <div className="absolute inset-0 rounded-full bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <Camera size={28} className="text-white" />
-                    </div>
-                  </div>
-                ) : (
-                  <div className="w-40 h-40 rounded-full bg-[#181818] border-2 border-dashed border-[#252525] flex flex-col items-center justify-center gap-2 group-hover:border-cyan-500 transition-colors">
-                    {imageUploading ? (
-                      <Loader2 size={28} className="animate-spin text-cyan-400" />
-                    ) : (
-                      <>
-                        <Camera size={28} className="text-gray-500 group-hover:text-cyan-400 transition-colors" />
-                        <span className="text-xs text-gray-500 group-hover:text-cyan-400 transition-colors">Upload photo</span>
-                      </>
-                    )}
-                  </div>
-                )}
-              </div>
-
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/*"
-                onChange={handleFileChange}
-                className="hidden"
-              />
-
-              {image && (
-                <button
-                  type="button"
-                  onClick={() => fileInputRef.current?.click()}
-                  className="mt-4 text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
-                >
-                  Change photo
-                </button>
-              )}
+            <div className="flex-1">
+              <h2 className="text-2xl font-bold text-white mb-1">Add your photos</h2>
+              <p className="text-sm text-gray-400 mb-5">Add at least {MIN_PHOTOS} photos so people can see you</p>
+              <PhotoGrid photos={photos} onChange={setPhotos} />
             </div>
-            <button type="button" onClick={goNext} disabled={!canContinue[3] || imageUploading}
+            <button type="button" onClick={goNext} disabled={!canContinue[3]}
               className="w-full bg-cyan-600 hover:bg-cyan-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-bold text-base py-4 rounded-2xl transition-colors mt-6">
               Continue
             </button>

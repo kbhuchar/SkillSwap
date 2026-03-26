@@ -4,7 +4,8 @@ export const updateProfileSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").optional(),
   bio: z.string().max(500, "Bio must be under 500 characters").optional(),
   location: z.string().max(100).optional(),
-  image: z.string().url().optional().or(z.literal("")),
+  image: z.string().optional(),
+  photos: z.array(z.string()).optional(),
   skillsOffered: z
     .array(
       z.object({

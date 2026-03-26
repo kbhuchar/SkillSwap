@@ -19,6 +19,7 @@ interface UserProfile {
   name: string | null;
   email: string;
   image: string | null;
+  photos: string[];
   bio: string | null;
   location: string | null;
   createdAt: string;
@@ -126,6 +127,7 @@ export default function ProfilePage() {
                 bio: profile.bio,
                 location: profile.location,
                 image: profile.image,
+                photos: profile.photos ?? [],
                 skillsOffered: profile.skills
                   .filter((s) => s.type === "OFFERED")
                   .map((s) => ({ skillId: s.skillId, name: s.name, level: s.level })),

@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { Plus, X, Loader2, Check } from "lucide-react";
 import { updateProfileSchema, type UpdateProfileInput } from "@/lib/validations/profile";
+import PhotoGrid from "@/components/profile/PhotoGrid";
 
 interface Skill {
   skillId: string;
@@ -20,6 +21,7 @@ interface EditProfileFormProps {
     bio?: string | null;
     location?: string | null;
     image?: string | null;
+    photos?: string[];
     skillsOffered: Skill[];
     skillsWanted: Skill[];
   };
@@ -36,6 +38,7 @@ export default function EditProfileForm({
   onSuccess,
 }: EditProfileFormProps) {
   const router = useRouter();
+  const [photos, setPhotos] = useState<string[]>(initialData.photos ?? (initialData.image ? [initialData.image] : []));
   const [skillsOffered, setSkillsOffered] = useState<Skill[]>(
     initialData.skillsOffered
   );
@@ -94,6 +97,7 @@ export default function EditProfileForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...data,
+          photos,
           skillsOffered,
           skillsWanted,
         }),
@@ -167,18 +171,10 @@ export default function EditProfileForm({
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-200 mb-1.5">
-          Avatar URL
+        <label className="block text-sm font-medium text-gray-200 mb-2">
+          Photos
         </label>
-        <input
-          type="url"
-          placeholder="https://..."
-          {...register("image")}
-          className="w-full px-4 py-2.5 rounded-xl border border-[#252525] bg-[#242424] text-white text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-        />
-        {errors.image && (
-          <p className="mt-1 text-xs text-red-400">{errors.image.message}</p>
-        )}
+        <PhotoGrid photos={photos} onChange={setPhotos} />
       </div>
 
       {/* Skills Offered */}
