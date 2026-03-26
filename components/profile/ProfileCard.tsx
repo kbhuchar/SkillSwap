@@ -49,15 +49,8 @@ export default function ProfileCard({
       className="animate-fade-up group relative rounded-2xl overflow-hidden bg-[#111111] border border-[#1f1f1f] hover:border-cyan-500/40 transition-all duration-300 flex flex-col hover:scale-[1.02] hover:shadow-xl hover:shadow-cyan-900/15"
       style={{ animationDelay: `${delay}ms` }}
     >
-      {/* Full-card link overlay — sits behind all content */}
-      <Link
-        href={`/profile/${user.id}`}
-        className="absolute inset-0 z-0"
-        aria-label={`View ${user.name ?? "user"}'s profile`}
-      />
-
       {/* Photo */}
-      <div className="relative aspect-square flex-shrink-0">
+      <Link href={`/profile/${user.id}`} className="relative aspect-square flex-shrink-0 block">
         {user.image ? (
           <img
             src={user.image}
@@ -120,11 +113,11 @@ export default function ProfileCard({
             </div>
           )}
         </div>
-      </div>
+      </Link>
 
-      {/* Connect strip — z-10 so it sits above the card link overlay */}
+      {/* Connect strip */}
       {showConnect && (
-        <div className="relative z-10 p-2 bg-[#0f0f0f] border-t border-[#1f1f1f]">
+        <div className="p-2 bg-[#0f0f0f] border-t border-[#1f1f1f]">
           <ConnectButton
             targetUserId={user.id}
             initialMatchStatus={matchStatus}

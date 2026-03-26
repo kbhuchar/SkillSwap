@@ -17,6 +17,7 @@ export async function GET(
       photos: true,
       bio: true,
       location: true,
+      dateOfBirth: true,
       createdAt: true,
       email: true,
       skills: { include: { skill: true } },
