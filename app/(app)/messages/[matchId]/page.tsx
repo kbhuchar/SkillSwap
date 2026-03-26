@@ -47,7 +47,6 @@ export default async function ConversationPage({ params }: ConversationPageProps
   }
 
   const partner = match.senderId === userId ? match.receiver : match.sender;
-  const initials = getInitials(partner.name);
 
   const initialMessages: MessageWithSender[] = match.messages.map((m) => ({
     ...m,
