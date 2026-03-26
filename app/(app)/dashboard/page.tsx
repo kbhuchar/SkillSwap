@@ -10,7 +10,7 @@ import {
   MessageSquare,
   Zap,
 } from "lucide-react";
-import { formatDateTime, formatRelativeTime } from "@/lib/utils";
+import { formatDateTime, formatRelativeTime, getInitials } from "@/lib/utils";
 import RequestActions from "@/components/matches/RequestActions";
 import type { Metadata } from "next";
 
