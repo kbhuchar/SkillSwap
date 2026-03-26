@@ -33,11 +33,11 @@ export async function POST(request: Request) {
       data: { sessionToken, userId: user.id, expires },
     });
 
-    // Match the cookie name NextAuth uses
+    // Match the cookie name Auth.js v5 uses (@auth/core defaultCookies)
     const isSecure = process.env.NEXTAUTH_URL?.startsWith("https://") ?? process.env.NODE_ENV === "production";
     const cookieName = isSecure
-      ? "__Secure-next-auth.session-token"
-      : "next-auth.session-token";
+      ? "__Secure-authjs.session-token"
+      : "authjs.session-token";
 
     const response = NextResponse.json({ ok: true });
     response.cookies.set(cookieName, sessionToken, {
