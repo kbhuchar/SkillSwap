@@ -55,7 +55,7 @@ export default async function ConversationPage({ params }: ConversationPageProps
 
   return (
     // Break out of AppShell's p-4 padding and fill the viewport
-    <div className="-mx-4 sm:-mx-5 -mt-4 sm:-mt-5 h-[calc(100dvh-9rem)] lg:h-[calc(100dvh-6rem)] flex flex-col">
+    <div className="-mx-4 sm:-mx-5 -mt-4 sm:-mt-5 h-[calc(100dvh-5rem)] lg:h-[calc(100dvh-2rem)] flex flex-col">
       {/* Back button only */}
       <div className="flex items-center px-2 pt-2 flex-shrink-0">
         <Link

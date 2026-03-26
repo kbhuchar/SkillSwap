@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useSession, signOut } from "next-auth/react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import {
   User,
@@ -18,7 +19,11 @@ interface TopbarProps {
 }
 
 export default function Topbar({ onMenuClick }: TopbarProps) {
+  const pathname = usePathname();
   const { data: session } = useSession();
+
+  // Hide topbar on individual conversation pages
+  if (/^\/messages\/[^/]+/.test(pathname)) return null;
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
