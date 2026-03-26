@@ -25,13 +25,13 @@ export default function LoginForm() {
 
   const onSubmit = async (data: LoginInput) => {
     setError(null);
-    const result = await signIn("credentials", {
-      email: data.email,
-      password: data.password,
-      redirect: false,
+    const res = await fetch("/api/auth/credentials", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: data.email, password: data.password }),
     });
 
-    if (!result?.ok) {
+    if (!res.ok) {
       setError("No account found or incorrect password. Don't have one? Register below.");
       return;
     }
