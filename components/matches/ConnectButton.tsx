@@ -142,7 +142,7 @@ export default function ConnectButton({
     <button
       onClick={handleConnect}
       disabled={isLoading}
-      className={`inline-flex items-center gap-2 bg-violet-600 hover:bg-violet-500 disabled:opacity-60 disabled:cursor-not-allowed text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors ${fw}`}
+      className={`inline-flex items-center gap-2 bg-cyan-600 hover:bg-cyan-500 disabled:opacity-60 disabled:cursor-not-allowed text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors ${fw}`}
     >
       {isLoading ? (
         <Loader2 className="w-4 h-4 animate-spin" />

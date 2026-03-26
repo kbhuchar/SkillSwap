@@ -43,14 +43,14 @@ export default async function MessagesPage() {
 
       {matches.length === 0 ? (
         <div className="bg-[#181818] rounded-xl border border-[#252525] p-8 text-center">
-          <MessageSquare className="w-8 h-8 text-violet-400 mx-auto mb-2" />
+          <MessageSquare className="w-8 h-8 text-cyan-400 mx-auto mb-2" />
           <h3 className="text-sm font-semibold text-white mb-1">No conversations yet</h3>
           <p className="text-xs text-gray-500 mb-3">
             Connect with someone to start messaging
           </p>
           <Link
             href="/browse"
-            className="inline-flex items-center gap-1.5 bg-violet-600 hover:bg-violet-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
+            className="inline-flex items-center gap-1.5 bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
           >
             Browse Skills
             <ArrowRight className="w-3.5 h-3.5" />
@@ -80,7 +80,7 @@ export default async function MessagesPage() {
                       className="w-9 h-9 rounded-full object-cover"
                     />
                   ) : (
-                    <div className="w-9 h-9 rounded-full bg-violet-900/20 text-violet-400 flex items-center justify-center text-xs font-bold">
+                    <div className="w-9 h-9 rounded-full bg-cyan-900/20 text-cyan-400 flex items-center justify-center text-xs font-bold">
                       {initials}
                     </div>
                   )}

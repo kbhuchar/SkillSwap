@@ -100,7 +100,7 @@ export default async function SessionsPage({ searchParams }: SessionsPageProps) 
               <span
                 className={`text-xs font-bold px-1.5 py-0.5 rounded-full ${
                   activeTab === tab.id
-                    ? "bg-violet-900/20 text-violet-400"
+                    ? "bg-cyan-900/20 text-cyan-400"
                     : "bg-[#252525] text-gray-400"
                 }`}
               >
@@ -127,7 +127,7 @@ export default async function SessionsPage({ searchParams }: SessionsPageProps) 
               </p>
               <Link
                 href="/matches?tab=connected"
-                className="inline-flex items-center gap-1.5 bg-violet-600 hover:bg-violet-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
+                className="inline-flex items-center gap-1.5 bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
               >
                 View my connections
               </Link>

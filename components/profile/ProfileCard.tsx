@@ -41,12 +41,12 @@ export default function ProfileCard({
       : matchStatus === "PENDING_SENT"
       ? { label: "Sent", cls: "bg-amber-500/20 text-amber-400 border-amber-500/30" }
       : matchStatus === "PENDING_RECEIVED"
-      ? { label: "Received", cls: "bg-violet-500/20 text-violet-400 border-violet-500/30" }
+      ? { label: "Received", cls: "bg-cyan-500/20 text-cyan-400 border-cyan-500/30" }
       : null;
 
   return (
     <div
-      className="animate-fade-up group relative rounded-2xl overflow-hidden bg-[#111111] border border-[#1f1f1f] hover:border-violet-500/40 transition-all duration-300 flex flex-col hover:scale-[1.02] hover:shadow-xl hover:shadow-violet-900/15"
+      className="animate-fade-up group relative rounded-2xl overflow-hidden bg-[#111111] border border-[#1f1f1f] hover:border-cyan-500/40 transition-all duration-300 flex flex-col hover:scale-[1.02] hover:shadow-xl hover:shadow-cyan-900/15"
       style={{ animationDelay: `${delay}ms` }}
     >
       {/* Full-card link overlay — sits behind all content */}
@@ -65,8 +65,8 @@ export default function ProfileCard({
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-violet-950 via-[#1a1a2e] to-[#0d0d0d] flex items-center justify-center">
-            <span className="text-4xl font-black text-violet-400/30 select-none">
+          <div className="w-full h-full bg-gradient-to-br from-cyan-950 via-[#1a1a2e] to-[#0d0d0d] flex items-center justify-center">
+            <span className="text-4xl font-black text-cyan-400/30 select-none">
               {initials}
             </span>
           </div>
@@ -111,7 +111,7 @@ export default function ProfileCard({
                   className={`text-[9px] font-semibold px-1.5 py-0.5 rounded-full backdrop-blur-sm ${
                     s.type === "OFFERED"
                       ? "bg-emerald-500/25 text-emerald-300 border border-emerald-500/30"
-                      : "bg-violet-500/25 text-violet-300 border border-violet-500/30"
+                      : "bg-cyan-500/25 text-cyan-300 border border-cyan-500/30"
                   }`}
                 >
                   {s.name}

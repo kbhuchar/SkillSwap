@@ -29,7 +29,7 @@ const statusConfig: Record<string, { label: string; className: string }> = {
   },
   COMPLETED: {
     label: "Completed",
-    className: "bg-violet-900/20 text-violet-400",
+    className: "bg-cyan-900/20 text-cyan-400",
   },
 };
 
@@ -56,7 +56,7 @@ export default function SessionCard({ session, currentUserId }: SessionCardProps
         <div className="min-w-0">
           <Link
             href={`/sessions/${session.id}`}
-            className="text-sm font-semibold text-white hover:text-violet-400 transition-colors block truncate"
+            className="text-sm font-semibold text-white hover:text-cyan-400 transition-colors block truncate"
           >
             {session.title}
           </Link>
@@ -88,7 +88,7 @@ export default function SessionCard({ session, currentUserId }: SessionCardProps
           </span>
           <Link
             href={`/profile/${partner.id}`}
-            className="flex items-center gap-1 hover:text-violet-400 transition-colors"
+            className="flex items-center gap-1 hover:text-cyan-400 transition-colors"
           >
             {partner.image ? (
               <img
@@ -97,7 +97,7 @@ export default function SessionCard({ session, currentUserId }: SessionCardProps
                 className="w-4 h-4 rounded-full object-cover"
               />
             ) : (
-              <div className="w-4 h-4 rounded-full bg-violet-900/20 text-violet-400 flex items-center justify-center text-[9px] font-bold">
+              <div className="w-4 h-4 rounded-full bg-cyan-900/20 text-cyan-400 flex items-center justify-center text-[9px] font-bold">
                 {partnerInitials}
               </div>
             )}
@@ -109,7 +109,7 @@ export default function SessionCard({ session, currentUserId }: SessionCardProps
             href={session.meetingLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-xs text-violet-400 hover:text-violet-300"
+            className="flex items-center gap-1.5 text-xs text-cyan-400 hover:text-cyan-300"
           >
             <ExternalLink className="w-3.5 h-3.5" />
             Join meeting

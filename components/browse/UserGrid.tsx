@@ -21,7 +21,7 @@ export default function UserGrid({ users, matchStatuses = {} }: UserGridProps) {
         </p>
         <Link
           href="/browse"
-          className="text-xs font-semibold text-violet-400 hover:text-violet-300 transition-colors"
+          className="text-xs font-semibold text-cyan-400 hover:text-cyan-300 transition-colors"
         >
           Clear all filters →
         </Link>

@@ -36,11 +36,11 @@ export default function MobileNav() {
               href={item.href}
               className={cn(
                 "flex flex-col items-center justify-center gap-1 flex-1 h-full transition-colors relative",
-                isActive ? "text-violet-400" : "text-[#888] hover:text-[#e5e5e5]"
+                isActive ? "text-cyan-400" : "text-[#888] hover:text-[#e5e5e5]"
               )}
             >
               {isActive && (
-                <span className="absolute top-0 left-1/2 -translate-x-1/2 w-6 h-0.5 rounded-full bg-violet-500" />
+                <span className="absolute top-0 left-1/2 -translate-x-1/2 w-6 h-0.5 rounded-full bg-cyan-500" />
               )}
               <Icon className="w-5 h-5 flex-shrink-0" />
               <span className="text-[10px] font-semibold leading-none">

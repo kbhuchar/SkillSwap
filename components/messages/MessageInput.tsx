@@ -55,7 +55,7 @@ export default function MessageInput({ matchId, onMessageSent }: MessageInputPro
   return (
     <div className="bg-[#181818] border-t border-[#252525] px-3 py-3">
       <div className="flex items-end gap-2">
-        <div className="flex-1 bg-[#242424] rounded-xl border border-[#252525] focus-within:border-violet-500/60 transition-all">
+        <div className="flex-1 bg-[#242424] rounded-xl border border-[#252525] focus-within:border-cyan-500/60 transition-all">
           <textarea
             ref={textareaRef}
             value={content}
@@ -70,7 +70,7 @@ export default function MessageInput({ matchId, onMessageSent }: MessageInputPro
         <button
           onClick={handleSend}
           disabled={!content.trim() || isSending}
-          className="flex-shrink-0 w-9 h-9 bg-violet-600 hover:bg-violet-700 disabled:bg-[#252525] disabled:text-gray-600 text-white rounded-lg flex items-center justify-center transition-colors"
+          className="flex-shrink-0 w-9 h-9 bg-cyan-600 hover:bg-cyan-700 disabled:bg-[#252525] disabled:text-gray-600 text-white rounded-lg flex items-center justify-center transition-colors"
         >
           {isSending ? (
             <Loader2 className="w-4 h-4 animate-spin" />

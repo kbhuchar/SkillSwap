@@ -105,12 +105,12 @@ export default async function ConversationPage({
                 className="w-10 h-10 rounded-full object-cover ring-2 ring-emerald-800/40"
               />
             ) : (
-              <div className="w-10 h-10 rounded-full bg-violet-900/20 text-violet-400 flex items-center justify-center text-sm font-bold">
+              <div className="w-10 h-10 rounded-full bg-cyan-900/20 text-cyan-400 flex items-center justify-center text-sm font-bold">
                 {initials}
               </div>
             )}
             <div>
-              <p className="font-semibold text-white group-hover:text-violet-400 transition-colors text-sm">
+              <p className="font-semibold text-white group-hover:text-cyan-400 transition-colors text-sm">
                 {partner.name ?? "Anonymous"}
               </p>
               <div className="flex items-center gap-3 text-xs text-gray-500">

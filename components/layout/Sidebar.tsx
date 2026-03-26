@@ -51,7 +51,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
         {/* Header */}
         <div className="flex items-center justify-between px-4 h-16 border-b border-[#252525] flex-shrink-0">
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 rounded-lg bg-violet-600 flex items-center justify-center">
+            <div className="w-7 h-7 rounded-lg bg-cyan-600 flex items-center justify-center">
               <Zap className="w-3.5 h-3.5 text-white" />
             </div>
             <span className="text-base font-bold text-[#e5e5e5]">SkillSwap</span>
@@ -79,19 +79,19 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
                 className={cn(
                   "flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-sm font-medium transition-all",
                   isActive
-                    ? "bg-violet-600/10 text-violet-400"
+                    ? "bg-cyan-600/10 text-cyan-400"
                     : "text-[#888] hover:bg-[#252525] hover:text-[#e5e5e5]"
                 )}
               >
                 <Icon
                   className={cn(
                     "w-4 h-4 flex-shrink-0",
-                    isActive ? "text-violet-400" : "text-[#888]"
+                    isActive ? "text-cyan-400" : "text-[#888]"
                   )}
                 />
                 {item.label}
                 {isActive && (
-                  <span className="ml-auto w-1.5 h-1.5 rounded-full bg-violet-500" />
+                  <span className="ml-auto w-1.5 h-1.5 rounded-full bg-cyan-500" />
                 )}
               </Link>
             );
@@ -100,8 +100,8 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
 
         {/* Bottom hint */}
         <div className="px-3 py-3 border-t border-[#252525] flex-shrink-0">
-          <div className="bg-violet-600/10 rounded-lg p-3 border border-violet-600/20">
-            <p className="text-xs font-semibold text-violet-400 mb-0.5">
+          <div className="bg-cyan-600/10 rounded-lg p-3 border border-cyan-600/20">
+            <p className="text-xs font-semibold text-cyan-400 mb-0.5">
               Complete your profile
             </p>
             <p className="text-xs text-[#888] mb-2">
@@ -110,7 +110,7 @@ export default function Sidebar({ isOpen, onClose }: SidebarProps) {
             <Link
               href="/profile"
               onClick={onClose}
-              className="block text-center text-xs font-medium bg-violet-600 text-white py-1 px-2 rounded-md hover:bg-violet-700 transition-colors"
+              className="block text-center text-xs font-medium bg-cyan-600 text-white py-1 px-2 rounded-md hover:bg-cyan-700 transition-colors"
             >
               Go to profile
             </Link>

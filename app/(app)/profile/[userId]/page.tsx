@@ -88,7 +88,7 @@ export default async function PublicProfilePage({ params }: ProfilePageProps) {
 
       <div className="bg-[#181818] rounded-xl border border-[#252525] shadow-sm overflow-hidden">
         {/* Header banner */}
-        <div className="h-16 bg-gradient-to-r from-violet-500 to-purple-600" />
+        <div className="h-16 bg-gradient-to-r from-cyan-500 to-cyan-600" />
 
         <div className="px-4 pb-4">
           <div className="flex items-end justify-between -mt-8 mb-3 flex-wrap gap-2">
@@ -99,7 +99,7 @@ export default async function PublicProfilePage({ params }: ProfilePageProps) {
                 className="w-16 h-16 rounded-xl object-cover ring-2 ring-[#242424] shadow-md"
               />
             ) : (
-              <div className="w-16 h-16 rounded-xl bg-violet-900/20 text-violet-400 flex items-center justify-center text-xl font-bold ring-2 ring-[#242424] shadow-md">
+              <div className="w-16 h-16 rounded-xl bg-cyan-900/20 text-cyan-400 flex items-center justify-center text-xl font-bold ring-2 ring-[#242424] shadow-md">
                 {initials}
               </div>
             )}
@@ -114,7 +114,7 @@ export default async function PublicProfilePage({ params }: ProfilePageProps) {
             {isOwnProfile && (
               <Link
                 href="/profile"
-                className="inline-flex items-center gap-1.5 bg-violet-600 hover:bg-violet-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
+                className="inline-flex items-center gap-1.5 bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
               >
                 Edit Profile
               </Link>
@@ -161,8 +161,8 @@ export default async function PublicProfilePage({ params }: ProfilePageProps) {
 
         <div className="bg-[#181818] rounded-xl border border-[#252525] shadow-sm p-4">
           <div className="flex items-center gap-1.5 mb-3">
-            <div className="w-7 h-7 rounded-lg bg-violet-900/20 flex items-center justify-center">
-              <BookOpen className="w-3.5 h-3.5 text-violet-400" />
+            <div className="w-7 h-7 rounded-lg bg-cyan-900/20 flex items-center justify-center">
+              <BookOpen className="w-3.5 h-3.5 text-cyan-400" />
             </div>
             <h2 className="text-sm font-semibold text-white">Skills They Want to Learn</h2>
           </div>

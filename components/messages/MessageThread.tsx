@@ -71,7 +71,7 @@ export default function MessageThread({
   if (!session?.user) {
     return (
       <div className="flex items-center justify-center h-64">
-        <Loader2 className="w-6 h-6 animate-spin text-violet-500" />
+        <Loader2 className="w-6 h-6 animate-spin text-cyan-500" />
       </div>
     );
   }
@@ -88,8 +88,8 @@ export default function MessageThread({
       >
         {messages.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full py-12 text-center">
-            <div className="w-10 h-10 rounded-full bg-violet-900/20 flex items-center justify-center mb-2">
-              <svg className="w-5 h-5 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="w-10 h-10 rounded-full bg-cyan-900/20 flex items-center justify-center mb-2">
+              <svg className="w-5 h-5 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
               </svg>
             </div>

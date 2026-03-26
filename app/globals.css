@@ -5,8 +5,8 @@
   --foreground: #f0f0f0;
   --card: #242424;
   --card-foreground: #f0f0f0;
-  --primary: #6366f1;
-  --primary-hover: #4f46e5;
+  --primary: #06b6d4;
+  --primary-hover: #0891b2;
   --primary-foreground: #ffffff;
   --secondary: #2e2e2e;
   --secondary-foreground: #a0a0a0;
@@ -14,7 +14,7 @@
   --muted-foreground: #888888;
   --border: #333333;
   --input: #333333;
-  --ring: #6366f1;
+  --ring: #06b6d4;
   --destructive: #ef4444;
   --success: #10b981;
   --warning: #f59e0b;
@@ -107,11 +107,11 @@ a, button {
 .animate-shimmer {
   background: linear-gradient(
     90deg,
-    #7c3aed 0%,
-    #8b5cf6 40%,
-    #a78bfa 50%,
-    #8b5cf6 60%,
-    #7c3aed 100%
+    #0891b2 0%,
+    #06b6d4 40%,
+    #67e8f9 50%,
+    #06b6d4 60%,
+    #0891b2 100%
   );
   background-size: 200% auto;
   animation: shimmer 3s linear infinite;

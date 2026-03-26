@@ -118,7 +118,7 @@ export default function LoginForm() {
               autoComplete="email"
               placeholder="you@example.com"
               {...register("email")}
-              className="w-full pl-10 pr-4 py-3 rounded-xl border border-[#252525] bg-[#242424] text-white text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all"
+              className="w-full pl-10 pr-4 py-3 rounded-xl border border-[#252525] bg-[#242424] text-white text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
             />
           </div>
           {errors.email && (
@@ -138,7 +138,7 @@ export default function LoginForm() {
               autoComplete="current-password"
               placeholder="Enter your password"
               {...register("password")}
-              className="w-full pl-10 pr-11 py-3 rounded-xl border border-[#252525] bg-[#242424] text-white text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent transition-all"
+              className="w-full pl-10 pr-11 py-3 rounded-xl border border-[#252525] bg-[#242424] text-white text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all"
             />
             <button
               type="button"
@@ -156,7 +156,7 @@ export default function LoginForm() {
         <button
           type="submit"
           disabled={isSubmitting || isGoogleLoading}
-          className="w-full bg-violet-600 hover:bg-violet-700 disabled:bg-violet-400 disabled:cursor-not-allowed text-white font-semibold py-3 px-4 rounded-xl text-sm transition-colors flex items-center justify-center gap-2 shadow-sm shadow-violet-900/30"
+          className="w-full bg-cyan-600 hover:bg-cyan-700 disabled:bg-cyan-400 disabled:cursor-not-allowed text-white font-semibold py-3 px-4 rounded-xl text-sm transition-colors flex items-center justify-center gap-2 shadow-sm shadow-cyan-900/30"
         >
           {isSubmitting ? (
             <>
@@ -173,7 +173,7 @@ export default function LoginForm() {
         Don&apos;t have an account?{" "}
         <Link
           href="/register"
-          className="text-violet-400 hover:text-violet-300 font-medium"
+          className="text-cyan-400 hover:text-cyan-300 font-medium"
         >
           Create one free
         </Link>

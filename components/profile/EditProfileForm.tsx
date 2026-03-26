@@ -129,7 +129,7 @@ export default function EditProfileForm({
           <input
             type="text"
             {...register("name")}
-            className="w-full px-4 py-2.5 rounded-xl border border-[#252525] bg-[#242424] text-white text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+            className="w-full px-4 py-2.5 rounded-xl border border-[#252525] bg-[#242424] text-white text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
           />
           {errors.name && (
             <p className="mt-1 text-xs text-red-400">{errors.name.message}</p>
@@ -143,7 +143,7 @@ export default function EditProfileForm({
             type="text"
             placeholder="e.g. New York, NY"
             {...register("location")}
-            className="w-full px-4 py-2.5 rounded-xl border border-[#252525] bg-[#242424] text-white text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+            className="w-full px-4 py-2.5 rounded-xl border border-[#252525] bg-[#242424] text-white text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
           />
           {errors.location && (
             <p className="mt-1 text-xs text-red-400">{errors.location.message}</p>
@@ -159,7 +159,7 @@ export default function EditProfileForm({
           rows={3}
           placeholder="Tell others about yourself and what you're passionate about..."
           {...register("bio")}
-          className="w-full px-4 py-2.5 rounded-xl border border-[#252525] bg-[#242424] text-white text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent resize-none"
+          className="w-full px-4 py-2.5 rounded-xl border border-[#252525] bg-[#242424] text-white text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent resize-none"
         />
         {errors.bio && (
           <p className="mt-1 text-xs text-red-400">{errors.bio.message}</p>
@@ -174,7 +174,7 @@ export default function EditProfileForm({
           type="url"
           placeholder="https://..."
           {...register("image")}
-          className="w-full px-4 py-2.5 rounded-xl border border-[#252525] bg-[#242424] text-white text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+          className="w-full px-4 py-2.5 rounded-xl border border-[#252525] bg-[#242424] text-white text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
         />
         {errors.image && (
           <p className="mt-1 text-xs text-red-400">{errors.image.message}</p>
@@ -222,14 +222,14 @@ export default function EditProfileForm({
                 addOfferedSkill();
               }
             }}
-            className="flex-1 px-4 py-2 rounded-xl border border-[#252525] bg-[#242424] text-white text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+            className="flex-1 px-4 py-2 rounded-xl border border-[#252525] bg-[#242424] text-white text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
           />
           <select
             value={newOfferedLevel}
             onChange={(e) =>
               setNewOfferedLevel(e.target.value as typeof newOfferedLevel)
             }
-            className="px-3 py-2 rounded-xl border border-[#252525] bg-[#242424] text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+            className="px-3 py-2 rounded-xl border border-[#252525] bg-[#242424] text-white text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500"
           >
             {LEVELS.map((l) => (
               <option key={l} value={l}>
@@ -256,7 +256,7 @@ export default function EditProfileForm({
           {skillsWanted.map((s, i) => (
             <span
               key={i}
-              className="inline-flex items-center gap-1.5 bg-violet-900/20 text-violet-400 text-sm px-3 py-1 rounded-full border border-violet-800/30"
+              className="inline-flex items-center gap-1.5 bg-cyan-900/20 text-cyan-400 text-sm px-3 py-1 rounded-full border border-cyan-800/30"
             >
               {s.name}
               {s.level && (
@@ -269,7 +269,7 @@ export default function EditProfileForm({
                 onClick={() =>
                   setSkillsWanted(skillsWanted.filter((_, idx) => idx !== i))
                 }
-                className="hover:text-violet-200 transition-colors"
+                className="hover:text-cyan-200 transition-colors"
               >
                 <X className="w-3.5 h-3.5" />
               </button>
@@ -288,14 +288,14 @@ export default function EditProfileForm({
                 addWantedSkill();
               }
             }}
-            className="flex-1 px-4 py-2 rounded-xl border border-[#252525] bg-[#242424] text-white text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent"
+            className="flex-1 px-4 py-2 rounded-xl border border-[#252525] bg-[#242424] text-white text-sm placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
           />
           <select
             value={newWantedLevel}
             onChange={(e) =>
               setNewWantedLevel(e.target.value as typeof newWantedLevel)
             }
-            className="px-3 py-2 rounded-xl border border-[#252525] bg-[#242424] text-white text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+            className="px-3 py-2 rounded-xl border border-[#252525] bg-[#242424] text-white text-sm focus:outline-none focus:ring-2 focus:ring-cyan-500"
           >
             {LEVELS.map((l) => (
               <option key={l} value={l}>
@@ -306,7 +306,7 @@ export default function EditProfileForm({
           <button
             type="button"
             onClick={addWantedSkill}
-            className="p-2 bg-violet-600 hover:bg-violet-700 text-white rounded-xl transition-colors"
+            className="p-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-xl transition-colors"
           >
             <Plus className="w-4 h-4" />
           </button>
@@ -325,7 +325,7 @@ export default function EditProfileForm({
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex items-center gap-2 bg-violet-600 hover:bg-violet-700 disabled:bg-violet-400 text-white font-semibold py-2.5 px-5 rounded-xl text-sm transition-colors"
+          className="inline-flex items-center gap-2 bg-cyan-600 hover:bg-cyan-700 disabled:bg-cyan-400 text-white font-semibold py-2.5 px-5 rounded-xl text-sm transition-colors"
         >
           {isSubmitting ? (
             <>

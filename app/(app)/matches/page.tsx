@@ -112,7 +112,7 @@ export default async function MatchesPage({ searchParams }: MatchesPageProps) {
               </p>
               <Link
                 href="/browse"
-                className="inline-flex items-center gap-1.5 bg-violet-600 hover:bg-violet-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
+                className="inline-flex items-center gap-1.5 bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
               >
                 <Users className="w-3.5 h-3.5" />
                 Browse Skills
@@ -137,7 +137,7 @@ export default async function MatchesPage({ searchParams }: MatchesPageProps) {
                               className="w-9 h-9 rounded-full object-cover"
                             />
                           ) : (
-                            <div className="w-9 h-9 rounded-full bg-violet-900/20 text-violet-400 flex items-center justify-center text-xs font-bold">
+                            <div className="w-9 h-9 rounded-full bg-cyan-900/20 text-cyan-400 flex items-center justify-center text-xs font-bold">
                               {initials}
                             </div>
                           )}
@@ -145,7 +145,7 @@ export default async function MatchesPage({ searchParams }: MatchesPageProps) {
                         <div>
                           <Link
                             href={`/profile/${match.sender.id}`}
-                            className="text-sm font-semibold text-white hover:text-violet-400 transition-colors"
+                            className="text-sm font-semibold text-white hover:text-cyan-400 transition-colors"
                           >
                             {match.sender.name ?? "Anonymous"}
                           </Link>
@@ -178,7 +178,7 @@ export default async function MatchesPage({ searchParams }: MatchesPageProps) {
               </p>
               <Link
                 href="/browse"
-                className="inline-flex items-center gap-1.5 bg-violet-600 hover:bg-violet-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
+                className="inline-flex items-center gap-1.5 bg-cyan-600 hover:bg-cyan-700 text-white text-xs font-medium px-3 py-1.5 rounded-lg transition-colors"
               >
                 <Users className="w-3.5 h-3.5" />
                 Find People to Connect With
