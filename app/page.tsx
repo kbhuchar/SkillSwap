@@ -65,7 +65,7 @@ export default function LandingPage() {
             <div className="flex justify-center mb-4">
               <div className="inline-flex items-center gap-1.5 bg-cyan-900/20 text-cyan-400 text-xs font-medium px-3 py-1 rounded-full border border-cyan-800/40">
                 <Zap className="w-3 h-3" />
-                Peer-to-peer skill sharing, for free
+                Peer-to-peer skill sharing
               </div>
             </div>
 
