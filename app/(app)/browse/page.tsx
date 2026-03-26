@@ -10,15 +10,34 @@ export const metadata: Metadata = {
 };
 
 interface BrowsePageProps {
-  searchParams: Promise<{ skill?: string; type?: string }>;
+  searchParams: Promise<{ skill?: string; type?: string; miles?: string }>;
+}
+
+function haversineDistance(lat1: number, lng1: number, lat2: number, lng2: number): number {
+  const R = 3959; // miles
+  const dLat = ((lat2 - lat1) * Math.PI) / 180;
+  const dLng = ((lng2 - lng1) * Math.PI) / 180;
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos((lat1 * Math.PI) / 180) *
+      Math.cos((lat2 * Math.PI) / 180) *
+      Math.sin(dLng / 2) *
+      Math.sin(dLng / 2);
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
 export default async function BrowsePage({ searchParams }: BrowsePageProps) {
   const session = await auth();
   const userId = session!.user.id;
   const params = await searchParams;
-  const { skill, type } = params;
-  const isFiltered = !!(skill || type);
+  const { skill, type, miles: milesParam } = params;
+  const miles = milesParam ? parseInt(milesParam) : null;
+  const isFiltered = !!(skill || type || miles);
+
+  const currentUser = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { lat: true, lng: true },
+  });
 
   const whereClause: Record<string, unknown> = {
     id: { not: userId },
@@ -35,12 +54,26 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
     };
   }
 
-  const users = await prisma.user.findMany({
+  // If distance filter is active and we have our location, only fetch users who have coords
+  if (miles && currentUser?.lat && currentUser?.lng) {
+    whereClause.lat = { not: null };
+    whereClause.lng = { not: null };
+  }
+
+  let users = await prisma.user.findMany({
     where: whereClause,
     include: { skills: { include: { skill: true } } },
     orderBy: { createdAt: "desc" },
-    take: 50,
+    take: miles && currentUser?.lat && currentUser?.lng ? 500 : 50,
   });
+
+  // Apply in-memory Haversine filter
+  if (miles && currentUser?.lat != null && currentUser?.lng != null) {
+    users = users.filter((u) => {
+      if (u.lat == null || u.lng == null) return false;
+      return haversineDistance(currentUser.lat!, currentUser.lng!, u.lat, u.lng) <= miles;
+    });
+  }
 
   const matches = await prisma.match.findMany({
     where: {
@@ -77,6 +110,8 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
     skills: u.skills,
   }));
 
+  const hasLocation = !!(currentUser?.lat && currentUser?.lng);
+
   return (
     <div className="max-w-6xl mx-auto pb-8">
       {/* Header */}
@@ -95,7 +130,7 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
       </div>
 
       {/* Sticky filters */}
-      <BrowseFilters />
+      <BrowseFilters hasLocation={hasLocation} />
 
       {/* Grid */}
       <div className="pt-5">

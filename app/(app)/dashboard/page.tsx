@@ -82,41 +82,41 @@ export default async function DashboardPage() {
       <div className="grid grid-cols-3 gap-3 animate-fade-up-1">
         <Link
           href="/matches?tab=connected"
-          className="group relative bg-[#181818] border border-[#252525] hover:border-violet-500/40 rounded-2xl p-4 transition-all hover:-translate-y-0.5 overflow-hidden"
+          className="group relative bg-[#181818] border border-[#252525] hover:border-cyan-500/40 rounded-2xl p-4 transition-all hover:-translate-y-0.5 overflow-hidden"
         >
-          <div className="absolute inset-x-0 top-0 h-0.5 bg-violet-500 rounded-t-2xl" />
+          <div className="absolute inset-x-0 top-0 h-0.5 bg-cyan-500 rounded-t-2xl" />
           <p className="text-3xl font-black text-[#e5e5e5] mb-1.5">{matchesCount}</p>
           <div className="flex items-center gap-1.5">
-            <Users size={13} className="text-violet-400" />
+            <Users size={13} className="text-cyan-400" />
             <span className="text-xs font-medium text-[#888]">Connected</span>
           </div>
         </Link>
 
         <Link
           href="/matches"
-          className="group relative bg-[#181818] border border-[#252525] hover:border-amber-500/40 rounded-2xl p-4 transition-all hover:-translate-y-0.5 overflow-hidden"
+          className="group relative bg-[#181818] border border-[#252525] hover:border-red-500/40 rounded-2xl p-4 transition-all hover:-translate-y-0.5 overflow-hidden"
         >
-          <div className="absolute inset-x-0 top-0 h-0.5 bg-amber-500 rounded-t-2xl" />
+          <div className="absolute inset-x-0 top-0 h-0.5 bg-red-500 rounded-t-2xl" />
           {pendingIncoming > 0 && (
-            <span className="absolute top-3 right-3 w-4 h-4 bg-amber-500 text-black text-[9px] font-black rounded-full flex items-center justify-center">
+            <span className="absolute top-3 right-3 w-4 h-4 bg-red-500 text-white text-[9px] font-black rounded-full flex items-center justify-center">
               {pendingIncoming}
             </span>
           )}
           <p className="text-3xl font-black text-[#e5e5e5] mb-1.5">{pendingIncoming}</p>
           <div className="flex items-center gap-1.5">
-            <Clock size={13} className="text-amber-400" />
+            <Clock size={13} className="text-red-400" />
             <span className="text-xs font-medium text-[#888]">Pending</span>
           </div>
         </Link>
 
         <Link
           href="/sessions"
-          className="group relative bg-[#181818] border border-[#252525] hover:border-emerald-500/40 rounded-2xl p-4 transition-all hover:-translate-y-0.5 overflow-hidden"
+          className="group relative bg-[#181818] border border-[#252525] hover:border-white/20 rounded-2xl p-4 transition-all hover:-translate-y-0.5 overflow-hidden"
         >
-          <div className="absolute inset-x-0 top-0 h-0.5 bg-emerald-500 rounded-t-2xl" />
+          <div className="absolute inset-x-0 top-0 h-0.5 bg-white rounded-t-2xl" />
           <p className="text-3xl font-black text-[#e5e5e5] mb-1.5">{upcomingSessions}</p>
           <div className="flex items-center gap-1.5">
-            <Calendar size={13} className="text-emerald-400" />
+            <Calendar size={13} className="text-[#ccc]" />
             <span className="text-xs font-medium text-[#888]">Sessions</span>
           </div>
         </Link>
@@ -125,7 +125,7 @@ export default async function DashboardPage() {
       {/* ── CTA ───────────────────────────────────────────────────── */}
       <Link
         href="/browse"
-        className="animate-fade-up-3 flex items-center justify-between w-full animate-shimmer active:scale-[0.98] text-white px-5 py-3.5 rounded-2xl transition-all group shadow-lg shadow-violet-900/30"
+        className="animate-fade-up-3 flex items-center justify-between w-full animate-shimmer active:scale-[0.98] text-white px-5 py-3.5 rounded-2xl transition-all group shadow-lg shadow-cyan-900/30"
       >
         <div className="flex items-center gap-3">
           <Search size={16} />
@@ -168,7 +168,7 @@ export default async function DashboardPage() {
                               className="w-10 h-10 rounded-xl object-cover"
                             />
                           ) : (
-                            <div className="w-10 h-10 rounded-xl bg-violet-600/10 text-violet-400 flex items-center justify-center text-xs font-bold">
+                            <div className="w-10 h-10 rounded-xl bg-cyan-600/10 text-cyan-400 flex items-center justify-center text-xs font-bold">
                               {senderInitials}
                             </div>
                           )}
@@ -215,7 +215,7 @@ export default async function DashboardPage() {
                         {partner.image ? (
                           <img src={partner.image} alt={partner.name ?? ""} className="w-9 h-9 rounded-xl object-cover flex-shrink-0" />
                         ) : (
-                          <div className="w-9 h-9 rounded-xl bg-violet-600/10 text-violet-400 flex items-center justify-center text-xs font-bold flex-shrink-0">
+                          <div className="w-9 h-9 rounded-xl bg-cyan-600/10 text-cyan-400 flex items-center justify-center text-xs font-bold flex-shrink-0">
                             {partnerInitials}
                           </div>
                         )}
@@ -266,7 +266,7 @@ export default async function DashboardPage() {
                       {partner.image ? (
                         <img src={partner.image} alt={partner.name ?? ""} className="w-5 h-5 rounded-full object-cover" />
                       ) : (
-                        <div className="w-5 h-5 rounded-full bg-violet-600/10 text-violet-400 flex items-center justify-center text-[9px] font-bold">
+                        <div className="w-5 h-5 rounded-full bg-cyan-600/10 text-cyan-400 flex items-center justify-center text-[9px] font-bold">
                           {partnerInitials}
                         </div>
                       )}
@@ -282,7 +282,7 @@ export default async function DashboardPage() {
                   <h2 className="text-sm font-bold text-[#e5e5e5]">Sessions</h2>
                 </div>
                 <p className="text-xs text-[#888] mb-4 leading-relaxed">No upcoming sessions yet. Once you connect with someone, propose a session.</p>
-                <Link href="/sessions" className="text-xs font-semibold text-violet-400 hover:text-violet-300 flex items-center gap-1 transition-colors">
+                <Link href="/sessions" className="text-xs font-semibold text-cyan-400 hover:text-cyan-300 flex items-center gap-1 transition-colors">
                   View sessions <ArrowRight size={12} />
                 </Link>
               </div>
@@ -293,8 +293,8 @@ export default async function DashboardPage() {
       ) : (
         /* ── Empty state ──────────────────────────────────────────── */
         <div className="bg-[#181818] border border-[#252525] rounded-2xl p-10 text-center">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-violet-600/10 border border-violet-500/20 mb-5">
-            <Zap size={24} className="text-violet-400" />
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-cyan-600/10 border border-cyan-500/20 mb-5">
+            <Zap size={24} className="text-cyan-400" />
           </div>
           <p className="text-base font-bold text-[#e5e5e5] mb-2">Nothing here yet</p>
           <p className="text-sm text-[#888] mb-6 max-w-xs mx-auto leading-relaxed">
@@ -302,7 +302,7 @@ export default async function DashboardPage() {
           </p>
           <Link
             href="/browse"
-            className="inline-flex items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-all active:scale-95"
+            className="inline-flex items-center gap-2 bg-cyan-600 hover:bg-cyan-500 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-all active:scale-95"
           >
             <Search size={15} />
             Browse Skills

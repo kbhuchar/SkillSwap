@@ -58,6 +58,8 @@ model User {
   image          String?
   bio            String?   @db.Text
   location       String?
+  lat            Float?
+  lng            Float?
   dateOfBirth    DateTime?
   onboarded      Boolean   @default(false)
   createdAt      DateTime  @default(now())
