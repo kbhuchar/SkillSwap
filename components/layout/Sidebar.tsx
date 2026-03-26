@@ -10,12 +10,14 @@ import {
   Calendar,
   Zap,
   X,
+  Compass,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/browse", label: "Browse", icon: Search },
+  { href: "/discover", label: "Discover", icon: Compass },
   { href: "/matches", label: "Matches", icon: Users },
   { href: "/messages", label: "Messages", icon: MessageSquare },
   { href: "/sessions", label: "Sessions", icon: Calendar },

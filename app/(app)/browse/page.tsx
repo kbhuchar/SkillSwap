@@ -2,6 +2,7 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import BrowseFilters from "@/components/browse/BrowseFilters";
 import UserGrid from "@/components/browse/UserGrid";
+import Link from "next/link";
 import type { Metadata } from "next";
 import type { PublicUser } from "@/types";
 
@@ -124,10 +125,18 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
             {isFiltered ? "Showing filtered results" : "Discover people to swap skills with"}
           </p>
         </div>
-        <div className="flex items-center gap-1.5 bg-[#181818] border border-[#252525] rounded-full px-3 py-1.5">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-          <span className="text-xs font-semibold text-[#e5e5e5]">{publicUsers.length}</span>
-          <span className="text-xs text-[#888]">people</span>
+        <div className="flex items-center gap-2">
+          <Link
+            href="/discover"
+            className="flex items-center gap-1.5 bg-cyan-600/10 border border-cyan-500/30 text-cyan-400 rounded-full px-3 py-1.5 text-xs font-semibold hover:bg-cyan-600/20 transition-colors"
+          >
+            ✦ Discover
+          </Link>
+          <div className="flex items-center gap-1.5 bg-[#181818] border border-[#252525] rounded-full px-3 py-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            <span className="text-xs font-semibold text-[#e5e5e5]">{publicUsers.length}</span>
+            <span className="text-xs text-[#888]">people</span>
+          </div>
         </div>
       </div>
 
