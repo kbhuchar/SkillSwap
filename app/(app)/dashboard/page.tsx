@@ -10,30 +10,19 @@ import {
   MessageSquare,
   Zap,
 } from "lucide-react";
-import { formatDateTime, formatRelativeTime, getInitials } from "@/lib/utils";
+import { formatDateTime, formatRelativeTime } from "@/lib/utils";
 import RequestActions from "@/components/matches/RequestActions";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "Dashboard — SkillSwap" };
 
-function getGreeting(name: string) {
-  const h = new Date().getHours();
-  const first = name.split(" ")[0];
-  if (h < 12) return `Good morning, ${first}`;
-  if (h < 17) return `Good afternoon, ${first}`;
-  return `Good evening, ${first}`;
-}
 
 export default async function DashboardPage() {
   const session = await auth();
   const userId = session!.user.id;
 
-  const [user, matchesCount, pendingIncoming, upcomingSessions, recentPending, nextSession, recentMessages] =
+  const [matchesCount, pendingIncoming, upcomingSessions, recentPending, nextSession, recentMessages] =
     await Promise.all([
-      prisma.user.findUnique({
-        where: { id: userId },
-        select: { name: true, image: true },
-      }),
       prisma.match.count({
         where: { OR: [{ senderId: userId }, { receiverId: userId }], status: "ACCEPTED" },
       }),
@@ -84,38 +73,13 @@ export default async function DashboardPage() {
       }),
     ]);
 
-  const greeting = getGreeting(user?.name ?? session!.user.name ?? "there");
-  const initials = getInitials(user?.name ?? null);
   const hasActivity = matchesCount > 0 || pendingIncoming > 0 || upcomingSessions > 0;
 
   return (
     <div className="max-w-4xl mx-auto pb-8 space-y-6">
 
-      {/* ── Hero greeting ─────────────────────────────────────────── */}
-      <div className="flex items-center justify-between pt-2 animate-fade-up-1">
-        <div className="flex items-center gap-4">
-          {user?.image ? (
-            <img
-              src={user.image}
-              alt={user.name ?? ""}
-              className="w-12 h-12 rounded-2xl object-cover ring-2 ring-violet-500/20 flex-shrink-0"
-            />
-          ) : (
-            <div className="w-12 h-12 rounded-2xl bg-violet-600/10 text-violet-400 flex items-center justify-center text-base font-bold ring-2 ring-violet-500/10 flex-shrink-0">
-              {initials}
-            </div>
-          )}
-          <div>
-            <h1 className="text-xl font-bold text-[#e5e5e5] leading-tight">{greeting}</h1>
-            <p className="text-sm text-[#888] mt-0.5">
-              {hasActivity ? "Here's what's happening" : "Let's get you started"}
-            </p>
-          </div>
-        </div>
-      </div>
-
       {/* ── Stats row ─────────────────────────────────────────────── */}
-      <div className="grid grid-cols-3 gap-3 animate-fade-up-2">
+      <div className="grid grid-cols-3 gap-3 animate-fade-up-1">
         <Link
           href="/matches?tab=connected"
           className="group relative bg-[#181818] border border-[#252525] hover:border-violet-500/40 rounded-2xl p-4 transition-all hover:-translate-y-0.5 overflow-hidden"
