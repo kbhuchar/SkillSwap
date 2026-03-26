@@ -45,11 +45,11 @@ export default function RequestActions({ matchId, onSuccess, compact }: RequestA
 
   if (compact) {
     return (
-      <div className="flex items-center gap-2 w-full">
+      <div className="flex items-center gap-2">
         <button
           onClick={() => handleAction("ACCEPTED")}
           disabled={actionLoading !== null}
-          className="flex-1 flex items-center justify-center bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed text-white py-1.5 rounded-lg transition-colors"
+          className="w-8 h-8 rounded-full flex items-center justify-center bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed text-white transition-colors"
         >
           {actionLoading === "accept" ? (
             <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -60,7 +60,7 @@ export default function RequestActions({ matchId, onSuccess, compact }: RequestA
         <button
           onClick={() => handleAction("DECLINED")}
           disabled={actionLoading !== null}
-          className="flex-1 flex items-center justify-center bg-[#252525] hover:bg-[#313131] disabled:opacity-50 disabled:cursor-not-allowed text-gray-400 py-1.5 rounded-lg transition-colors"
+          className="w-8 h-8 rounded-full flex items-center justify-center bg-[#252525] hover:bg-[#313131] disabled:opacity-50 disabled:cursor-not-allowed text-gray-400 transition-colors"
         >
           {actionLoading === "decline" ? (
             <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -77,7 +77,7 @@ export default function RequestActions({ matchId, onSuccess, compact }: RequestA
       <button
         onClick={() => handleAction("ACCEPTED")}
         disabled={actionLoading !== null}
-        className="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-medium px-3.5 py-2 rounded-xl transition-colors"
+        className="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-semibold px-4 py-2 rounded-full transition-colors"
       >
         {actionLoading === "accept" ? (
           <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -89,7 +89,7 @@ export default function RequestActions({ matchId, onSuccess, compact }: RequestA
       <button
         onClick={() => handleAction("DECLINED")}
         disabled={actionLoading !== null}
-        className="inline-flex items-center gap-1.5 bg-[#1f1f1f] hover:bg-[#252525] disabled:opacity-50 disabled:cursor-not-allowed text-[#888] text-sm font-medium px-3.5 py-2 rounded-xl transition-colors border border-[#252525]"
+        className="inline-flex items-center gap-1.5 bg-[#1f1f1f] hover:bg-[#2a2a2a] disabled:opacity-50 disabled:cursor-not-allowed text-[#888] text-sm font-semibold px-4 py-2 rounded-full transition-colors border border-[#2a2a2a]"
       >
         {actionLoading === "decline" ? (
           <Loader2 className="w-3.5 h-3.5 animate-spin" />

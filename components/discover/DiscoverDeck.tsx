@@ -97,13 +97,13 @@ function DiscoverCard({ user, onPass }: CardProps) {
           <button
             onClick={handleConnect}
             disabled={loading}
-            className={`w-16 h-16 rounded-full flex items-center justify-center shadow-lg transition-all active:scale-90 ${
+            className={`w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all active:scale-90 ${
               status === "PENDING_SENT"
                 ? "bg-emerald-600 shadow-emerald-900/40"
                 : "bg-cyan-600 hover:bg-cyan-500 shadow-cyan-900/40"
             }`}
           >
-            <Heart className={`w-7 h-7 text-white transition-all ${status === "PENDING_SENT" ? "fill-white" : ""}`} />
+            <Heart className={`w-6 h-6 text-white transition-all ${status === "PENDING_SENT" ? "fill-white" : ""}`} />
           </button>
         </div>
       </div>
