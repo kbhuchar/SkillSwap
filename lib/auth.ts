@@ -8,7 +8,7 @@ import { loginSchema } from "./validations/auth";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
-  session: { strategy: "database" },
+  session: { strategy: "jwt" },
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -42,9 +42,20 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   callbacks: {
-    async session({ session, user }) {
-      if (user && session.user) {
-        session.user.id = user.id;
+    async jwt({ token, user }) {
+      if (user) token.id = user.id;
+      // Return only essential fields to keep the cookie small and avoid 494 errors
+      return {
+        sub: token.sub,
+        id: token.id,
+        name: token.name,
+        email: token.email,
+        picture: token.picture,
+      };
+    },
+    async session({ session, token }) {
+      if (token && session.user) {
+        session.user.id = token.id as string;
       }
       return session;
     },
