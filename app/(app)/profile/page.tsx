@@ -7,9 +7,9 @@ import HingeProfileCard from "@/components/profile/HingeProfileCard";
 
 interface Skill {
   skillId: string;
-  name: string;
-  level?: "BEGINNER" | "INTERMEDIATE" | "ADVANCED";
   type: "OFFERED" | "WANTED";
+  level?: "BEGINNER" | "INTERMEDIATE" | "ADVANCED" | null;
+  skill: { name: string };
 }
 
 interface UserProfile {
@@ -66,7 +66,7 @@ export default function ProfilePage() {
 
   const skills = profile.skills.map((s) => ({
     id: s.skillId,
-    name: s.name,
+    name: s.skill.name,
     level: s.level ?? null,
     type: s.type,
   }));
@@ -86,10 +86,10 @@ export default function ProfilePage() {
               photos: profile.photos ?? [],
               skillsOffered: profile.skills
                 .filter((s) => s.type === "OFFERED")
-                .map((s) => ({ skillId: s.skillId, name: s.name, level: s.level })),
+                .map((s) => ({ skillId: s.skillId, name: s.skill.name, level: s.level ?? undefined })),
               skillsWanted: profile.skills
                 .filter((s) => s.type === "WANTED")
-                .map((s) => ({ skillId: s.skillId, name: s.name, level: s.level })),
+                .map((s) => ({ skillId: s.skillId, name: s.skill.name, level: s.level ?? undefined })),
             }}
             onCancel={() => setIsEditing(false)}
             onSuccess={() => {

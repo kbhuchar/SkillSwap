@@ -60,7 +60,7 @@ export default async function PublicProfilePage({ params }: ProfilePageProps) {
   const skills = user.skills.map((s) => ({
     id: s.skillId,
     name: s.skill.name,
-    level: s.level ?? null,
+    level: s.level as string | null ?? null,
     type: s.type,
   }));
 
