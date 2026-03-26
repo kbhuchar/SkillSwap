@@ -9,7 +9,6 @@ import {
   Search,
   MessageSquare,
   Zap,
-  TrendingUp,
 } from "lucide-react";
 import { formatDateTime, formatRelativeTime, getInitials } from "@/lib/utils";
 import RequestActions from "@/components/matches/RequestActions";
@@ -197,28 +196,30 @@ export default async function DashboardPage() {
                     const senderInitials = getInitials(match.sender.name);
                     return (
                       <div key={match.id} className="flex items-center gap-3">
-                        <Link href={`/profile/${match.sender.id}`} className="flex items-center gap-3 flex-1 min-w-0">
+                        <Link href={`/profile/${match.sender.id}`} className="flex-shrink-0">
                           {match.sender.image ? (
                             <img
                               src={match.sender.image}
                               alt={match.sender.name ?? ""}
-                              className="w-9 h-9 rounded-xl object-cover flex-shrink-0"
+                              className="w-10 h-10 rounded-xl object-cover"
                             />
                           ) : (
-                            <div className="w-9 h-9 rounded-xl bg-violet-600/10 text-violet-400 flex items-center justify-center text-xs font-bold flex-shrink-0">
+                            <div className="w-10 h-10 rounded-xl bg-violet-600/10 text-violet-400 flex items-center justify-center text-xs font-bold">
                               {senderInitials}
                             </div>
                           )}
-                          <div className="min-w-0">
-                            <p className="text-sm font-semibold text-[#e5e5e5] truncate">
-                              {match.sender.name ?? "Anonymous"}
-                            </p>
-                            <p className="text-xs text-[#888]">
-                              {formatRelativeTime(match.createdAt)}
-                            </p>
-                          </div>
                         </Link>
-                        <RequestActions matchId={match.id} compact />
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-semibold text-[#e5e5e5]">
+                            {match.sender.name ?? "Anonymous"}
+                          </p>
+                          <p className="text-xs text-[#888]">
+                            {formatRelativeTime(match.createdAt)}
+                          </p>
+                        </div>
+                        <div className="flex-shrink-0">
+                          <RequestActions matchId={match.id} compact />
+                        </div>
                       </div>
                     );
                   })}
@@ -323,30 +324,6 @@ export default async function DashboardPage() {
               </div>
             )}
 
-            {/* Quick actions */}
-            <div className="bg-[#181818] border border-[#252525] rounded-2xl overflow-hidden">
-              <div className="px-5 py-4 border-b border-[#252525]">
-                <h2 className="text-sm font-bold text-[#e5e5e5]">Quick Actions</h2>
-              </div>
-              <div className="p-2">
-                {[
-                  { href: "/browse", icon: Search, label: "Browse skills", color: "text-violet-400" },
-                  { href: "/matches", icon: Users, label: "View matches", color: "text-blue-400" },
-                  { href: "/messages", icon: MessageSquare, label: "Messages", color: "text-emerald-400" },
-                  { href: "/profile", icon: TrendingUp, label: "Edit profile", color: "text-amber-400" },
-                ].map(({ href, icon: Icon, label, color }) => (
-                  <Link
-                    key={href}
-                    href={href}
-                    className="flex items-center gap-3 px-3 py-2.5 rounded-xl hover:bg-[#1f1f1f] transition-colors group"
-                  >
-                    <Icon size={15} className={color} />
-                    <span className="text-sm text-[#888] group-hover:text-[#e5e5e5] transition-colors">{label}</span>
-                    <ArrowRight size={13} className="ml-auto text-[#444] group-hover:text-[#888] transition-colors" />
-                  </Link>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       ) : (
