@@ -16,7 +16,7 @@ export default function AuthLayout({
 
       <div className="w-full max-w-md relative">
         {/* Logo / Brand */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-6">
           <Link href="/" className="inline-flex flex-col items-center gap-3 group">
             <div className="w-12 h-12 rounded-2xl bg-cyan-600 flex items-center justify-center shadow-lg shadow-cyan-900/40 group-hover:shadow-cyan-800/60 transition-shadow">
               <Zap className="w-6 h-6 text-white" />
@@ -26,10 +26,7 @@ export default function AuthLayout({
           <p className="mt-2 text-sm text-gray-500">Swap skills, grow together</p>
         </div>
 
-        {/* Card */}
-        <div className="bg-[#181818] rounded-2xl shadow-xl shadow-black/30 border border-[#252525] p-8">
-          {children}
-        </div>
+        {children}
       </div>
     </div>
   );

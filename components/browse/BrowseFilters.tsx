@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { useCallback, useState, useEffect } from "react";
-import { Search, X, SlidersHorizontal, MapPin, Loader2, ChevronDown, LayoutGrid } from "lucide-react";
+import { Search, X, SlidersHorizontal, MapPin, Loader2, ChevronDown, LayoutGrid, Sparkles } from "lucide-react";
 
 const CATEGORIES = [
   { value: "Technology", label: "Technology", icon: "💻" },
@@ -41,6 +41,7 @@ export default function BrowseFilters({ hasLocation }: BrowseFiltersProps) {
     searchParams.get("miles") ? parseInt(searchParams.get("miles")!) : null
   );
   const [category, setCategory] = useState(searchParams.get("category") ?? "");
+  const [newOnly, setNewOnly] = useState(searchParams.get("new") === "1");
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [focused, setFocused] = useState(false);
@@ -55,19 +56,20 @@ export default function BrowseFilters({ hasLocation }: BrowseFiltersProps) {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      updateParams(skill, type, miles, category);
+      updateParams(skill, type, miles, category, newOnly);
     }, 400);
     return () => clearTimeout(timeout);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [skill]);
 
   const updateParams = useCallback(
-    (skillVal: string, typeVal: string, milesVal: number | null, categoryVal: string) => {
+    (skillVal: string, typeVal: string, milesVal: number | null, categoryVal: string, newOnlyVal: boolean) => {
       const params = new URLSearchParams();
       if (skillVal) params.set("skill", skillVal);
       if (typeVal) params.set("type", typeVal);
       if (milesVal) params.set("miles", String(milesVal));
       if (categoryVal) params.set("category", categoryVal);
+      if (newOnlyVal) params.set("new", "1");
       router.push(`${pathname}?${params.toString()}`);
     },
     [router, pathname]
@@ -75,19 +77,25 @@ export default function BrowseFilters({ hasLocation }: BrowseFiltersProps) {
 
   const handleTypeChange = (newType: string) => {
     setType(newType);
-    updateParams(skill, newType, miles, category);
+    updateParams(skill, newType, miles, category, newOnly);
   };
 
   const handleMilesChange = (newMiles: number | null) => {
     setMiles(newMiles);
-    updateParams(skill, type, newMiles, category);
+    updateParams(skill, type, newMiles, category, newOnly);
   };
 
   const handleCategoryChange = (newCategory: string) => {
     const next = category === newCategory ? "" : newCategory;
     setCategory(next);
-    updateParams(skill, type, miles, next);
+    updateParams(skill, type, miles, next, newOnly);
     setCategoryOpen(false);
+  };
+
+  const handleNewOnlyToggle = () => {
+    const next = !newOnly;
+    setNewOnly(next);
+    updateParams(skill, type, miles, category, next);
   };
 
   const handleClear = () => {
@@ -95,6 +103,7 @@ export default function BrowseFilters({ hasLocation }: BrowseFiltersProps) {
     setType("");
     setMiles(null);
     setCategory("");
+    setNewOnly(false);
     router.push(pathname);
   };
 
@@ -121,7 +130,7 @@ export default function BrowseFilters({ hasLocation }: BrowseFiltersProps) {
 
   const selectedCategory = CATEGORIES.find((c) => c.value === category);
   const advancedFilterCount = (type ? 1 : 0) + (miles ? 1 : 0);
-  const activeFilterCount = (skill ? 1 : 0) + (category ? 1 : 0) + advancedFilterCount;
+  const activeFilterCount = (skill ? 1 : 0) + (category ? 1 : 0) + advancedFilterCount + (newOnly ? 1 : 0);
 
   return (
     <div className="sticky top-12 z-20 bg-[#0d0d0d] py-3 -mx-4 sm:-mx-5 px-4 sm:px-5 border-b border-[#252525]/60 animate-fade-up-2">
@@ -169,6 +178,19 @@ export default function BrowseFilters({ hasLocation }: BrowseFiltersProps) {
             <ChevronDown
               className={`w-3.5 h-3.5 transition-transform duration-200 ${categoryOpen ? "rotate-180" : ""}`}
             />
+          </button>
+
+          {/* New only toggle */}
+          <button
+            onClick={handleNewOnlyToggle}
+            className={`flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl border text-sm font-semibold transition-all duration-200 flex-shrink-0 ${
+              newOnly
+                ? "bg-cyan-600/10 border-cyan-500/40 text-cyan-400"
+                : "bg-[#111111] border-[#252525] text-[#888] hover:border-cyan-500/30 hover:text-[#e5e5e5]"
+            }`}
+          >
+            <Sparkles className="w-4 h-4" />
+            <span className="hidden sm:inline">New</span>
           </button>
 
           {/* Filters button */}

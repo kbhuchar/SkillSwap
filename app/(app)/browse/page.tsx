@@ -2,15 +2,17 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import BrowseFilters from "@/components/browse/BrowseFilters";
 import UserGrid from "@/components/browse/UserGrid";
+import BrowseFeed from "@/components/browse/BrowseFeed";
+import ViewToggle from "@/components/browse/ViewToggle";
 import type { Metadata } from "next";
 import type { PublicUser } from "@/types";
 
 export const metadata: Metadata = {
-  title: "Browse Skills — SkillSwap",
+  title: "Discover — SkillSwap",
 };
 
 interface BrowsePageProps {
-  searchParams: Promise<{ skill?: string; type?: string; miles?: string; category?: string }>;
+  searchParams: Promise<{ skill?: string; type?: string; miles?: string; category?: string; new?: string; view?: string }>;
 }
 
 function haversineDistance(lat1: number, lng1: number, lat2: number, lng2: number): number {
@@ -31,16 +33,33 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
   const userId = session!.user.id;
   const params = await searchParams;
   const { skill, type, miles: milesParam, category } = params;
+  const newOnly = params.new === "1";
+  const view = params.view === "feed" ? "feed" : "grid";
   const miles = milesParam ? parseInt(milesParam) : null;
-  const isFiltered = !!(skill || type || miles || category);
+  const isFiltered = !!(skill || type || miles || category || newOnly);
 
   const currentUser = await prisma.user.findUnique({
     where: { id: userId },
     select: { lat: true, lng: true },
   });
 
+  // If "new only", exclude users already in any match relationship
+  let excludedIds: string[] | undefined;
+  if (newOnly) {
+    const existingMatches = await prisma.match.findMany({
+      where: { OR: [{ senderId: userId }, { receiverId: userId }] },
+      select: { senderId: true, receiverId: true },
+    });
+    const excluded = new Set<string>([userId]);
+    for (const m of existingMatches) {
+      excluded.add(m.senderId);
+      excluded.add(m.receiverId);
+    }
+    excludedIds = Array.from(excluded);
+  }
+
   const whereClause: Record<string, unknown> = {
-    id: { not: userId },
+    id: excludedIds ? { notIn: excludedIds } : { not: userId },
   };
 
   if (skill || type || category) {
@@ -114,20 +133,38 @@ export default async function BrowsePage({ searchParams }: BrowsePageProps) {
 
   const hasLocation = !!(currentUser?.lat && currentUser?.lng);
 
+  if (view === "feed") {
+    return (
+      <div className="max-w-sm mx-auto flex flex-col" style={{ height: "calc(100dvh - 3rem - 3.5rem - 2rem)" }}>
+        <div className="flex items-center justify-between mb-1">
+          <h1 className="text-lg font-extrabold text-[#e5e5e5] tracking-tight">Discover</h1>
+          <ViewToggle view="feed" />
+        </div>
+        <BrowseFilters hasLocation={hasLocation} />
+        <div className="-mx-4 sm:mx-0 flex-1 min-h-0">
+          <BrowseFeed users={publicUsers} matchStatuses={matchStatuses} />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-6xl mx-auto pb-8">
       {/* Header */}
-      <div className="flex items-end justify-between pb-1 animate-fade-up-1">
+      <div className="flex items-center justify-between pb-1 animate-fade-up-1">
         <div>
-          <h1 className="text-2xl font-extrabold text-[#e5e5e5] tracking-tight">Browse</h1>
+          <h1 className="text-2xl font-extrabold text-[#e5e5e5] tracking-tight">Discover</h1>
           <p className="text-sm text-[#888] mt-0.5">
-            {isFiltered ? "Showing filtered results" : "Discover people to swap skills with"}
+            {newOnly ? "Showing new people only" : isFiltered ? "Showing filtered results" : "Find people to swap skills with"}
           </p>
         </div>
-        <div className="flex items-center gap-1.5 bg-[#181818] border border-[#252525] rounded-full px-3 py-1.5">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-          <span className="text-xs font-semibold text-[#e5e5e5]">{publicUsers.length}</span>
-          <span className="text-xs text-[#888]">people</span>
+        <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 bg-[#181818] border border-[#252525] rounded-full px-3 py-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+            <span className="text-xs font-semibold text-[#e5e5e5]">{publicUsers.length}</span>
+            <span className="text-xs text-[#888]">people</span>
+          </div>
+          <ViewToggle view="grid" />
         </div>
       </div>
 

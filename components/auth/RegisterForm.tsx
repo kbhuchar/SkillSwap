@@ -64,13 +64,6 @@ export default function RegisterForm() {
 
   return (
     <div>
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-white">Create your account</h1>
-        <p className="text-sm text-gray-500 mt-1">
-          Join SkillSwap and start learning today
-        </p>
-      </div>
-
       {/* Google Sign In */}
       <button
         type="button"
